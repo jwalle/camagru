@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "root";
 
-// Create connection
+// Create database
 
 try {
 		$conn = new PDO("mysql:host=$servername;dbname=camagru", $username, $password);
@@ -17,10 +17,36 @@ catch (PDOException $e)
 	echo $sql . "<br>" . $e->getMessage();
 }
 
-$req = "CREATE TABLE IF NOT EXISTS `users` (`username` varchar(255) NOT NULL,`password` varchar(255) NOT NULL, UNIQUE KEY `username` (`username`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+// Create table
 
-$conn->exec($req);
+try {
+	$table = "user";
+	$conn = new PDO("mysql:host=$servername;dbname=camagru", $username, $password);
+	$req = "CREATE TABLE IF NOT EXISTS $table (
+		ID INT(11) AUTO_INCREMENT PRIMARY KEY,
+		username varchar(255) NOT NULL,
+		password varchar(255) NOT NULL);";
+	$conn->exec($req);
+	print("created $table Table.\n");
+	}
+	catch (PDOException $e)
+	{
+		echo $sql . "<br>" . $e->getMessage();
+	}
 
+// Insert element in table
 
-$conn = null;
+try {
+		$conn = new PDO("mysql:host=$servername;dbname=camagru", $username, $password);
+		$hash = hash('whirlpool', 'motdepasse');
+		$name = 'kkak';
+		$stmt =  $conn->prepare("INSERT INTO $table set username=?, password=?");
+		$stmt->execute([$name, $hash]);
+		echo "Insert done";
+	}
+	catch (PDOException $e)
+	{
+		echo $sql . "<br>" . $e->getMessage();
+	}
+	$conn = null;
 ?>
