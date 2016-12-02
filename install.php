@@ -20,7 +20,7 @@ catch (PDOException $e)
 // Create table
 
 try {
-	$table = "user";
+	$table = "users";
 	$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
 	$req = "CREATE TABLE IF NOT EXISTS $table (
 		user_id INT(11) AUTO_INCREMENT PRIMARY KEY,
@@ -37,19 +37,32 @@ try {
 		echo $sql . "<br>" . $e->getMessage();
 	}
 
-// Insert element in table
-try {
-		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
-		$hash = hash('whirlpool', 'motdepasse');
-		$name = 'plop1';
-		$mail = 'coucou@gmail.com';
-		$stmt =  $conn->prepare("INSERT INTO $table set user_name=?, user_mail=?, user_pass=?");
-		$stmt->execute([$name, $mail, $hash]);
-		echo "Insert done";
-	}
-	catch (PDOException $e)	
+
+	try
 	{
-		echo $sql . "<br>" . $e->getMessage();
+		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
-	$conn = null;
+	catch (PDOException $e)
+	{
+	echo $sql . "<br>" . $e->getMessage();
+	}
+	include_once 'Class_User.php';
+	$user = new USER($conn);
+
+// Insert element in table
+// try {
+// 		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
+// 		$hash = hash('whirlpool', 'motdepasse');
+// 		$name = 'plop1';
+// 		$mail = 'coucou@gmail.com';
+// 		$stmt =  $conn->prepare("INSERT INTO $table set user_name=?, user_mail=?, user_pass=?");
+// 		$stmt->execute([$name, $mail, $hash]);
+// 		echo "Insert done";
+// 	}
+// 	catch (PDOException $e)	
+// 	{
+// 		echo $sql . "<br>" . $e->getMessage();
+// 	}
+// 	$conn = null;
 ?>

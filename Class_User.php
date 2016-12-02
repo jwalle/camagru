@@ -11,16 +11,19 @@ class USER
 
 	public function register($uname, $umail, $upass)
 	{
+		echo "vardump:";
+		var_dump($this->db);
+
 		try
 		{
 			$new_pass = hash('whirlpool', $upass);
-
 			$stmt =  $this->db->prepare("INSERT INTO users(user_name, user_mail, user_pass)
 											VALUES(:uname, :umail, :upass)");
-			$stmt->bindparam(":uname", $uname);
-			$stmt->bindparam(":umail", $umail);
-			$stmt->bindparam(":upass", $new_pass);
-			$stmt->execute();
+			$stmt->execute(array(
+						'uname' => $uname,
+						'umail' => $umail,
+						'upass' => $new_pass
+					));
 			return $stmt;
 		}
 		catch(PDOException $e)
