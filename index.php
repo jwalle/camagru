@@ -3,113 +3,61 @@ require_once 'install.php';
 
 if ($user->is_loggedin() != "")
 {
-	redirect("home.php");
+	$user->redirect("home.php");
 }
 
 if (isset($_POST['btn-signup']))
 {
-	$uname = trim($_POST['txt_uname']);
-	$umail = trim($_POST['txt_umail']);
-	$upass = trim($_POST['txt_upass']);
+	$uname = $_POST['txt_uname_mail'];
+	$umail = $_POST['txt_uname_mail'];
+	$upass = $_POST['txt_upass'];
 
-	if ($umail == "")
-		$error[] = "Rajouter un nom d'utilisateur.";
-
-	else if ($uname == "")
-		$error[] = "Rajouter une adresse email.";
-
-
-	//else if (filter_var($umail, FILTER_VALIDATE_EMAIL))
-	//	$error[] = "Rajouter une adresse email valide.";
-
-	else if ($upass == "")
-		$error[] = "Rajouter mot de passe.";
-
-	else if (strlen($upass) < 6)
-		$error[] = "Le mot de passe doit au moins faire 6 caracteres.";
-	if (empty($error))
+	if ($user->login($uname, $umail, $upass))
 	{
-		try
-		{
-		$stmt = $conn->prepare("SELECT user_name,user_mail FROM users
-								WHERE user_name=:uname OR user_mail=:umail");
-		$stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-		if ($row['user_name'] == $uname)
-			$error[] = "Desole ce nom d'utilisateur est deja pris.";
-		else if ($row['user_mail'] == $umail)
-			$error[] = "Desole cette adresse mail est deja prise.";
-		else
-		{
-			if ($user->register($uname, $umail, $upass))
-				echo "BRAVOOOOOOOOOOO !!!";
-				// $user->redirect(sign);
-		}
-
+		$user->redirect('home.php');
 	}
-	catch(PDOException $e)
-	{
-		echo $e->getMessage();
-	}
-}
+	else
+		$error = "Mauvais detail !";
 }
 
 ?>
 
 
 <html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="chupa.css">
-		<link rel="icon" type="image/png" href="/img/logo.png">
-		<title>Camagru</title>
-	</head>
-<body bgcolor="#A69256">
+<head>
+	<link rel="stylesheet" type="text/css" href="chupa.css">
+	<link rel="icon" type="image/png" href="/img/logo.png">
+	<title>Camagru</title>
+</head>
 
+
+<body bgcolor="#A69256">
 <div class ="general">
 	
 	<header class="box">
-	
-		<img id="logo" src="/img/logo.png"></img>
-		<img id="chupa-title" src="/img/chupa.png">
-	
 	<div class="form-container">
 		<form method="post">
-		<h2>Sign up.</h2><hr />
+		<h2>Sign in :</h2><hr />
 		<?php
 		if (isset($error))
 		{
-			foreach ($error as $error)
-			{
-				?>
+			?>
 				<div class="alert">
 					<i class="glyphicon"></i> &nbsp; <?php echo $error; ?>
 				</div>
-				<?php
-			}
+			<?php
 		}
-
 		?>
-				Identifiant: <input type="text" class="css-input" name="txt_uname" placeholder="Login" value="" />
-				Mail: <input type="text" class="css-input" name="txt_umail" placeholder="email" value="" />
+				Identifiant ou mail : <input type="text" class="css-input" name="txt_uname_mail" placeholder="Login" value="" />
 				Mot de passe: <input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" />
-			<input type="submit" class="btn" name="btn-signup" value="OK"/>
+			<input type="submit" class="btn" name="btn-signup" value="SIGN IN"/>
 			</br>
+			<label>Tu n'a pas encore de compte ? <a href="login.php">Sign-up</a></label>
 		</form>
 	</div>
 	
-	<a class="button2" href="create.html" >Créer un compte</a>
-	</div>
-			<div class="buttons">
-				<a href="index.php" class="button"/>Accueil</a>
-				<a href="store_nolog.html" class="button"/>Boutique</a>
-				<a href="#" class="button"/>Panier</a>
-				<!-- <a href="#" class="button"/>Login</a> -->
-			</div>
-
-			<?php echo '<p>Hello World</p>'; ?>
+	<?php echo '<p>Hello World</p>'; ?>
  
-
 	</header>
 			
 
