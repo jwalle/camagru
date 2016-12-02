@@ -4,13 +4,12 @@
 		<link rel="icon" type="image/png" href="/img/logo.png">
 		<title>Camagru</title>
 	</head>
-	<body bgcolor="#A69256">
+<body bgcolor="#A69256">
 
 <div class ="general">
 	
-
-
 	<header class="box">
+	
 		<img id="logo" src="/img/logo.png"></img>
 		<img id="chupa-title" src="/img/chupa.png">
 
@@ -37,11 +36,14 @@
 
 	</header>
 			
+
 			<a class="button3" href="http://local.42.fr:8080/phpmyadmin/" >Accès Admin</a>
 
 </div>
 
+<footer>
 
+</footer>
 
 </body>
 </html>

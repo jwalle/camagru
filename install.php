@@ -1,7 +1,8 @@
 <?php
 
-include("config/database.php");
 session_start();
+include("config/database.php");
+	
 // Create database
 
 try {
@@ -22,9 +23,12 @@ try {
 	$table = "user";
 	$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
 	$req = "CREATE TABLE IF NOT EXISTS $table (
-		ID INT(11) AUTO_INCREMENT PRIMARY KEY,
-		username varchar(255) NOT NULL,
-		password varchar(255) NOT NULL);";
+		user_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+		user_name varchar(255) NOT NULL,
+		user_mail varchar(60) NOT NULL,
+		user_pass varchar(255) NOT NULL,
+		UNIQUE (`user_name`),
+		UNIQUE (`user_mail`));";
 	$conn->exec($req);
 	print("created $table Table.\n");
 	}
@@ -34,13 +38,13 @@ try {
 	}
 
 // Insert element in table
-
 try {
 		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
 		$hash = hash('whirlpool', 'motdepasse');
 		$name = 'plop1';
-		$stmt =  $conn->prepare("INSERT INTO $table set username=?, password=?");
-		$stmt->execute([$name, $hash]);
+		$mail = 'coucou@gmail.com';
+		$stmt =  $conn->prepare("INSERT INTO $table set user_name=?, user_mail=?, user_pass=?");
+		$stmt->execute([$name, $mail, $hash]);
 		echo "Insert done";
 	}
 	catch (PDOException $e)	
