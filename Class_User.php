@@ -42,7 +42,8 @@ class USER
 			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 			if ($stmt->rowCount() > 0)
 			{
-				if (password_verify($upass, $userRow['user_pass']))
+				$test_pass = hash('whirlpool', $upass);	
+				if ($test_pass == $userRow['user_pass'])
 				{
 					$_SESSION['user_session'] = $userRow['user_id'];
 					return true;

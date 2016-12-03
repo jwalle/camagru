@@ -4,7 +4,7 @@ session_start();
 include("config/database.php");
 	
 // Create database
-/*
+
 try {
 		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -12,10 +12,10 @@ try {
 		$conn->exec($sql);
 		echo "Database created successfully<br>";
 	}
-catch (PDOException $e)
-{
-	echo $sql . "<br>" . $e->getMessage();
-}
+	catch (PDOException $e)
+	{
+		echo $sql . "<br>" . $e->getMessage();
+	}
 
 // Create table
 
@@ -36,7 +36,7 @@ try {
 	{
 		echo $sql . "<br>" . $e->getMessage();
 	}
-*/
+
 
 	try
 	{

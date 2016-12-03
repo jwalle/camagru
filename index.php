@@ -14,7 +14,8 @@ if (isset($_POST['btn-signup']))
 
 	if ($user->login($uname, $umail, $upass))
 	{
-		$user->redirect('home.php');
+		echo "ca marche !!!!!";
+		//$user->redirect('home.php');
 	}
 	else
 		$error = "Mauvais detail !";
