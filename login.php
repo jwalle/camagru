@@ -43,8 +43,7 @@ if (isset($_POST['btn-signup']))
 		else
 		{
 			if ($user->register($uname, $umail, $upass))
-				echo "BRAVOOOOOOOOOOO !!!";
-				// $user->redirect(sign);
+				$user->redirect("login.php?joined");
 		}
 
 	}

@@ -1,6 +1,6 @@
-<?php
+	<?php
 include_once 'install.php';
-if ($user->is_loggedin())
+if ($user->is_loggedin() === false)
 {
 	$user->redirect('index.php');
 }
@@ -14,7 +14,7 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 	<head>
 		<link rel="stylesheet" type="text/css" href="chupa.css">
 		<link rel="icon" type="image/png" href="/img/logo.png">
-		<title>welcome - <?php print($userRow['user_email']); ?></title>
+		<title>welcome - <?php print($userRow['user_name']); ?></title>
 	</head>
 <body bgcolor="#A69256">
 
@@ -31,10 +31,10 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 </div>
 
 <div class="content">
-	 welcome :  <?php print($userRow);
+	 welcome :  <?php print($userRow['user_name']); ?>
 </div>
 
-<footer>
+<footer>	
 	<a class="button3" href="http://localhost:8080/phpmyadmin/" >Accès Admin</a>
 </footer>
 

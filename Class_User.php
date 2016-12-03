@@ -11,9 +11,6 @@ class USER
 
 	public function register($uname, $umail, $upass)
 	{
-		echo "vardump:";
-		var_dump($this->db);
-
 		try
 		{
 			$new_pass = hash('whirlpool', $upass);
@@ -42,7 +39,7 @@ class USER
 			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 			if ($stmt->rowCount() > 0)
 			{
-				$test_pass = hash('whirlpool', $upass);	
+					$test_pass = hash('whirlpool', $upass);	
 				if ($test_pass == $userRow['user_pass'])
 				{
 					$_SESSION['user_session'] = $userRow['user_id'];
@@ -62,10 +59,12 @@ class USER
 	{
 		if (isset($_SESSION['user_session']))
 			return true;
+		return false;
 	}
 
 	public function redirect($url)
 	{
+		echo PLOOOOOOOOOoOOOOOOOOOOP;
 		header("Location: $url");
 	}
 
