@@ -1,5 +1,7 @@
-	<?php
+<?php
+
 include_once 'install.php';
+
 if ($user->is_loggedin() === false)
 {
 	$user->redirect('index.php');
@@ -19,7 +21,7 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 <body bgcolor="#A69256">
 
 <div class ="header">
-	
+
 	<div class="left">
 	<label><a href="https://www.reddit.com/">Reddit !!</a></label>
 	</div>
@@ -34,9 +36,8 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 	 welcome :  <?php print($userRow['user_name']); ?>
 </div>
 
-<footer>	
+<footer>
 	<a class="button3" href="http://localhost:8080/phpmyadmin/" >Accès Admin</a>
-</footer>
 
 </body>
 </html>

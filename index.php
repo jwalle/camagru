@@ -1,10 +1,10 @@
-<?php 
+<?php
 require_once 'install.php';
 
 if ($user->is_loggedin() === false)
 {
 	echo COUCOU;
-	$user->redirect('Home.php');
+	//$user->redirect('Home.php');
 	echo "DONE";
 }
 
@@ -22,7 +22,6 @@ if (isset($_POST['btn-signup']))
 	else
 		$error = "Mauvais detail !";
 }
-
 ?>
 
 
@@ -30,7 +29,7 @@ if (isset($_POST['btn-signup']))
 <head>
 	<link rel="stylesheet" type="text/css" href="chupa.css">
 	<link rel="icon" type="image/png" href="/img/logo.png">
-	<title>Camagru</title>
+	<title>Camagru</title>	
 </head>
 
 

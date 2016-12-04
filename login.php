@@ -1,9 +1,9 @@
 <?php 
 require_once 'install.php';
 
-if ($user->is_loggedin() != "")
+if ($user->is_loggedin() === true)
 {
-	$user->redirect("home.php");
+	$user->redirect("Home.php");
 }
 
 if (isset($_POST['btn-signup']))
@@ -18,7 +18,6 @@ if (isset($_POST['btn-signup']))
 	else if ($uname == "")
 		$error[] = "Rajouter une adresse email.";
 
-
 	//else if (filter_var($umail, FILTER_VALIDATE_EMAIL))
 	//	$error[] = "Rajouter une adresse email valide.";
 
@@ -30,7 +29,7 @@ if (isset($_POST['btn-signup']))
 	else
 	{
 	try
-		{
+	{
 		$stmt = $conn->prepare("SELECT user_name,user_mail FROM users
 								WHERE user_name=:uname OR user_mail=:umail");
 		$stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));

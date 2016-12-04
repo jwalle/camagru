@@ -1,7 +1,14 @@
 <?php
 
 session_start();
-include("config/database.php");
+
+
+
+
+
+
+
+include_once("config/database.php");
 	
 // Create database
 
@@ -47,6 +54,7 @@ include("config/database.php");
 	{
 	echo $sql . "<br>" . $e->getMessage();
 	}
+	
 	include_once 'Class_User.php';
 	$user = new USER($conn);
 	
