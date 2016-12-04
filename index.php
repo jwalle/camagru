@@ -1,11 +1,9 @@
 <?php
 require_once 'install.php';
 
-if ($user->is_loggedin() === false)
+if ($user->is_loggedin() === true)
 {
-	echo COUCOU;
-	//$user->redirect('Home.php');
-	echo "DONE";
+	$user->redirect('homw.php');
 }
 
 if (isset($_POST['btn-signup']))
@@ -16,7 +14,6 @@ if (isset($_POST['btn-signup']))
 
 	if ($user->login($uname, $umail, $upass))
 	{
-		echo LLLLLLGGGGGGGG;
 		$user->redirect('Home.php');
 	}
 	else

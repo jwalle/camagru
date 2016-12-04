@@ -2,12 +2,6 @@
 
 session_start();
 
-
-
-
-
-
-
 include_once("config/database.php");
 	
 // Create database

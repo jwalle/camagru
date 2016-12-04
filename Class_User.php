@@ -62,9 +62,8 @@ class USER
 		return false;
 	}
 
-	public function redirect($url)
+    public function redirect($url)
 	{
-		echo PLOOOOOOOOOoOOOOOOOOOOP;
 		header("Location: $url");
 	}
 
@@ -75,3 +74,4 @@ class USER
 		return true;
 	}
 }
+?>

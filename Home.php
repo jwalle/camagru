@@ -2,10 +2,11 @@
 
 include_once 'install.php';
 
-if ($user->is_loggedin() === false)
+if (!$user->is_loggedin())
 {
-	$user->redirect('index.php');
+//	$user->redirect('index.php');
 }
+
 $user_id = $_SESSION['user_session'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE user_id=:user_id");
 $stmt->execute(array(":user_id"=>$user_id));
