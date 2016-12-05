@@ -15,11 +15,14 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="chupa.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
 		<link rel="icon" type="image/png" href="/img/logo.png">
 		<title>welcome - <?php print($userRow['user_name']); ?></title>
 	</head>
 <body bgcolor="#A69256">
+
+<?php include_once 'top_bar.php'; ?>
+<?php include_once 'side_bar.php'; ?>
 
 <div class ="header">
 

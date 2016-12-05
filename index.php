@@ -1,9 +1,9 @@
 <?php
 require_once 'install.php';
 
-if ($user->is_loggedin() === false)
+if ($user->is_loggedin() === true)
 {
-	$user->redirect('login.php');
+	$user->redirect('Home.php');
 }
 
 if (isset($_POST['btn-signup']))
@@ -26,7 +26,7 @@ if (isset($_POST['btn-signup']))
 <head>
 	<link rel="stylesheet" type="text/css" href="chupa.css">
 	<link rel="icon" type="image/png" href="/img/logo.png">
-	<title>Camagru</title>	
+	<title>Camagru</title>
 </head>
 
 
