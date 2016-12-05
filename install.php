@@ -17,9 +17,9 @@ include_once("config/database.php");
 // 	{
 // 		echo $sql . "<br>" . $e->getMessage();
 // 	}
-
+//
 // // Create table
-
+//
 // try {
 // 	$table = "users";
 // 	$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
@@ -37,7 +37,7 @@ include_once("config/database.php");
 // 	{
 // 		echo $sql . "<br>" . $e->getMessage();
 // 	}
-
+//
 
 	try
 	{
@@ -48,7 +48,7 @@ include_once("config/database.php");
 	{
 	echo $sql . "<br>" . $e->getMessage();
 	}
-	
+
 	include_once 'Class_User.php';
 	$user = new USER($conn);
 	

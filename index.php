@@ -1,9 +1,9 @@
 <?php
 require_once 'install.php';
 
-if ($user->is_loggedin() === true)
+if ($user->is_loggedin() === false)
 {
-	$user->redirect('homw.php');
+	$user->redirect('login.php');
 }
 
 if (isset($_POST['btn-signup']))

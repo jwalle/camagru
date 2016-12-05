@@ -2,9 +2,9 @@
 
 include_once 'install.php';
 
-if (!$user->is_loggedin())
+if ($user->is_loggedin() === false)
 {
-//	$user->redirect('index.php');
+	$user->redirect('index.php');
 }
 
 $user_id = $_SESSION['user_session'];
