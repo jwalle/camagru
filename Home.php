@@ -22,22 +22,25 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 <body bgcolor="#A69256">
 
 <?php include_once 'top_bar.php'; ?>
+
+<div class="row">
 <?php include_once 'side_bar.php'; ?>
+	<div class ="header">
 
-<div class ="header">
+		<div class="left">
+		<label><a href="https://www.reddit.com/">Reddit !!</a></label>
+		</div>
 
-	<div class="left">
-	<label><a href="https://www.reddit.com/">Reddit !!</a></label>
+		<div class="right">
+		<label><a href="logout.php?logout=true"><i class="glyphicon"></i>logout</a></label>
+		</div>
+
 	</div>
-
-	<div class="right">
-	<label><a href="logout.php?logout=true"><i class="glyphicon"></i>logout</a></label>
-	</div>
-
-</div>
 
 <div class="content">
 	 welcome :  <?php print($userRow['user_name']); ?>
+</div>
+
 </div>
 
 <footer>

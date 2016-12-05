@@ -1,5 +1,16 @@
+
+/*http://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_webpage&stacked=h*/
+
 body {
     margin: 0;
+}
+
+.header {
+    position: relative;
+    width: 80%;
+    display: block;
+    padding: 10px;
+    float : left;
 }
 
 ul.top_nav {
@@ -35,7 +46,6 @@ li a {
     color: #000;
     padding: 8px 16px;
     text-decoration: none;
-}
 
 ul.side_nav li a:hover {
     background-color: #555;
@@ -46,9 +56,3 @@ a.active {
     background-color: #4CAF50);
     color: white;
 }
-
-content {
-    display: float;
-    padding: 0;
-}
-
