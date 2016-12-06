@@ -1,10 +1,4 @@
-<?php 
-require_once 'install.php';
-
-if ($user->is_loggedin() === true)
-{
-	$user->redirect("Home.php");
-}
+<?php
 
 if (isset($_POST['btn-signup']))
 {
@@ -55,24 +49,8 @@ if (isset($_POST['btn-signup']))
 
 ?>
 
-
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="chupa.css">
-		<link rel="icon" type="image/png" href="/img/logo.png">
-		<title>Camagru</title>
-	</head>
-<body bgcolor="#A69256">
-
-<div class ="general">
-	
-	<header class="box">
-	
-		<img id="logo" src="/img/logo.png"></img>
-		<img id="chupa-title" src="/img/chupa.png">
-	
-	<div class="form-container">
-		<form method="post">
+<div class="form-container">
+	<form method="post">
 		<h2>Sign up.</h2><hr />
 		<?php
 		if (isset($error))
@@ -104,17 +82,3 @@ if (isset($_POST['btn-signup']))
 	</div>
 	
 </div>
-
-</header>
-			
-
-			<a class="button3" href="http://local.42.fr:8080/phpmyadmin/" >Accès Admin</a>
-
-</div>
-
-<footer>
-
-</footer>
-
-</body>
-</html>

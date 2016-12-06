@@ -21,17 +21,7 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <div class="rows">
 <?php include_once 'side_bar.php'; ?>
-	<div class ="header">
-
-		<div class="left">
-		<label><a href="https://www.reddit.com/">Reddit !!</a></label>
-		</div>
-
-		<div class="right">
-		<label><a href="logout.php?logout=true"><i class="glyphicon"></i>logout</a></label>
-		</div>
-
-	</div>
+	<?php include_once 'content.php'; ?>
 </div>
 
 <?php include_once 'footer.php'; ?>

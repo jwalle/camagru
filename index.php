@@ -1,62 +1,39 @@
 <?php
+
 require_once 'install.php';
 
 if ($user->is_loggedin() === true)
 {
-	$user->redirect('Home.php');
+	$_SESSION['page'] = 'content.php';
 }
+if (isset($_GET['login']))
+	$_SESSION['page'] = 'login.php';
+else
+	$_SESSION['page'] = 'sign-in.php';
 
 if (isset($_POST['btn-signup']))
 {
 	$uname = $_POST['txt_uname_mail'];
 	$umail = $_POST['txt_uname_mail'];
 	$upass = $_POST['txt_upass'];
-
 	if ($user->login($uname, $umail, $upass))
 	{
-		$user->redirect('Home.php');
+		$_SESSION['page'] = 'content.php';
 	}
 	else
 		$error = "Mauvais detail !";
 }
 ?>
 
-
 <html>
 
 <?php include_once 'Header.php'; ?>
 
-<body bgcolor="#A69256">
-<div class ="general">
-	
-	<header class="box">
-		<div class="form-container">
-			<form method="post">
-				<h2>Sign in :</h2><hr />
-				<?php
-					if (isset($error))
-					{
-						?>
-						<div class="alert">
-							<i class="glyphicon"></i> &nbsp; <?php echo $error; ?>
-						</div>
-						<?php
-					}
-				?>
-				Identifiant ou mail : <input type="text" class="css-input" name="txt_uname_mail" placeholder="Login" value="" />
-				Mot de passe: <input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" />
-				<input type="submit" class="btn" name="btn-signup" value="SIGN IN"/>
-				</br>
-				<label>Tu n'a pas encore de compte ? <a href="login.php">Sign-up</a></label>
-			</form>
-		</div>
-	<?php echo '<p>Hello World</p>'; ?>
-	</header>
-</div>
+<body>
 
-<footer>
-	<a class="button3" href="http://local.42.fr:8080/phpmyadmin/" >Accès Admin</a>
-</footer>
+	<?php include_once 'side_bar.php'; ?>
+
+	<?php include_once $_SESSION['page'];?>
 
 </body>
 </html>
