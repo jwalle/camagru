@@ -23,12 +23,8 @@ if (isset($_POST['btn-signup']))
 
 
 <html>
-<head>
-	<link rel="stylesheet" type="text/css" href="chupa.css">
-	<link rel="icon" type="image/png" href="/img/logo.png">
-	<title>Camagru</title>
-</head>
 
+<?php include_once 'Header.php'; ?>
 
 <body bgcolor="#A69256">
 <div class ="general">

@@ -14,16 +14,12 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<link rel="icon" type="image/png" href="/img/logo.png">
-		<title>welcome - <?php print($userRow['user_name']); ?></title>
-	</head>
-<body bgcolor="#A69256">
 
-<?php include_once 'top_bar.php'; ?>
+<?php include_once 'Header.php'; ?>
 
-<div class="row">
+<body>
+
+<div class="rows">
 <?php include_once 'side_bar.php'; ?>
 	<div class ="header">
 
@@ -36,15 +32,9 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 		</div>
 
 	</div>
-
-<div class="content">
-	 welcome :  <?php print($userRow['user_name']); ?>
 </div>
 
-</div>
-
-<footer>
-	<a class="button3" href="http://localhost:8080/phpmyadmin/" >Accès Admin</a>
+<?php include_once 'footer.php'; ?>
 
 </body>
 </html>
