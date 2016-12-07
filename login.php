@@ -53,7 +53,7 @@ if (isset($_POST['btn-signup']))
 
 <div class="form-container">
 	<form method="post">
-		<h2>Sign up.</h2><hr />
+		<h2>Se creer un compte :</h2>
 		<?php
 		if (isset($error))
 		{
@@ -75,11 +75,11 @@ if (isset($_POST['btn-signup']))
 			<?php
 		}
 		?>
-				Identifiant: <input type="text" class="css-input" name="txt_uname" placeholder="Login" value="" />
-				Mail: <input type="text" class="css-input" name="txt_umail" placeholder="email" value="" />
-				Mot de passe: <input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" />
-                Confirmation du Mot de passe: <input type="password" class="css-input" name="txt_upass_conf" placeholder="Mot de passe" value="" />
-
+				<div><input type="text" class="css-input" name="txt_uname" placeholder="Login" value="" /></div>
+				<div><input type="text" class="css-input" name="txt_umail" placeholder="email" value="" /></div>
+				<div><input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" /></div>
+               	<div><input type="password" class="css-input" name="txt_upass_conf" placeholder="Retaper le mot de passe" value="" /></div>
+<div>
         <input type="submit" class="btn" name="btn-signup" value="OK"/>
 			</br>
 		</form>

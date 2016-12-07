@@ -29,12 +29,53 @@ header {
 
 .form-container {
     display: inline-block;
-    padding: 10px;
-    position : absolute;
-    width : 100%;
+    padding: 2em;
+    position: absolute;
+    width: 100%;
+    font: 21px sans-serif;
 }
 
-.header {
+.logo {width: 100%
+}
+
+.btn{
+    padding: 5px;
+    font: bold 1em sans serif;
+    color: white;
+    border: 2px solid white;
+    background: none;
+}
+
+.btn:hover, .btn:focus{
+    outline: none;
+    background: #000;
+    color: #FFF;
+}
+
+form {
+    position: relative;
+    font: 10px;
+    margin: 0 auto;
+}
+
+.css-input {
+    font : 2em  sans-serif;
+    border: none;
+    padding: 0 10px;
+    margin: 0;
+    margin-bottom: 20   px;
+    width: 540px;
+    background: rgba(0,0,0,0.1);
+    height: 2em;
+}
+
+.css-input:focus {
+    background: rgba(0,0,0,0.3);
+    border-radius: 5px;
+    outline: none;
+}
+
+    .header {
     display: inline-block;
     padding: 10px;
     position : absolute;
@@ -65,6 +106,18 @@ ul.side_nav {
     background-color: #333;
     height: 100%;
     overflow: auto;
+}
+
+ul.form {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: auto;
+}
+
+h2 {font-size: 5em;
+    text-align: center;
 }
 
 li {
