@@ -6,23 +6,12 @@ if ($user->is_loggedin() === true)
 {
 	$_SESSION['page'] = 'content.php';
 }
-if (isset($_GET['login']))
+else if (isset($_GET['login']))
 	$_SESSION['page'] = 'login.php';
+else if (isset($_GET['joined']))
+    $_SESSION['page'] = 'joined.php';
 else
 	$_SESSION['page'] = 'sign-in.php';
-
-if (isset($_POST['btn-signup']))
-{
-	$uname = $_POST['txt_uname_mail'];
-	$umail = $_POST['txt_uname_mail'];
-	$upass = $_POST['txt_upass'];
-	if ($user->login($uname, $umail, $upass))
-	{
-		$_SESSION['page'] = 'content.php';
-	}
-	else
-		$error = "Mauvais detail !";
-}
 ?>
 
 <html>

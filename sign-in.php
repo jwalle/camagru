@@ -1,3 +1,20 @@
+<?php
+
+if (isset($_POST['btn-signup']))
+{
+    $uname = $_POST['txt_uname_mail'];
+    $umail = $_POST['txt_uname_mail'];
+    $upass = $_POST['txt_upass'];
+    if ($user->login($uname, $umail, $upass))
+    {
+        $_SESSION['page'] = 'content.php';
+    }
+    else
+        $error = "Mauvais detail !";
+}
+
+?>
+
 <header class="box">
 		<div class="form-container">
 			<form method="post">

@@ -4,45 +4,47 @@ if (isset($_POST['btn-signup']))
 {
 	$uname = trim($_POST['txt_uname']);
 	$umail = trim($_POST['txt_umail']);
-	$upass = trim($_POST['txt_upass']);
+    $upass = trim($_POST['txt_upass']);
+    $upass_conf = trim($_POST['txt_upass_conf']);
 
-	if ($umail == "")
-		$error[] = "Rajouter un nom d'utilisateur.";
+	if ($umail == "" || !filter_var($umail, FILTER_VALIDATE_EMAIL))
+		$error[] = "Rajouter une adresse email valide.";
 
-	else if ($uname == "")
-		$error[] = "Rajouter une adresse email.";
-
-	//else if (filter_var($umail, FILTER_VALIDATE_EMAIL))
-	//	$error[] = "Rajouter une adresse email valide.";
+	else if ($uname == "" || !preg_match('/^[a-zA-Z0-9_]+$/', $uname))
+		$error[] = "Rajouter a un nom d'utilisateur valide.";
 
 	else if ($upass == "")
 		$error[] = "Rajouter mot de passe.";
 
+    else if ($upass != $upass_conf)
+        $error[] = "Le mot de passe de confirmation ne correspond pas.";
+
 	else if (strlen($upass) < 6)
-		$error[] = "Le mot de passe doit au moins faire 6 caracteres.";
+		$error[] = "Le mot de passe doit faire au moins 6 caracteres.";
+
 	else
 	{
-	try
-	{
-		$stmt = $conn->prepare("SELECT user_name,user_mail FROM users
-								WHERE user_name=:uname OR user_mail=:umail");
-		$stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+        try
+        {
+            $stmt = $conn->prepare("SELECT user_name,user_mail FROM users
+                                    WHERE user_name=:uname OR user_mail=:umail");
+            $stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-		if ($row['user_name'] == $uname)
-			$error[] = "Desole ce nom d'utilisateur est deja pris.";
-		else if ($row['user_mail'] == $umail)
-			$error[] = "Desole cette adresse mail est deja prise.";
-		else
-		{
-			if ($user->register($uname, $umail, $upass))
-				$user->redirect("login.php?joined");
-		}
+            if ($row['user_name'] == $uname)
+                $error[] = "Desole ce nom d'utilisateur est deja pris.";
+            else if ($row['user_mail'] == $umail)
+                $error[] = "Desole cette adresse mail est deja prise.";
+            else
+            {
+                if ($user->register($uname, $umail, $upass))
+                    $user->redirect("index.php?joined");
+            }
 
-	}
-	catch(PDOException $e)
-	{
-		echo $e->getMessage();
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
 	}
 }
 }
@@ -76,7 +78,9 @@ if (isset($_POST['btn-signup']))
 				Identifiant: <input type="text" class="css-input" name="txt_uname" placeholder="Login" value="" />
 				Mail: <input type="text" class="css-input" name="txt_umail" placeholder="email" value="" />
 				Mot de passe: <input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" />
-			<input type="submit" class="btn" name="btn-signup" value="OK"/>
+                Confirmation du Mot de passe: <input type="password" class="css-input" name="txt_upass_conf" placeholder="Mot de passe" value="" />
+
+        <input type="submit" class="btn" name="btn-signup" value="OK"/>
 			</br>
 		</form>
 	</div>
