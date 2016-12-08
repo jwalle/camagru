@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if (isset($_POST['btn-signup']))
 {
     $uname = $_POST['txt_uname_mail'];
@@ -8,18 +8,18 @@ if (isset($_POST['btn-signup']))
     if ($user->login($uname, $umail, $upass))
     {
         $_SESSION['page'] = 'content.php';
+        $user->redirect("index.php?content");
     }
     else
         $error = "Mauvais detail !";
 }
-
 ?>
 
 <header class="box">
     <h2>Bienvenue !</h2>
 
     <div class="form-container">
-            <form>
+            <form method="post">
 				<?php
 					if (isset($error))
                     {
@@ -31,7 +31,7 @@ if (isset($_POST['btn-signup']))
                     }
 				?>
                 <div class="name">
-                   <input type="text" class="css-input" name="txt_uname_mail" placeholder="Login or email" value="" />
+                   <input type="text" class="css-input" name="txt_uname_mail" placeholder="Login ou email" value="" />
                 </div>
                 <div class="password">
                     <input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" />

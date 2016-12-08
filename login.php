@@ -37,16 +37,15 @@ if (isset($_POST['btn-signup']))
                 $error[] = "Desole cette adresse mail est deja prise.";
             else
             {
-                if ($user->register($uname, $umail, $upass))
+				if ($user->register($uname, $umail, $upass))
                     $user->redirect("index.php?joined");
             }
 
         }
-        catch(PDOException $e)
-        {
-            echo $e->getMessage();
+        catch(PDOException $e) {
+			echo $e->getMessage();
+		}
 	}
-}
 }
 
 ?>

@@ -26,5 +26,6 @@ $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <?php include_once 'footer.php'; ?>
 
+
 </body>
 </html>

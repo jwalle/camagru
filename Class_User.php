@@ -30,10 +30,10 @@ class USER
 	}
 
 	public function login($uname, $umail, $upass)
-	{
-		try
+    {
+        try
 		{
-			$stmt =  $this->db->prepare("SELECT * FROM users
+            $stmt =  $this->db->prepare("SELECT * FROM users
 				WHERE user_name=:uname OR user_mail=:umail LIMIT 1");
 			$stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
 			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
@@ -43,16 +43,15 @@ class USER
 				if ($test_pass == $userRow['user_pass'])
 				{
 					$_SESSION['user_session'] = $userRow['user_id'];
-					return true;
+                    return true;
 				}
 				else
 					return false;
 			}
 		}
-		catch(PDOException $e)
-		{
-			echo $e->getMessage();
-		}
+		catch(PDOException $e) {
+            echo $e->getMessage();
+        }
 	}
 
 	public function is_loggedin()
@@ -74,4 +73,3 @@ class USER
 		return true;
 	}
 }
-?>

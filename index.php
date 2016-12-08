@@ -22,7 +22,7 @@ else
 
 	<?php include_once 'side_bar.php'; ?>
 
-	<?php include_once $_SESSION['page'];?>
+		<?php include_once $_SESSION['page'];?>
 
 </body>
 </html>
