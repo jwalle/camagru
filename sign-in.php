@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (isset($_POST['btn-signup']))
 {
     $uname = $_POST['txt_uname_mail'];
@@ -25,7 +24,7 @@ if (isset($_POST['btn-signup']))
                     {
                         ?>
                         <div class="alert">
-                            <i class="glyphicon"></i> &nbsp; <?php echo $error; ?>
+                            <div class="msg"> <i class="glyphicon"></i> &nbsp;  <?php echo $error; ?> </div>
                         </div>
                         <?php
                     }
@@ -38,6 +37,7 @@ if (isset($_POST['btn-signup']))
                 </div>
                 <div class="button">
                   <input type="submit" class="btn" name="btn-signup" value="SIGN IN"/></br>
+                </div>
                 <label for="ask">Tu n'a pas encore de compte ?<a href="index.php?login" class="button">INSCRIT TOI</a></label>
             </form>
         </div>

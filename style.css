@@ -6,6 +6,19 @@ body {
     background-color: #222222;
 }
 
+.alert{
+    color: white;
+    font : 1em;
+    background-color: darkred;
+    width: 540px;
+    height: 2em;
+    margin-bottom: 1em;
+}
+
+.msg{
+    padding: 10px;
+}
+
 .menu{
     width: 10%;
     display : inline-block;
@@ -40,11 +53,11 @@ header {
 }
 
 .btn{
-    padding: 5px;
+    padding: 5px 30px;
     font: bold 1em sans serif;
-    color: white;
+    color: black;
     border: 2px solid white;
-    background: none;
+    background: white;
 }
 
 .btn:hover, .btn:focus{
@@ -133,11 +146,4 @@ ul.side_nav li a:hover {
 a.active {
     background-color: #4CAF50);
     color: white;
-}
-
-.alert{
-    color: white;
-    font : 1em;
-    background-color: darkred;
-    width: 240 px;
 }

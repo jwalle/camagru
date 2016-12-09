@@ -60,7 +60,7 @@ if (isset($_POST['btn-signup']))
 			{
 				?>
 				<div class="alert">
-					<i class="glyphicon"></i> &nbsp; <?php echo $error; ?>
+					<div class="msg"><i class="glyphicon"></i> &nbsp; <?php echo $error; ?></div>
 				</div>
 				<?php
 			}
@@ -78,7 +78,6 @@ if (isset($_POST['btn-signup']))
 				<div><input type="text" class="css-input" name="txt_umail" placeholder="email" value="" /></div>
 				<div><input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" /></div>
                	<div><input type="password" class="css-input" name="txt_upass_conf" placeholder="Retaper le mot de passe" value="" /></div>
-<div>
         <input type="submit" class="btn" name="btn-signup" value="OK"/>
 			</br>
 		</form>
