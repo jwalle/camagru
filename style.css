@@ -15,6 +15,11 @@ body {
     margin-bottom: 1em;
 }
 
+.glyphicon{
+    background-image: url("img/alert-icon-1575.png");
+}
+
+
 .msg{
     padding: 10px;
 }
