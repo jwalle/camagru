@@ -1,5 +1,7 @@
 <?php
 
+require_once 'install.php';
+
 if (isset($_POST['btn-signup']))
 {
 	$uname = trim($_POST['txt_uname']);
@@ -50,6 +52,15 @@ if (isset($_POST['btn-signup']))
 
 ?>
 
+
+<html>
+
+<?php include_once 'Header.php'; ?>
+
+<body>
+
+<?php include_once 'side_bar.php'; ?>
+
 <div class="form-container">
 	<form method="post">
 		<h2>Se creer un compte :</h2>
@@ -84,3 +95,7 @@ if (isset($_POST['btn-signup']))
 	</div>
 	
 </div>
+
+</body>
+
+</html>

@@ -2,16 +2,12 @@
 
 require_once 'install.php';
 
-if ($user->is_loggedin() === true)
+if ($user->is_loggedin())
 {
 	$_SESSION['page'] = 'content.php';
 }
-else if (isset($_GET['login']))
-	$_SESSION['page'] = 'login.php';
-else if (isset($_GET['joined']))
-    $_SESSION['page'] = 'joined.php';
 else
-	$_SESSION['page'] = 'sign-in.php';
+    $user->redirect('sign-in.php');
 ?>
 
 <html>
@@ -22,7 +18,7 @@ else
 
 	<?php include_once 'side_bar.php'; ?>
 
-		<?php include_once $_SESSION['page'];?>
+	<?php include_once $_SESSION['page'];?>
 
 </body>
 </html>

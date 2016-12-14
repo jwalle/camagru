@@ -1,3 +1,14 @@
+<?php require_once 'install.php'; ?>
+
+<html>
+
+<?php include_once 'Header.php'; ?>
+
+<body>
+
+<?php include_once 'side_bar.php'; ?>
+
+
 <div class ="header">
 
     <div class="left">
@@ -26,3 +37,7 @@
         }
     </script>
 </div>
+
+</body>
+
+</html>
