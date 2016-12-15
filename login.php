@@ -9,7 +9,7 @@ if (isset($_POST['btn-signup']))
     $upass = trim($_POST['txt_upass']);
     $upass_conf = trim($_POST['txt_upass_conf']);
 
-	if ($umail == "" || !filter_var($umail, FILTER_VALIDATE_EMA     IL))
+	if ($umail == "" || !filter_var($umail, FILTER_VALIDATE_EMAIL))
 		$error[] = "Rajouter une adresse email valide.";
 
 	else if ($uname == "" || !preg_match('/^[a-zA-Z0-9_]+$/', $uname))

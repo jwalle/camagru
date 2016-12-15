@@ -8,6 +8,9 @@
 
 <?php include_once 'side_bar.php'; ?>
 
+<script src="capture.js">
+
+</script>
 
 <div class ="header">
 
@@ -20,31 +23,15 @@
     </div>
 
     <div class="vid">
-        <video id="video" width="640" height="480" autoplay></video>
-        <button id="snap">Click !</button>
-        <canvas id="canvas" width="640" height="480"></canvas>
+        <video id="video">Video stream not found.</video>
+        <button id="snap">Take photo !</button>
     </div>
 
-    <script>
-        var video = document.getElementById('video');
-        var canvas = document.getElementById('canvas');
-        var photo = document.getElementById('photo');
-        var context = canvas.getContext('2d');
+    <canvas id="canvas"></canvas>
+    <div class="output">
+        <img id="photo" alt="L'image capture apparaitra dans cette boite">
+    </div>
 
-
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
-        {
-            navigator.mediaDevices.getUserMedia({video : true}).then(function(stream) {
-                video.src = window.URL.createObjectURL(stream);
-                video.play();
-            });
-            document.getElementById("snap").addEventListener("click", function () {
-                context.drawImage(video, 0, 0, 640, 480);
-                var data = canvas.toDataURL('image/png');
-                photo.setAttribute('src', data);
-            });
-        }
-    </script>
 </div>
 
 </body>

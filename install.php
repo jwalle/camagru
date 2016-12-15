@@ -37,7 +37,7 @@ include_once("config/database.php");
 // 	{
 // 		echo $sql . "<br>" . $e->getMessage();
 // 	}
-//
+
 
 	try
 	{
