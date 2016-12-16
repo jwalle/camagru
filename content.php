@@ -12,6 +12,8 @@
 
 </script>
 
+<!-- php : GD and image fuctions. image create from string -->
+
 <div class ="header">
 
     <div class="left">

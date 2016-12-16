@@ -65,6 +65,7 @@
 
 
         snap.addEventListener("click", function (ev) {
+            console.log('cc');
             takepicture();
             ev.preventDefault();
         }, false);
@@ -83,16 +84,21 @@ function clearphoto(){
 
 function takepicture() {
     var context = canvas.getContext('2d');
+    console.log(width);
+    console.log(height);
+
     if (width && height) {
         canvas.width = width;
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
 
         var data = canvas.toDataURL('image/png');
+        console.log(data);
         photo.setAttribute('src', data);
     } else {
         clearphoto();
     }
 }
+
     window.addEventListener('load', startup, false);
 })();
