@@ -54,7 +54,6 @@
         video.addEventListener('canplay', function (ev) {
             if (!streaming) {
                 height = video.videoHeight / (video.videoWidth / width);
-
                 video.setAttribute('width', width);
                 video.setAttribute('height', height);
                 canvas.setAttribute('width', width);
@@ -63,10 +62,9 @@
             }
         }, false);
 
-
         snap.addEventListener("click", function (ev) {
-            console.log('cc');
             takepicture();
+            saveImage();
             ev.preventDefault();
         }, false);
 
@@ -91,13 +89,22 @@ function takepicture() {
         canvas.width = width;
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
-
-        var data = canvas.toDataURL('image/png');
-        console.log(data);
-        photo.setAttribute('src', data);
     } else {
         clearphoto();
     }
+}
+
+function saveImage() {
+    var canvasData = canvas.toDataURL("image/png");
+    var xmlHttpReq = false;
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', 'SaveImg.php', false);
+    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    console.log("plop");
+    ajax.onreadystatechange = function() {
+       console.log(ajax.responseText);
+    }
+    ajax.send("imgData="+canvasData);
 }
 
     window.addEventListener('load', startup, false);
