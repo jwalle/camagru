@@ -38,6 +38,23 @@ include_once("config/database.php");
 // 		echo $sql . "<br>" . $e->getMessage();
 // 	}
 
+// try {
+// 	$table = "gallery";
+// 	$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
+// 	$req = "CREATE TABLE IF NOT EXISTS $table (
+// 		img_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+// 		img_name varchar(255) NOT NULL,
+// 		img_user varchar(255) NOT NULL,
+// 		UNIQUE (`img_name`));";
+// 	$conn->exec($req);
+// 	print("created $table Table.\n");
+// 	}
+// 	catch (PDOException $e)
+// 	{
+// 		echo $sql . "<br>" . $e->getMessage();
+// 	}
+
+
 
 	try
 	{
@@ -50,7 +67,10 @@ include_once("config/database.php");
 	}
 
 	include_once 'Class_User.php';
+	include_once 'Class_Gallery.php';
+	
 	$user = new USER($conn);
+	$gallery = new GALLERY($conn);
 	
 // Insert element in table
 // try {
