@@ -54,8 +54,6 @@ include_once("config/database.php");
 // 		echo $sql . "<br>" . $e->getMessage();
 // 	}
 
-
-
 	try
 	{
 		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
@@ -68,7 +66,7 @@ include_once("config/database.php");
 
 	include_once 'Class_User.php';
 	include_once 'Class_Gallery.php';
-	
+
 	$user = new USER($conn);
 	$gallery = new GALLERY($conn);
 	

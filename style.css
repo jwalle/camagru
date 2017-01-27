@@ -52,6 +52,19 @@ body {
     display : inline-block;
 }
 
+.right_side {
+    width: 640px;
+    /*display : inline-block;*/
+    float: right;
+    border-color: white;
+    border-style: dashed;
+    border-width: 2px;
+}
+
+.right_side img{
+    width: 100%;
+}
+
 a.button {
     -webkit-appearance: button;
     -moz-appearance: button;

@@ -30,10 +30,8 @@
     </div>
 
     <canvas id="canvas"></canvas>
-    <div class="output">
-        <img id="photo" alt="L'image capture apparaitra dans cette boite">
-    </div>
 
+    <?php include_once 'right_side_gal.php'; ?>
 </div>
 
 </body>
