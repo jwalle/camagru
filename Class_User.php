@@ -1,4 +1,4 @@
-	<?php
+<?php
 
 class USER
 {
@@ -73,3 +73,5 @@ class USER
 		return true;
 	}
 }
+
+?>

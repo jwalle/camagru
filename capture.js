@@ -1,6 +1,6 @@
 (function() {
 
-    var width = 640;
+    var width = 320;
     var height = 0;
 
     var streaming = false;
@@ -14,7 +14,6 @@
     function startup() {
         video = document.getElementById('video');
         canvas = document.getElementById('canvas');
-        photo = document.getElementById('photo');
         snap = document.getElementById('snap');
 
 
@@ -77,7 +76,7 @@ function clearphoto(){
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
+    //photo.setAttribute('canvas', data);
 }
 
 function takepicture() {

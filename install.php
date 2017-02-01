@@ -4,7 +4,7 @@ session_start();
 
 include_once("config/database.php");
 	
-//Create database
+// //Create database
 
 // try {
 // 		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
@@ -70,6 +70,9 @@ include_once("config/database.php");
 	$user = new USER($conn);
 	$gallery = new GALLERY($conn);
 	
+	if (!file_exists('gallery'))
+		mkdir('gallery', 0777, true);
+
 // Insert element in table
 // try {
 // 		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);

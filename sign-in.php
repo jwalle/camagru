@@ -26,10 +26,11 @@ if (isset($_POST['btn-signup']))
 <?php include_once 'side_bar.php'; ?>
 
 
-<header class="box">
-    <h2>Bienvenue !</h2>
 
-    <div class="form-container">
+<div class="wrapper">
+    <h2>Bienvenue !</h2>
+    <div class="center">
+       <div class="form-container">
             <form method="post">
 				<?php
 					if (isset($error))
@@ -50,10 +51,12 @@ if (isset($_POST['btn-signup']))
                 <div class="button">
                   <input type="submit" class="btn" name="btn-signup" value="SIGN IN"/></br>
                 </div>
-                <label for="ask">Tu n'a pas encore de compte ?<a href="login.php" class="button">INSCRIT TOI</a></label>
+                <br>
+                <label for="ask">Tu n'a pas encore de compte ? &nbsp;<a href="login.php" class="button">INSCRIT TOI</a></label>
             </form>
         </div>
-</header>
+    </div>
+</div>
 
 </body>
 </html>

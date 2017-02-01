@@ -1,8 +1,9 @@
-<div class="menu">
-    <ul class='side_nav'>
-        <li><img class="logo" src="img/logo.png"></li>
-        <li><a href='#'><span class="side home"></span>HOME</a></li>
-        <li><a href='#'><span class="side gallery"></span>GALLERY</a></li>
-        <li><a href='logout.php?logout=true'><span class="side logout"></span>LOGOUT</a></li>
-    </ul>
-</div>
+<link rel="stylesheet" type="text/css" href="new.css">
+
+  	<div class="top_bar">
+    	<div class="menu">
+    		<div class="box1 box_menu"></div>
+   			<div class="box2 box_menu"></div>
+		</div>
+		    <div class="box3 box_menu"></div>
+    </div>
