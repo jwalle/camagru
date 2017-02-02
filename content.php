@@ -14,11 +14,14 @@
 
 <!-- php : GD and image fuctions. image create from string -->
 
-<div class ="header">
+<div class ="wrapper">
 
     <div class="stream">
         <video id="video">Video stream not found.</video>
         <button id="snap">Take photo !</button>
+        <input name="textbox1" id="textbox1" type="text"/>
+        <button id="text">add text</button>
+
     </div>
 
     <canvas id="canvas"></canvas>

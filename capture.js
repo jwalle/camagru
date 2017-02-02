@@ -7,7 +7,6 @@
 
     var video = null;
     var canvas = null;
-    var photo = null;
     var snap = null;
 
 
@@ -15,7 +14,7 @@
         video = document.getElementById('video');
         canvas = document.getElementById('canvas');
         snap = document.getElementById('snap');
-
+        text = document.getElementById('text');
 
 //        function getImageDataURL(img) {
 //            var canvas = document.getElementById('canvas');
@@ -67,6 +66,12 @@
             ev.preventDefault();
         }, false);
 
+        text.addEventListener("click", function (ev) {
+            text_value = document.getElementById('textbox1').value;
+            addText(text_value);
+            ev.preventDefault();
+        }, false);
+
         clearphoto();
     }
 
@@ -76,7 +81,6 @@ function clearphoto(){
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     var data = canvas.toDataURL('image/png');
-    //photo.setAttribute('canvas', data);
 }
 
 function takepicture() {
@@ -91,6 +95,12 @@ function takepicture() {
     } else {
         clearphoto();
     }
+}
+
+function addText(text) {
+    var context = canvas.getContext('2d');
+    context.font="40px Georgia";
+    context.fillText(text, 10, 50);
 }
 
 function saveImage() {

@@ -1,5 +1,5 @@
 .top_bar {
-  height: 150px;
+  height: 15vh;
   background-color: grey;
 }
 
@@ -14,9 +14,9 @@
 
 .box_menu {
   display:inline-block;
-  height:100px;
+  height:90px;
   width:100px;
-    background-size: 100%;
+    background-size: 80%;
     background-repeat: no-repeat;
 }
 
@@ -30,12 +30,14 @@
 }
 
 .box3 {
-    float: right;
+    position: absolute;
+    right: 35px;
+    top:45px;
     background-image: url("img/logout.png");
 }
 
 .wrapper {
-  height: 100vh;
+  height: 84vh;
     border-color: blue;
     border-style: dashed;
     border-width: 2px;
@@ -68,9 +70,7 @@
 
 .right_side {
   display: inline-block;
-  height: 100%;
-  width:50%;
-  background-color:grey;
-  margin: 0;
+  float: right;
+  margin: 20px;
 }
 
