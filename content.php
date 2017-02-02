@@ -23,8 +23,8 @@
         <button id="text">add text</button>
 
     </div>
-
-    <canvas id="canvas"></canvas>
+	    <canvas id="canvas"></canvas>
+	    <button id="save">save !</button>
 	
 	<?php include_once 'right_side_gal.php'; ?>
 

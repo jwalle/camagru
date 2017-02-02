@@ -14,6 +14,7 @@
         video = document.getElementById('video');
         canvas = document.getElementById('canvas');
         snap = document.getElementById('snap');
+        save = document.getElementById('save');
         text = document.getElementById('text');
 
 //        function getImageDataURL(img) {
@@ -62,6 +63,11 @@
 
         snap.addEventListener("click", function (ev) {
             takepicture();
+            displayImage();
+            ev.preventDefault();
+        }, false);
+
+        save.addEventListener("click", function (ev) {
             saveImage();
             ev.preventDefault();
         }, false);
@@ -74,6 +80,12 @@
 
         clearphoto();
     }
+
+
+function displayImage() {
+    var context = canvas.getContext('2d');
+
+}
 
 function clearphoto(){
     var context = canvas.getContext('2d');
@@ -109,7 +121,6 @@ function saveImage() {
     var ajax = new XMLHttpRequest();
     ajax.open('POST', 'SaveImg.php', false);
     ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    console.log("plop");
     ajax.onreadystatechange = function() {
        console.log(ajax.responseText);
     }
