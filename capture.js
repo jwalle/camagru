@@ -63,7 +63,8 @@
 
         snap.addEventListener("click", function (ev) {
             takepicture();
-            displayImage();
+            getCanvas();
+            console.log("plop");
             ev.preventDefault();
         }, false);
 
@@ -77,15 +78,8 @@
             addText(text_value);
             ev.preventDefault();
         }, false);
-
         clearphoto();
-    }
-
-
-function displayImage() {
-    var context = canvas.getContext('2d');
-
-}
+    }   
 
 function clearphoto(){
     var context = canvas.getContext('2d');
@@ -113,6 +107,19 @@ function addText(text) {
     var context = canvas.getContext('2d');
     context.font="40px Georgia";
     context.fillText(text, 10, 50);
+}
+
+function getCanvas() {
+    var canvasData = canvas.toDataURL("image/png");
+    var xmlHttpReq = false;
+    var ajax = new XMLHttpRequest();
+    console.log("plop");
+    ajax.open('POST', 'getCanvas.php', false);
+    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    ajax.onreadystatechange = function() {
+        console.log(ajax.responseText);
+    }
+    ajax.send("imgData="+canvasData);
 }
 
 function saveImage() {
