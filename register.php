@@ -1,7 +1,5 @@
 <?php
 
-require_once 'install.php';
-
 if (isset($_POST['btn-signup']))
 {
 	$uname = trim($_POST['txt_uname']);
@@ -40,7 +38,8 @@ if (isset($_POST['btn-signup']))
             else
             {
 				if ($user->register($uname, $umail, $upass))
-                    $user->redirect("index.php?joined");
+//                    $user->redirect("index.php?page=joined"); TODO: make joined page
+                    $user->redirect("index.php?page=content");
             }
 
         }
@@ -51,15 +50,6 @@ if (isset($_POST['btn-signup']))
 }
 
 ?>
-
-
-<html>
-
-<?php include_once 'Header.php'; ?>
-
-<body>
-
-<?php include_once 'side_bar.php'; ?>
 
 <div class="form-container">
 	<form method="post">
@@ -85,17 +75,12 @@ if (isset($_POST['btn-signup']))
 			<?php
 		}
 		?>
-				<div><input type="text" class="css-input" name="txt_uname" placeholder="Login" value="" /></div>
-				<div><input type="text" class="css-input" name="txt_umail" placeholder="email" value="" /></div>
-				<div><input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" /></div>
-               	<div><input type="password" class="css-input" name="txt_upass_conf" placeholder="Retaper le mot de passe" value="" /></div>
-        <input type="submit" class="btn" name="btn-signup" value="OK"/>
+            <div><input type="text" class="css-input" name="txt_uname" placeholder="Login" value="" /></div>
+            <div><input type="text" class="css-input" name="txt_umail" placeholder="email" value="" /></div>
+            <div><input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" /></div>
+            <div><input type="password" class="css-input" name="txt_upass_conf" placeholder="Retaper le mot de passe" value="" /></div>
+            <input type="submit" class="btn" name="btn-signup" value="OK"/>
 			</br>
 		</form>
 	</div>
-	
-</div>
 
-</body>
-
-</html>

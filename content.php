@@ -1,16 +1,5 @@
-<?php require_once 'install.php'; ?>
 
-<html>
-
-<?php include_once 'Header.php'; ?>
-
-<body>
-
-<?php include_once 'side_bar.php'; ?>
-
-<script src="capture.js">
-
-</script>
+<script src="capture.js"></script>
 
 <!-- php : GD and image fuctions. image create from string -->
 
@@ -29,7 +18,3 @@
 	<?php include_once 'right_side_gal.php'; ?>
 
 </div>
-
-</body>
-
-</html>

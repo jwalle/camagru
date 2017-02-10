@@ -1,24 +1,31 @@
 <?php
 
-require_once 'install.php';
+session_start();
 
-if ($user->is_loggedin())
-{
-	$_SESSION['page'] = 'content.php';
-}
+if(!isset($conn))
+    require 'install.php';
+if (isset($_GET['page']))
+    $page = $_GET['page'];
 else
-    $user->redirect('sign-in.php');
+    $page = 'home';
+
+ob_start();
+
+if ($page === 'home')
+    require 'Home.php';
+elseif ($page === 'register')
+    require 'register.php';
+elseif ($page === 'logout')
+    require 'logout.php';
+elseif ($page === 'sign-in')
+    require 'sign-in.php';
+elseif ($page === 'content')
+    require 'content.php';
+else
+    require 'Home.php';
+
+$content = ob_get_clean();
+
+require 'main.php';
+
 ?>
-
-<html>
-
-<?php include_once 'Header.php'; ?>
-
-<body>
-
-	<?php include_once 'side_bar.php'; ?>
-
-	<?php include_once $_SESSION['page'];?>
-
-</body>
-</html>

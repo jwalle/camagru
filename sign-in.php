@@ -1,7 +1,5 @@
 <?php
 
-require_once 'install.php';
-
 if (isset($_POST['btn-signup']))
 {
     $uname = $_POST['txt_uname_mail'];
@@ -9,23 +7,12 @@ if (isset($_POST['btn-signup']))
     $upass = $_POST['txt_upass'];
     if ($user->login($uname, $umail, $upass))
     {
-        $_SESSION['page'] = 'content.php';
-        $user->redirect('index.php?content');
+        $user->redirect('index.php?page=content');
     }
     else
         $error = "Mauvais detail !";
 }
 ?>
-
-<html>
-
-<?php include_once 'Header.php'; ?>
-
-<body>
-
-<?php include_once 'side_bar.php'; ?>
-
-
 
 <div class="wrapper">
     <h2>Bienvenue !</h2>
@@ -52,11 +39,9 @@ if (isset($_POST['btn-signup']))
                   <input type="submit" class="btn" name="btn-signup" value="SIGN IN"/></br>
                 </div>
                 <br>
-                <label for="ask">Tu n'a pas encore de compte ? &nbsp;<a href="login.php" class="button">INSCRIT TOI</a></label>
+                <label for="ask">Tu n'a pas encore de compte ? &nbsp;<a href="index.php?page=register" class="button">INSCRIT TOI</a></label>
             </form>
         </div>
     </div>
 </div>
 
-</body>
-</html>

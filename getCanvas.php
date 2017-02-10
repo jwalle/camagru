@@ -1,4 +1,4 @@
-<?php
+22<?php
 
 	//	require_once 'install.php';
 
