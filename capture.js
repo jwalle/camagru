@@ -16,7 +16,8 @@
         snap = document.getElementById('snap');
         save = document.getElementById('save');
         text = document.getElementById('text');
-
+        upload = document.getElementById('uploadPath');
+        wrapper = document.getElementsByClassName('wrapper');
 //        function getImageDataURL(img) {
 //            var canvas = document.getElementById('canvas');
 //            canvas.width = img.width;
@@ -68,6 +69,22 @@
             ev.preventDefault();
         }, false);
 
+       /* wrapper.addEventListener("dragover", function(e){e.preventDefault();}, true);
+        wrapper.addEventListener("drop", function (e) {
+            e.preventDefault();
+            loadImage(e.dataTransfer.files[0]);
+        }, true);*/
+
+        upload.addEventListener("change", function (ev) {
+            console.log('coucou');
+            var files = ev.target.files;
+            ev.preventDefault();
+            if (files)
+                loadImage(files[0]);
+            else
+                console.log("error files");
+        }, true);
+
         save.addEventListener("click", function (ev) {
             saveImage();
             ev.preventDefault();
@@ -79,7 +96,7 @@
             ev.preventDefault();
         }, false);
         clearphoto();
-    }   
+    }
 
 function clearphoto(){
     var context = canvas.getContext('2d');
@@ -101,6 +118,27 @@ function takepicture() {
     } else {
         clearphoto();
     }
+}
+
+function render(src) {
+    var image = new Image();
+    var context = canvas.getContext('2d');
+    image.onload = function(){
+        context.drawImage(image, 0, 0);
+    };
+    image.src = src;
+}
+
+function loadImage(src) {
+    if (!src.type.match(/image.*/)) {
+        console.log("This file is not an image : ", src.type);
+        return;
+    }
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            render(e.target.result);
+        };
+        reader.readAsDataURL(src);
 }
 
 function addText(text) {

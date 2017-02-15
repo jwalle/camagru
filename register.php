@@ -51,6 +51,7 @@ if (isset($_POST['btn-signup']))
 
 ?>
 
+<div class="wrapper">
 <div class="form-container">
 	<form method="post">
 		<h2>Se creer un compte :</h2>
@@ -83,4 +84,4 @@ if (isset($_POST['btn-signup']))
 			</br>
 		</form>
 	</div>
-
+</div>
