@@ -9,10 +9,10 @@
 
     <div class="top_bar">
         <div class="menu">
-            <div class="box1 box_menu"></div>
+            <a href="index.php"><div class="box1 box_menu"></div></a>
             <div class="box2 box_menu"></div>
         </div>
-        <div class="box3 box_menu"></div>
+        <a href="index.php?page=logout"><div class="box3 box_menu"></div></a>
     </div>
     <body>
         <?= $content; ?>

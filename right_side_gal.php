@@ -1,7 +1,7 @@
 <?php
 	
 	if (1)
-		$row = $gallery->last_three($_SESSION['user_session']);
+		$row = $gallery->last_three($_SESSION['username']);
 	if (!$row)
 		return;
 	//echo $row[0]['img_name'];

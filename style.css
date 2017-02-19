@@ -40,28 +40,14 @@ body {
     background-repeat:no-repeat;
 }
 
-.stream{
-    display: inline-block;
-}
-
 .msg{
     padding: 10px;
 }
 
 .right_side {
-    width: 320px;
     border-color: white;
     border-style: dashed;
     border-width: 2px;
-}
-
-.right_side img{
-    width: 100%;
-}
-
-#snap {
-    margin : 10px auto;
-    display: block;
 }
 
 a.button {
@@ -157,6 +143,6 @@ ul.side_nav li a:hover {
 }
 
 a.active {
-    background-color: #4CAF50);
+    background-color: #4CAF50;
     color: white;
 }

@@ -1,11 +1,11 @@
 .top_bar {
-  height: 15vh;
+  height: 9vh;
   background-color: grey;
 }
 
 .menu {
   margin: 0 auto;
-  height:150px;
+  height:95px;
   width: 500px;
   display:flex;
   align-items:center;
@@ -14,9 +14,9 @@
 
 .box_menu {
   display:inline-block;
-  height:90px;
+  height:70px;
   width:100px;
-    background-size: 80%;
+    background-size: 60%;
     background-repeat: no-repeat;
 }
 
@@ -31,16 +31,25 @@
 
 .box3 {
     position: absolute;
-    right: 35px;
-    top:45px;
+    right: 15px;
+    top: 15px;
     background-image: url("img/logout.png");
 }
 
+.border {
+  border-color: yellow;
+  border-style: dashed;
+  border-width: 2px;
+  max-width: 800px;
+}
+
 .wrapper {
-  height: 84vh;
+  height: 91vh;
     border-color: blue;
     border-style: dashed;
     border-width: 2px;
+    display: flex;
+    flex-direction: column;
     /*background-color: green;*/
   
 }
@@ -69,8 +78,85 @@
 }
 
 .right_side {
-  display: inline-block;
-  float: right;
-  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  margin-top: 50px;
 }
 
+.right_side img{
+  width: 30%;
+}
+
+.stream {
+    display: flex;
+    flex-direction: column;
+}
+
+.video{
+  transition: all .5s linear;
+  width: 640px;
+  height: 480px;
+}
+
+.buttons{
+    display: flex;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+.buttons h2 {
+    font-size: 2em;
+    font-family: Arial;
+    font-weight: 600;
+}
+
+#snap {
+    font-family: Arial;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #ffffff;
+    border: none;
+    background: #14264b;
+    text-decoration: none;
+}
+
+#snap:hover {
+    background: #23467a;
+    text-decoration: none;
+}
+
+.inputfile{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.photoshop {
+    display: flex;
+    width: 800px;
+}
+
+#canvas {
+    background: steelblue;
+}
+
+.inputfile + label {
+    cursor:  pointer;
+    font-family: Arial;
+    padding: 10px;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}

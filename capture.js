@@ -1,14 +1,13 @@
 (function() {
 
-    var width = 320;
-    var height = 0;
-
+    var width = 480;
+    var height;
     var streaming = false;
-
     var video = null;
     var canvas = null;
     var snap = null;
-
+    var upload = null;
+    var plop = null;
 
     function startup() {
         video = document.getElementById('video');
@@ -16,7 +15,8 @@
         snap = document.getElementById('snap');
         save = document.getElementById('save');
         text = document.getElementById('text');
-        upload = document.getElementById('uploadPath');
+        upload = document.getElementById('file');
+        plop = document.getElementById('plop');
         wrapper = document.getElementsByClassName('wrapper');
 //        function getImageDataURL(img) {
 //            var canvas = document.getElementById('canvas');
@@ -47,24 +47,38 @@
                 video.play();
             },
             function (err) {
+               video.style.backgroundColor = "#AAA";
                 console.log("An error occured!!!  " + err);
             }
         );
 
-        video.addEventListener('canplay', function (ev) {
-            if (!streaming) {
-                height = video.videoHeight / (video.videoWidth / width);
-                video.setAttribute('width', width);
-                video.setAttribute('height', height);
-                canvas.setAttribute('width', width);
-                canvas.setAttribute('height', height);
-                streaming = true;
-            }
-        }, false);
+        if (video)
+        {
+            video.addEventListener('canplay', function (ev) {
+                if (!streaming) {
+                    height = video.videoHeight / (video.videoWidth / width);
+                    video.setAttribute('width', width);
+                    video.setAttribute('height', height);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    streaming = true;
+                }
+            }, false);
+        }
 
-        snap.addEventListener("click", function (ev) {
-            takepicture();
-            getCanvas();
+        if (snap)
+        {
+            snap.addEventListener("click", function (ev) {
+                //video.style.display = 'none';
+                takepicture();
+                getCanvas();
+                console.log("plop");
+                ev.preventDefault();
+            }, false);
+        }
+
+        plop.addEventListener("click", function (ev) {
+            render('img/plop.jpg');
             console.log("plop");
             ev.preventDefault();
         }, false);
@@ -75,17 +89,21 @@
             loadImage(e.dataTransfer.files[0]);
         }, true);*/
 
-        upload.addEventListener("change", function (ev) {
-            console.log('coucou');
-            var files = ev.target.files;
-            ev.preventDefault();
-            if (files)
-                loadImage(files[0]);
-            else
-                console.log("error files");
-        }, true);
+       if (upload)
+       {
+           upload.addEventListener("change", function (ev) {
+               console.log('coucou');
+               var files = ev.target.files;
+               ev.preventDefault();
+               if (files)
+                   loadImage(files[0]);
+               else
+                   console.log("error files");
+           }, true);
+       }
 
         save.addEventListener("click", function (ev) {
+         //   console.log('save');
             saveImage();
             ev.preventDefault();
         }, false);
@@ -134,11 +152,11 @@ function loadImage(src) {
         console.log("This file is not an image : ", src.type);
         return;
     }
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            render(e.target.result);
-        };
-        reader.readAsDataURL(src);
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        render(e.target.result);
+    };
+    reader.readAsDataURL(src);
 }
 
 function addText(text) {
@@ -171,6 +189,5 @@ function saveImage() {
     }
     ajax.send("imgData="+canvasData);
 }
-
     window.addEventListener('load', startup, false);
 })();
