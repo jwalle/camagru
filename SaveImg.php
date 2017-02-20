@@ -2,17 +2,23 @@
 	session_start();
 	require_once 'install.php';
 	define('UPLOAD_DIR', 'gallery/');
-	$img = $_POST['imgData'];
-	$img = str_replace('data:image/png;base64,' , '', $img);
-	$img = str_replace(' ' , '+', $img);
-	$data = base64_decode($img);
+    $layer1 = $_POST['layer1Data'];
+    $layer2 = $_POST['layer2Data'];
+    $layer1 = str_replace('data:image/png;base64,' , '', $layer1);
+    $layer2 = str_replace('data:image/png;base64,' , '', $layer2);
+	$layer1 = str_replace(' ' , '+', $layer1);
+    $layer2 = str_replace(' ' , '+', $layer2);
+    $data1 = base64_decode($layer1);
+    $data2 = base64_decode($layer2);
+    $im1 = imagecreatefromstring($data1);
+    $im2 = imagecreatefromstring($data2);
+    imagecopy($im1, $im2, 0, 0, 0, 0, 480, 360);
 	$file = UPLOAD_DIR . uniqid() . '.png';
-	$user_id = $_SESSION['username'];
-	$success = file_put_contents($file, $data);
-
-	if ($success)
-	{	
-		$gallery->add_image($file, $user_id);
+	$success = imagepng($im1, $file);
+    if ($success)
+	{
+	    $user_id = $_SESSION['username'];
+        $gallery->add_image($file, $user_id);
 	}
 	else
-	print 'Unable to save the file.';
+	    print 'Unable to save the file.';

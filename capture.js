@@ -93,12 +93,24 @@
         }, false);
 
         frame1.addEventListener("click", function (ev) {
+            clearLayer(layer2);
             render(layer2, 'img/frame.png');
-            console.log("plop");
             ev.preventDefault();
         }, false);
 
         frame2.addEventListener("click", function (ev) {
+            clearLayer(layer2);
+            render(layer2, 'img/frameFlower.png');
+            ev.preventDefault();
+        }, false);
+
+        frame3.addEventListener("click", function (ev) {
+            clearLayer(layer2);
+            render(layer2, 'img/frameFlower2.png');
+            ev.preventDefault();
+        }, false);
+
+        frame4.addEventListener("click", function (ev) {
             clearLayer(layer2);
             ev.preventDefault();
         }, false);
@@ -204,7 +216,11 @@ function getCanvas() {
 }
 
 function saveImage() {
-    var canvasData = layer1.toDataURL("image/png");
+    var layer1Data = layer1.toDataURL("image/png");
+    var layer2Data = layer2.toDataURL("image/png");
+   // var formData = new FormData;
+    //formData.append("layer1Data", "prout");
+    //formData.append("layer2Data", layer2Data);
     var xmlHttpReq = false;
     var ajax = new XMLHttpRequest();
     ajax.open('POST', 'SaveImg.php', false);
@@ -212,7 +228,7 @@ function saveImage() {
     ajax.onreadystatechange = function() {
        console.log(ajax.responseText);
     }
-    ajax.send("imgData="+canvasData);
+    ajax.send("layer1Data="+layer1Data+"&layer2Data="+layer2Data);
 }
     window.addEventListener('load', startup, false);
 })();
