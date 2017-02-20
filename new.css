@@ -141,8 +141,59 @@
     width: 800px;
 }
 
-#canvas {
+.canvasDiv {
     background: steelblue;
+}
+
+.canvasDiv {
+    position: relative;
+    width: 480px;
+    height: 360px;
+}
+
+#layer1 {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 360px;
+    width: 480px;
+}
+
+#layer2 {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 360px;
+    width: 480px;
+}
+
+#layer3 {
+    z-index: 3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 360px;
+    width: 480px;
+}
+
+.frames {
+    display: flex;
+}
+
+#frame1 {
+    background: darkred;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+#frame2 {
+    background: darkblue;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
 }
 
 .inputfile + label {

@@ -1,22 +1,30 @@
 (function() {
 
     var width = 480;
-    var height;
+    var height = 360;
     var streaming = false;
     var video = null;
-    var canvas = null;
+    var canvasDiv = null;
     var snap = null;
     var upload = null;
     var plop = null;
+    var layer1 = null;
+    var layer2 = null;
+    var layer3 = null;
+    var frame1 = null;
 
     function startup() {
         video = document.getElementById('video');
-        canvas = document.getElementById('canvas');
+        canvasDiv = document.getElementById('canvasDiv');
         snap = document.getElementById('snap');
         save = document.getElementById('save');
         text = document.getElementById('text');
         upload = document.getElementById('file');
         plop = document.getElementById('plop');
+        layer1 = document.getElementById('layer1');
+        layer2 = document.getElementById('layer2');
+        layer3 = document.getElementById('layer3');
+        frame1 = document.getElementById('frame1');
         wrapper = document.getElementsByClassName('wrapper');
 //        function getImageDataURL(img) {
 //            var canvas = document.getElementById('canvas');
@@ -59,8 +67,8 @@
                     height = video.videoHeight / (video.videoWidth / width);
                     video.setAttribute('width', width);
                     video.setAttribute('height', height);
-                    canvas.setAttribute('width', width);
-                    canvas.setAttribute('height', height);
+                    layer1.setAttribute('width', width);
+                    layer1.setAttribute('height', height);
                     streaming = true;
                 }
             }, false);
@@ -78,8 +86,20 @@
         }
 
         plop.addEventListener("click", function (ev) {
-            render('img/plop.jpg');
+            render(layer1, 'img/plop.jpg');
+            console.log(width);
+            console.log(height);
+            ev.preventDefault();
+        }, false);
+
+        frame1.addEventListener("click", function (ev) {
+            render(layer2, 'img/frame.png');
             console.log("plop");
+            ev.preventDefault();
+        }, false);
+
+        frame2.addEventListener("click", function (ev) {
+            clearLayer(layer2);
             ev.preventDefault();
         }, false);
 
@@ -116,31 +136,36 @@
         clearphoto();
     }
 
-function clearphoto(){
-    var context = canvas.getContext('2d');
-    context.fillStyle = "#AAA";
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    function clearLayer(layer){
+        var context = layer.getContext('2d');
+        context.clearRect(0, 0, layer1.width, layer1.height);
+    }
 
-    var data = canvas.toDataURL('image/png');
+function clearphoto(){
+    var context = layer1.getContext('2d');
+    context.fillStyle = "#AAA";
+    context.fillRect(0, 0, layer1.width, layer1.height);
+
+    var data = layer1.toDataURL('image/png');
 }
 
 function takepicture() {
-    var context = canvas.getContext('2d');
+    var context = layer1.getContext('2d');
     console.log(width);
     console.log(height);
 
     if (width && height) {
-        canvas.width = width;
-        canvas.height = height;
+        layer1.width = width;
+        layer1.height = height;
         context.drawImage(video, 0, 0, width, height);
     } else {
         clearphoto();
     }
 }
 
-function render(src) {
+function render(layer, src) {
     var image = new Image();
-    var context = canvas.getContext('2d');
+    var context = layer.getContext('2d');
     image.onload = function(){
         context.drawImage(image, 0, 0);
     };
@@ -154,19 +179,19 @@ function loadImage(src) {
     }
     var reader = new FileReader();
     reader.onload = function (e) {
-        render(e.target.result);
+        render(layer1, e.target.result);
     };
     reader.readAsDataURL(src);
 }
 
 function addText(text) {
-    var context = canvas.getContext('2d');
+    var context = layer1.getContext('2d');
     context.font="40px Georgia";
     context.fillText(text, 10, 50);
 }
 
 function getCanvas() {
-    var canvasData = canvas.toDataURL("image/png");
+    var canvasData = layer1.toDataURL("image/png");
     var xmlHttpReq = false;
     var ajax = new XMLHttpRequest();
     console.log("plop");
@@ -179,7 +204,7 @@ function getCanvas() {
 }
 
 function saveImage() {
-    var canvasData = canvas.toDataURL("image/png");
+    var canvasData = layer1.toDataURL("image/png");
     var xmlHttpReq = false;
     var ajax = new XMLHttpRequest();
     ajax.open('POST', 'SaveImg.php', false);

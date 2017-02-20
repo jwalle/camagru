@@ -33,9 +33,20 @@
     <div class="photoshop border">
         <div class="col1">
             <input name="textbox1" id="textbox1" type="text"/>
+            <p>Choose a frame :</p>
+            <div class="frames">
+                <div id="frame1"></div>
+                <div id="frame1"></div>
+                <div id="frame1"></div>
+                <div id="frame2"></div>
+            </div>
         </div>
         <div class="col2">
-            <canvas id="canvas" width="480px" height="360px"></canvas>
+            <div class="canvasDiv">
+                <canvas id="layer1" width="480px" height="360px"></canvas>
+                <canvas id="layer2" width="480px" height="360px"></canvas>
+                <canvas id="layer3" width="480px" height="360px"></canvas>
+            </div>
         </div>
         <div class="col3">
             <button id="text">add text</button>
