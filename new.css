@@ -197,6 +197,17 @@
     opacity: 0.1;
 }
 
+.stamp {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+#stamp1 {
+    background-image: url("img/Fedora.png");
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+}
 
 #frame1 {
     background-image: url("img/fireSmall.png");

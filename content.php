@@ -50,6 +50,8 @@
         </div>
         <div class="col3">
             <button id="text">add text</button>
+            <div id="stamp1" class="stamp"></div>
+            <div id="stamp1" class="stamp"></div>
         </div>
     </div>
     <button id="plop">PLOP !</button><br>

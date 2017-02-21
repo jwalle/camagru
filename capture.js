@@ -12,6 +12,7 @@
     var layer2 = null;
     var layer3 = null;
     var frame1 = null;
+    var stamp1 = null;
 
     function startup() {
         video = document.getElementById('video');
@@ -24,6 +25,7 @@
         layer1 = document.getElementById('layer1');
         layer2 = document.getElementById('layer2');
         layer3 = document.getElementById('layer3');
+        stamp1 = document.getElementById('stamp1');
         frame1 = document.getElementById('frame1');
         wrapper = document.getElementsByClassName('wrapper');
 //        function getImageDataURL(img) {
@@ -115,6 +117,13 @@
             ev.preventDefault();
         }, false);
 
+        stamp1.addEventListener("click", function (ev) {
+            clearLayer(layer3);
+            render(layer3, 'img/Fedora.png');
+            dragging('img/Fedora.png');
+            ev.preventDefault();
+        }, false);
+
        /* wrapper.addEventListener("dragover", function(e){e.preventDefault();}, true);
         wrapper.addEventListener("drop", function (e) {
             e.preventDefault();
@@ -130,7 +139,7 @@
                if (files)
                    loadImage(files[0]);
                else
-                   console.log("error files");
+                   console.log("error uploading file");
            }, true);
        }
 
@@ -140,11 +149,11 @@
             ev.preventDefault();
         }, false);
 
-        text.addEventListener("click", function (ev) {
-            text_value = document.getElementById('textbox1').value;
-            addText(text_value);
-            ev.preventDefault();
-        }, false);
+        // text.addEventListener("click", function (ev) {
+        //     text_value = document.getElementById('textbox1').value;
+        //     addText(text_value);
+        //     ev.preventDefault();
+        // }, false);
         clearphoto();
     }
 
@@ -218,17 +227,68 @@ function getCanvas() {
 function saveImage() {
     var layer1Data = layer1.toDataURL("image/png");
     var layer2Data = layer2.toDataURL("image/png");
-   // var formData = new FormData;
-    //formData.append("layer1Data", "prout");
-    //formData.append("layer2Data", layer2Data);
+    var formData = new FormData;
+    formData.append("layer1Data", layer1Data);
+    formData.append("layer2Data", layer2Data);
     var xmlHttpReq = false;
     var ajax = new XMLHttpRequest();
     ajax.open('POST', 'SaveImg.php', false);
-    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     ajax.onreadystatechange = function() {
        console.log(ajax.responseText);
     }
-    ajax.send("layer1Data="+layer1Data+"&layer2Data="+layer2Data);
+    // ajax.send("layer1Data="+layer1Data+"&layer2Data="+layer2Data);
+    ajax.send(formData);
 }
+
+function dragging(img) {
+    var ctx3 = layer3.getContext('2d');
+    var rect = layer3.getBoundingClientRect();
+    var offsetX = rect.left; //nope
+    var offsetY = rect.top; //nope
+    var isdragging = false;
+    var imgDrag = new Image();
+    imgDrag.onload = function () {
+        ctx3.drawImage(imgDrag, 0, 0);
+    }
+    imgDrag.src = img;
+
+    function handleMouseDown(e) {
+        canMouseX = parseInt(e.clientX-offsetX);
+        canMouseY = parseInt(e.clientY-offsetY);
+        console.log(e.clientX + "-X-" + offsetX);
+        console.log(e.clientY + "-Y-" + offsetY);
+        isdragging = true;
+    }
+
+    function handleMouseUp(e) {
+        canMouseX = parseInt(e.clientX-offsetX);
+        canMouseY = parseInt(e.clientY-offsetY);
+        isdragging = false;
+    }
+
+    function handleMouseOut(e) {
+        canMouseX = parseInt(e.clientX-offsetX);
+        canMouseY = parseInt(e.clientY-offsetY);
+       // isdragging = false;
+    }
+    
+    function handleMouseMove(e) {
+        canMouseX = parseInt(e.clientX - offsetX);
+        canMouseY = parseInt(e.clientY - offsetY);
+        if (isdragging) {
+            clearLayer(layer3);
+            ctx3.drawImage(imgDrag, canMouseX - 30, canMouseY - 50);
+        }
+    }
+
+    layer3.onmousedown = function(e){handleMouseDown(e);};
+    layer3.onmouseup = function(e){handleMouseUp(e);};
+    layer3.onmouseout = function(e){handleMouseOut(e);};
+    layer3.onmousemove = function(e){handleMouseMove(e);};
+
+}
+
+
     window.addEventListener('load', startup, false);
 })();
