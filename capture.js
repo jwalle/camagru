@@ -14,20 +14,28 @@
     var frame1 = null;
     var stamp1 = null;
 
+    function elId(elem) {
+        return document.getElementById(elem);
+    }
+
+    function elClass(elem) {
+        return document.getElementsByClassName(elem);
+    }
+
     function startup() {
-        video = document.getElementById('video');
-        canvasDiv = document.getElementById('canvasDiv');
-        snap = document.getElementById('snap');
-        save = document.getElementById('save');
-        text = document.getElementById('text');
-        upload = document.getElementById('file');
-        plop = document.getElementById('plop');
-        layer1 = document.getElementById('layer1');
-        layer2 = document.getElementById('layer2');
-        layer3 = document.getElementById('layer3');
-        stamp1 = document.getElementById('stamp1');
-        frame1 = document.getElementById('frame1');
-        wrapper = document.getElementsByClassName('wrapper');
+        video = elId('video');
+        canvasDiv = elId('canvasDiv');
+        snap = elId('snap');
+        save = elId('save');
+        text = elId('text');
+        upload = elId('file');
+        plop = elId('plop');
+        layer1 = elId('layer1');
+        layer2 = elId('layer2');
+        layer3 = elId('layer3');
+        stamp1 = elId('stamp1');
+        frame1 = elId('frame1');
+        wrapper = elClass('wrapper');
 //        function getImageDataURL(img) {
 //            var canvas = document.getElementById('canvas');
 //            canvas.width = img.width;
@@ -58,7 +66,9 @@
             },
             function (err) {
                video.style.backgroundColor = "#AAA";
-                console.log("An error occured!!!  " + err);
+               video.setAttribute('width', width);
+               video.setAttribute('height', height);
+               console.log("An error occured!!!  " + err);
             }
         );
 
@@ -81,7 +91,6 @@
             snap.addEventListener("click", function (ev) {
                 //video.style.display = 'none';
                 takepicture();
-                getCanvas();
                 console.log("plop");
                 ev.preventDefault();
             }, false);
@@ -144,16 +153,10 @@
        }
 
         save.addEventListener("click", function (ev) {
-         //   console.log('save');
             saveImage();
             ev.preventDefault();
         }, false);
 
-        // text.addEventListener("click", function (ev) {
-        //     text_value = document.getElementById('textbox1').value;
-        //     addText(text_value);
-        //     ev.preventDefault();
-        // }, false);
         clearphoto();
     }
 
@@ -166,15 +169,10 @@ function clearphoto(){
     var context = layer1.getContext('2d');
     context.fillStyle = "#AAA";
     context.fillRect(0, 0, layer1.width, layer1.height);
-
-    var data = layer1.toDataURL('image/png');
 }
 
 function takepicture() {
     var context = layer1.getContext('2d');
-    console.log(width);
-    console.log(height);
-
     if (width && height) {
         layer1.width = width;
         layer1.height = height;
@@ -205,39 +203,20 @@ function loadImage(src) {
     reader.readAsDataURL(src);
 }
 
-function addText(text) {
-    var context = layer1.getContext('2d');
-    context.font="40px Georgia";
-    context.fillText(text, 10, 50);
-}
-
-function getCanvas() {
-    var canvasData = layer1.toDataURL("image/png");
-    var xmlHttpReq = false;
-    var ajax = new XMLHttpRequest();
-    console.log("plop");
-    ajax.open('POST', 'getCanvas.php', false);
-    ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    ajax.onreadystatechange = function() {
-        console.log(ajax.responseText);
-    }
-    ajax.send("imgData="+canvasData);
-}
-
 function saveImage() {
     var layer1Data = layer1.toDataURL("image/png");
     var layer2Data = layer2.toDataURL("image/png");
+    var layer3Data = layer3.toDataURL("image/png");
     var formData = new FormData;
     formData.append("layer1Data", layer1Data);
     formData.append("layer2Data", layer2Data);
+    formData.append("layer3Data", layer3Data);
     var xmlHttpReq = false;
     var ajax = new XMLHttpRequest();
     ajax.open('POST', 'SaveImg.php', false);
-    // ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     ajax.onreadystatechange = function() {
        console.log(ajax.responseText);
     }
-    // ajax.send("layer1Data="+layer1Data+"&layer2Data="+layer2Data);
     ajax.send(formData);
 }
 
@@ -270,7 +249,7 @@ function dragging(img) {
     function handleMouseOut(e) {
         canMouseX = parseInt(e.clientX-offsetX);
         canMouseY = parseInt(e.clientY-offsetY);
-       // isdragging = false;
+        isdragging = false;
     }
     
     function handleMouseMove(e) {
@@ -278,17 +257,13 @@ function dragging(img) {
         canMouseY = parseInt(e.clientY - offsetY);
         if (isdragging) {
             clearLayer(layer3);
-            ctx3.drawImage(imgDrag, canMouseX - 30, canMouseY - 50);
+            ctx3.drawImage(imgDrag, canMouseX - imgDrag.width/2, canMouseY - imgDrag.height/2);
         }
     }
-
     layer3.onmousedown = function(e){handleMouseDown(e);};
     layer3.onmouseup = function(e){handleMouseUp(e);};
     layer3.onmouseout = function(e){handleMouseOut(e);};
     layer3.onmousemove = function(e){handleMouseMove(e);};
-
 }
-
-
     window.addEventListener('load', startup, false);
 })();

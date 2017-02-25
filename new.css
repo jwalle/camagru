@@ -1,15 +1,64 @@
 .top_bar {
-  height: 9vh;
-  background-color: grey;
+  height: 100px;
+  background-color: whitesmoke;
 }
 
 .menu {
-  margin: 0 auto;
-  height:95px;
-  width: 500px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    height: 100%;
+    width: 60%;
+}
+
+.nav {
+    text-align: center;
+}
+
+.nav li {
+    display: inline;
+}
+
+.nav li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.75em;
+    font-weight: 600;
+    font-family: Arial;
+}
+
+@media (max-width: 1333px) {
+    .wrapper {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 1333px) {
+    .nav {
+        margin-top: -66px;
+    }
+
+    .nav li:nth-child(1){
+        float: left;
+    }
+
+    .nav li:nth-child(2){
+        float: right;
+    }
+
+}
+
+
+.title {
+    background: url("img/titreBlack.png") no-repeat;
+    background-size: 100% auto;
+    width: 550px;
+    height: 100px;
+}
+
+a#home_link {
+    text-decoration: none;
+    font-family: arial;
+    font-size: 1.75em;
+    font-weight: 700;
+    color: white;
 }
 
 .box_menu {
@@ -40,11 +89,9 @@
   border-color: yellow;
   border-style: dashed;
   border-width: 2px;
-  max-width: 800px;
 }
 
 .wrapper {
-  height: 91vh;
     border-color: blue;
     border-style: dashed;
     border-width: 2px;
@@ -104,7 +151,6 @@
     display: flex;
     padding: 5px;
     margin: 0 auto;
-    height: 100px;
 }
 
 .buttons h2 {
@@ -139,8 +185,11 @@
 
 .photoshop {
     display: flex;
-    width: 800px;
-    height: 500px;
+    flex-direction: column;
+}
+
+.cols {
+    display: flex;
 }
 
 .canvasDiv {
@@ -239,4 +288,12 @@
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: red;
+}
+
+.save {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 50px solid white;
 }
