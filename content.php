@@ -15,19 +15,19 @@
 
 <div class ="wrapper">
 
-    <div class ="top_nav">
-        <h1>welcome - <?php print($_SESSION['username']); ?></h1>
+    <div class ="top_welcome">
+        <h1>Welcome <?php print($_SESSION['username']); ?> !</h1>
     </div>
 
-    <div class="stream border">
-        <video id="video" width="480px" height="360px" onclick="chg()">Video stream not found.</video>
-        <div class="buttons border">
-            <button id="snap">Take a photo !</button>
-            <h2>  &nbsp; || &nbsp; </h2>
-            <input type="file" name="file" id="file" class="inputfile"/>
-            <label for="file">Upload a file...</label>
-        </div>
-    </div>
+<!--    <div class="stream">-->
+<!--        <video id="video" width="480px" height="360px" onclick="chg()">Video stream not found.</video>-->
+<!--        <div class="buttons">-->
+<!--            <button id="snap">Take a photo !</button>-->
+<!--            <h2>  &nbsp; || &nbsp; </h2>-->
+<!--            <input type="file" name="file" id="file" class="inputfile"/>-->
+<!--            <label for="file">Upload a file...</label>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="photoshop border">
         <h2>Photoshop :</h2>
         <div class="cols">
@@ -57,8 +57,6 @@
             <button id="save">save !</button>
         </div>
     </div>
-    <button id="plop">PLOP !</button>
-
+<!--    <button id="plop">PLOP !</button>-->
     <?php include_once 'right_side_gal.php'; ?>
-
 </div>

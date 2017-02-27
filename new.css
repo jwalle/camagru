@@ -97,8 +97,8 @@ a#home_link {
     border-width: 2px;
     display: flex;
     flex-direction: column;
-    /*background-color: green;*/
-  
+    background: url("img/main_bg.png") no-repeat;
+    background-position-x: center;
 }
 
 .center {
@@ -110,6 +110,10 @@ a#home_link {
   border-style: dashed;
   border-width: 2px;
   margin:100px;
+}
+
+.top_welcome {
+    padding: 10;
 }
 
 .center h1{
@@ -139,6 +143,7 @@ a#home_link {
 .stream {
     display: flex;
     flex-direction: column;
+    padding: 20 30 0;
 }
 
 .video{
@@ -190,6 +195,19 @@ a#home_link {
 
 .cols {
     display: flex;
+}
+
+.col1 {
+    margin-right: 20px;
+    background: #23467a;
+    box-shadow: 0 0 10px #14264b;
+}
+
+.col3 {
+    margin-left: 20px;
+    background: #23467a;
+    box-shadow: 0 0 10px #14264b;
+
 }
 
 .canvasDiv {
