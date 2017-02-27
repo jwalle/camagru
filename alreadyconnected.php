@@ -5,7 +5,6 @@
     If you are not, please click <a href="index.php">here.</a>
 </h1>
 </div>
-
 <?php
     header('Refresh: 5;index.php');
 ?>

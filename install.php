@@ -54,6 +54,22 @@ include_once("config/database.php");
  		echo $req . "<br>" . $e->getMessage();
  	}
 
+try {
+    $table = "comments";
+    $conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $req = "CREATE TABLE IF NOT EXISTS $table (
+ 		com_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+ 		user_id INT(11) NOT NULL,
+ 		comment VARCHAR(10000));";
+    $conn->exec($req);
+// 	print("created $table Table.\n");
+}
+catch (PDOException $e)
+{
+    echo $req . "<br>" . $e->getMessage();
+}
+
 //	try
 //	{
 //		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);

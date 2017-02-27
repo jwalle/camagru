@@ -11,7 +11,7 @@
         <div class="menu">
             <div class="title"></div>
             <ul class="nav">
-                <li><a href="#">HOME</a></li>
+                <li><a href="index.php">HOME</a></li>
                 <li><a href="#">GALLERY</a></li>
             </ul>
 <!--            <div class="left_block"><a id="home_link" href="index.php">HOME</a></div>-->

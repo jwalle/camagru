@@ -27,11 +27,28 @@ class GALLERY
 		}
 	}
 
+    public function get_image($img_id)
+    {
+        try
+        {
+            $stmt = $this->db->prepare("SELECT img_name FROM gallery
+				WHERE img_id=:img_id");
+
+            $stmt->execute(array('img_id' => $img_id));
+            $img = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $img;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
 	public function last_three($user)
 	{
 		try
 		{
-			$stmt = $this->db->prepare("SELECT img_name FROM gallery
+			$stmt = $this->db->prepare("SELECT img_name,img_id FROM gallery
 				WHERE img_user=:user ORDER BY img_id DESC LIMIT 3");
 											
 			$stmt->execute(array('user' => $user));

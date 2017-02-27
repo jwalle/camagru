@@ -76,6 +76,7 @@ a.button {
     color: black;
     border: 2px solid white;
     background: white;
+    text-decoration: none;
 }
 
 .btn:hover, .btn:focus{
@@ -122,7 +123,8 @@ ul.form {
     overflow: auto;
 }
 
-h2 {font-size: 4em;
+h2 {
+    font-size: 4em;
     text-align: center;
     color: white;
 }

@@ -36,6 +36,13 @@ elseif ($page === 'content')
     else
         require 'notconnected.php';
 }
+elseif ($page === 'image')
+{
+    if (isset($_SESSION['username']) && isset($_SESSION['connected']))
+        require 'image.php';
+    else
+        require 'notconnected.php';
+}
     else
     require 'Home.php';
 

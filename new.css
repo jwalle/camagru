@@ -92,6 +92,7 @@ a#home_link {
 }
 
 .wrapper {
+    height: 100%;
     border-color: blue;
     border-style: dashed;
     border-width: 2px;
@@ -101,16 +102,6 @@ a#home_link {
     background-position-x: center;
 }
 
-.center {
-  height:50vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-color: blue;
-  border-style: dashed;
-  border-width: 2px;
-  margin:100px;
-}
 
 .top_welcome {
     padding: 10;
@@ -315,3 +306,11 @@ a#home_link {
     border-right: 50px solid transparent;
     border-top: 50px solid white;
 }
+
+textarea {
+    border: 1px solid #888;
+    width: 400px;
+    height: 150px;
+    font-size: inherit;
+    resize: none;
+

@@ -18,7 +18,6 @@ if (isset($_POST['btn-signup']))
 
 <div class="wrapper">
     <h2>Bienvenue !</h2>
-    <div class="center">
        <div class="form-container">
             <form method="post">
 				<?php
@@ -31,6 +30,9 @@ if (isset($_POST['btn-signup']))
                         <?php
                     }
 				?>
+                <h3>Sign in</h3>
+                <p>To an existing Camagru account</p>
+                <br>
                 <div class="name">
                    <input type="text" class="css-input" name="txt_uname_mail" placeholder="Login ou email" value="" />
                 </div>
@@ -41,9 +43,8 @@ if (isset($_POST['btn-signup']))
                   <input type="submit" class="btn" name="btn-signup" value="SIGN IN"/></br>
                 </div>
                 <br>
-                <label for="ask">Tu n'a pas encore de compte ? &nbsp;<a href="index.php?page=register" class="button">INSCRIT TOI</a></label>
+                <label for="ask">Or click here to create a Camagru account : &nbsp;<a href="index.php?page=register" class="btn">Register</a></label>
             </form>
         </div>
-    </div>
 </div>
 
