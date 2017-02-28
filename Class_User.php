@@ -61,6 +61,38 @@ class USER
 		return false;
 	}
 
+	public function get_id($name)
+    {
+        try
+        {
+            $stmt = $this->db->prepare("SELECT user_id FROM users
+				WHERE user_name=:name OR user_mail=:name LIMIT 1");
+            $stmt->execute(array(':name' => $name));
+            $id = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $id['user_id'];
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+    public function get_name($user_id)
+    {
+        try
+        {
+            $stmt = $this->db->prepare("SELECT user_name FROM users
+				WHERE user_id=:user_id LIMIT 1");
+            $stmt->execute(array(':user_id' => $user_id));
+            $id = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $id['user_name'];
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
     public function redirect($url)
 	{
 		header("Location: $url");

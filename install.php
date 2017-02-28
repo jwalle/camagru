@@ -61,10 +61,12 @@ try {
     $req = "CREATE TABLE IF NOT EXISTS $table (
  		com_id INT(11) AUTO_INCREMENT PRIMARY KEY,
  		user_id INT(11) NOT NULL,
- 		comment VARCHAR(10000));";
+ 		img_id INT(11) NOT NULL,
+ 		comment VARCHAR(10000),
+ 		date DATETIME NOT NULL);";
     $conn->exec($req);
 // 	print("created $table Table.\n");
-}
+	}
 catch (PDOException $e)
 {
     echo $req . "<br>" . $e->getMessage();
@@ -82,9 +84,11 @@ catch (PDOException $e)
 
 	include_once 'Class_User.php';
 	include_once 'Class_Gallery.php';
+	include_once 'Class_Image.php';
 
 	$user = new USER($conn);
 	$gallery = new GALLERY($conn);
+	$image = new IMAGE($conn);
 	
 	if (!file_exists('gallery'))
 		mkdir('gallery');
@@ -104,4 +108,4 @@ catch (PDOException $e)
 // 		echo $sql . "<br>" . $e->getMessage();
 // 	}
 // 	$conn = null;
-?>
+
