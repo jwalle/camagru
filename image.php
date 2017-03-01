@@ -1,22 +1,31 @@
 <?php
     $i = 0;
     $img_id = $_GET["image"];
+    $user_id = $user->get_id($_SESSION['username']);
     $comments = $image->get_comments($img_id);
     if (!$img_id)
         echo "wtf"; //TODO : gestion erreur
     if (isset($_POST['btn-post']))
     {
         $content = $_POST['comment'];
-        $user_id = $user->get_id($_SESSION['username']);
         $date = date("Y-m-d H:i:s");
         $image->add_comment($img_id, $user_id, $content, $date);
         header("Refresh:0");
     }
+    $image->upvote($user_id, $img_id);
+    var_dump($image->get_sum_votes($img_id));
 ?>
 
 <div class="wrapper">
     <h2>Bienvenue !</h2>
-    <img src="<?= $gallery->get_image($img_id)['img_name']; ?>"/>
+    <div class="image border">
+        <div class="vote">
+            <div class="uvote"><i class="up"></i></div>
+            <div class="votenb">12</div>
+            <div class="dvote"><i class="down"></i></div>
+        </div>
+        <img src="<?= $gallery->get_image($img_id)['img_name']; ?>"/>
+    </div>
     <div class="comments">
         <?php foreach ($comments as $value)
         {

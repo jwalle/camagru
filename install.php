@@ -72,6 +72,22 @@ catch (PDOException $e)
     echo $req . "<br>" . $e->getMessage();
 }
 
+try {
+    $table = "votes";
+    $conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $req = "CREATE TABLE IF NOT EXISTS $table (
+ 		vote_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+ 		user_id INT(11) NOT NULL,
+ 		vote_value INT(2) NULL,
+ 		img_id INT(11) NOT NULL);";
+    $conn->exec($req);
+}
+catch (PDOException $e)
+{
+    echo $req . "<br>" . $e->getMessage();
+}
+
 //	try
 //	{
 //		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
