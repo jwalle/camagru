@@ -27,22 +27,38 @@ class IMAGE
         }
     }
 
-    public function upvote($user_id, $img_id)
+    public function vote($user_id, $img_id, $vote)
     {
-        try
-        {
-            $stmt =  $this->db->prepare("INSERT INTO votes(user_id, img_id, vote_value)
-											VALUES(:user_id, :img_id, :vote_value)");
+        $old = $this->get_user_vote($user_id, $img_id);
+        if ($old == 0) {
+            try {
+                $stmt = $this->db->prepare("INSERT INTO votes(user_id, img_id, vote_value)
+                                                VALUES(:user_id, :img_id, :vote_value)");
 
-            $stmt->execute(array(
-                'user_id' => $user_id,
-                'img_id' => $img_id,
-                'vote_value' => -1
-            ));
-            return $stmt;
+                $stmt->execute(array(
+                    'user_id' => $user_id,
+                    'img_id' => $img_id,
+                    'vote_value' => $vote
+                ));
+                return $stmt;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
         }
-        catch(PDOException $e) {
-            echo $e->getMessage();
+        if ($old != $vote) {
+            try {
+                $stmt = $this->db->prepare("UPDATE `votes` SET `vote_value`=:vote
+                                            WHERE user_id=:user_id AND img_id=:img_id");
+
+                $stmt->execute(array(
+                    'vote' => $vote,
+                    'user_id' => $user_id,
+                    'img_id' => $img_id
+                ));
+                return $stmt;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
         }
     }
 
@@ -57,7 +73,7 @@ class IMAGE
             $stmt->execute(array(':img_id' => $img_id,
                                  ':user_id' => $user_id));
             $value = $stmt->fetch(PDO::FETCH_ASSOC);
-            return $value;
+            return $value['vote_value'];
         }
         catch(PDOException $e) {
             echo $e->getMessage();

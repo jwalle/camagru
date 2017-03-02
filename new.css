@@ -372,17 +372,19 @@ i {
 .up {
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
+    border-color: green;
 }
 
 .up:hover {
-    border-color: green;
+    border-color: #00c500;
 }
 
 .down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
+    border-color: darkred;
 }
 
 .down:hover {
-    border-color: darkred;
+    border-color: #d90008;
 }

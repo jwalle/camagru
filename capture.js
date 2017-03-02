@@ -36,6 +36,9 @@
         stamp1 = elId('stamp1');
         frame1 = elId('frame1');
         wrapper = elClass('wrapper');
+        upvote = elClass('upvote');
+        dvote = elClass('dvote');
+
 //        function getImageDataURL(img) {
 //            var canvas = document.getElementById('canvas');
 //            canvas.width = img.width;
@@ -132,6 +135,7 @@
             dragging('img/Fedora.png');
             ev.preventDefault();
         }, false);
+
 
        /* wrapper.addEventListener("dragover", function(e){e.preventDefault();}, true);
         wrapper.addEventListener("drop", function (e) {
