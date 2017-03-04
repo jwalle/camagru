@@ -2,9 +2,9 @@
 /*http://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_webpage&stacked=h*/
 
 * {
-  margin: 0 auto;
+    margin: 0 auto;
+    font-family: Noto;
 }
-
 
 .header {
     border-color: white;
@@ -42,6 +42,7 @@ body {
 
 .msg{
     padding: 10px;
+    font-family: Arial;
 }
 
 .right_side {

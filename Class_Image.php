@@ -69,7 +69,7 @@ class IMAGE
         try
         {
             $stmt = $this->db->prepare("SELECT vote_value FROM votes
-            WHERE img_id=:img_id AND $user_id=:user_id");
+            WHERE img_id=:img_id AND user_id=:user_id");
             $stmt->execute(array(':img_id' => $img_id,
                                  ':user_id' => $user_id));
             $value = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -84,7 +84,7 @@ class IMAGE
     {
         try
         {
-            $stmt = $this->db->prepare("SELECT user_id, comment, date FROM comments
+            $stmt = $this->db->prepare("SELECT com_id, user_id, comment, date FROM comments
             WHERE img_id=:img_id");
             $stmt->execute(array(':img_id' => $img_id));
             $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -109,6 +109,21 @@ class IMAGE
             ));
             return $stmt;
         } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function delete_comment($com_id)
+    {
+        try
+        {
+            $stmt = $this->db->prepare("DELETE FROM comments
+            WHERE com_id=:com_id");
+            $stmt->execute(array(':com_id' => $com_id));
+//            $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//            return $comments;
+        }
+        catch(PDOException $e) {
             echo $e->getMessage();
         }
     }

@@ -6,13 +6,17 @@
         upvote = elId('upvotes');
         dvote = elId('dvote');
         sumVote = elId('sumVote');
-
+        delCom = elId('delete');
+        
         sum = parseInt(sumVote.dataset.value);
         sumVote.innerHTML = sum;
 
         upvote.addEventListener("click", up, false);
         dvote.addEventListener("click", down, false);
 
+        if (delCom)
+            delCom.addEventListener("click", delComment, false);
+        
         userVote = parseInt(voteDiv.dataset.vote);
         if (userVote === -1)
             blockDown();
@@ -27,6 +31,21 @@
 
     function elClass(elem) {
         return document.getElementsByClassName(elem);
+    }
+    
+    function delComment() {
+        var formData = new FormData;
+        com_id = delCom.dataset.com_id;
+        console.log("com_id = " + com_id);
+        formData.append("com_id", com_id);
+        var xmlHttpReq = false;
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', 'deleteComment.php', false);
+        ajax.onreadystatechange = function () {
+            console.log(ajax.responseText);
+        }
+        ajax.send(formData);
+        location.reload();
     }
 
     function blockUp() {

@@ -7,7 +7,7 @@
         <h1>Welcome <?php print($_SESSION['username']); ?> !</h1>
     </div>
 
-    <div class="stream">
+    <div class="stream" id="stream">
         <video id="video" width="480px" height="360px">Video stream not found.</video>
         <div class="buttons">
             <button id="snap">Take a photo !</button>
@@ -16,7 +16,7 @@
             <label for="file">Upload a file...</label>
         </div>
     </div>
-    <div class="photoshop border">
+    <div class="photoshop" id="photoshop">
         <h2>Photoshop :</h2>
         <div class="cols">
             <div class="col1">

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Noto;
+    src: url(NotoSans-Regular.ttf);
+}
+
 .top_bar {
   height: 100px;
   background-color: whitesmoke;
@@ -20,8 +25,7 @@
     text-decoration: none;
     color: black;
     font-size: 1.75em;
-    font-weight: 600;
-    font-family: Arial;
+    font-family: Noto;
 }
 
 @media (max-width: 1333px) {
@@ -51,14 +55,6 @@
     background-size: 100% auto;
     width: 550px;
     height: 100px;
-}
-
-a#home_link {
-    text-decoration: none;
-    font-family: arial;
-    font-size: 1.75em;
-    font-weight: 700;
-    color: white;
 }
 
 .box_menu {
@@ -144,6 +140,7 @@ a#home_link {
 }
 
 .buttons{
+    font-family: Noto;
     display: flex;
     padding: 5px;
     margin: 0 auto;
@@ -156,7 +153,6 @@ a#home_link {
 }
 
 #snap {
-    font-family: Arial;
     font-size: 1.25em;
     font-weight: 600;
     color: #ffffff;
@@ -190,15 +186,14 @@ a#home_link {
 
 .col1 {
     margin-right: 20px;
-    background: #23467a;
-    box-shadow: 0 0 10px #14264b;
+    /*background: #23467a;*/
+    /*box-shadow: 0 0 10px #14264b;*/
 }
 
 .col3 {
     margin-left: 20px;
-    background: #23467a;
-    box-shadow: 0 0 10px #14264b;
-
+    /*background: #23467a;*/
+    /*box-shadow: 0 0 10px #14264b;*/
 }
 
 .canvasDiv {
@@ -248,7 +243,9 @@ a#home_link {
     width: 50px;
     height: 50px;
     margin: 5px;
+    border: solid #1d3a58 1px;
 }
+
 
 .frame:hover {
     background: green;
@@ -283,9 +280,23 @@ a#home_link {
     background : darkred;
 }
 
+#delete {
+    width: 20px;
+    height: 20px;
+    background-image: url("img/delCom.png");
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+    position: relative;
+    float: right;
+    margin: 5px;
+}
+
+#delete:hover {
+    opacity: 0.2;
+}
+
 .inputfile + label {
     cursor:  pointer;
-    font-family: Arial;
     padding: 10px;
     font-size: 1.25em;
     font-weight: 700;
@@ -309,7 +320,7 @@ a#home_link {
 
 textarea {
     border: 1px solid #888;
-    width: 400px;
+    width: 500px;
     height: 150px;
     font-size: inherit;
     resize: none;
@@ -324,14 +335,16 @@ textarea {
     background: #24475f;
     width: 500;
     color: whitesmoke;
-    font-family: sans-serif;
+    font-family: Noto;
     font-size: 12;
     position: relative;
 }
 
 #content {
-    font-family: Serif;
+    font-family: Noto;
     padding: 30;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 #username {

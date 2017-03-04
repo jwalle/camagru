@@ -13,6 +13,8 @@
     var layer3 = null;
     var frame1 = null;
     var stamp1 = null;
+    var stream = null;
+    var photoshop = null;
 
     function elId(elem) {
         return document.getElementById(elem);
@@ -24,6 +26,7 @@
 
     function startup() {
         video = elId('video');
+        stream = elId('stream');
         canvasDiv = elId('canvasDiv');
         snap = elId('snap');
         save = elId('save');
@@ -38,16 +41,7 @@
         wrapper = elClass('wrapper');
         upvote = elClass('upvote');
         dvote = elClass('dvote');
-
-//        function getImageDataURL(img) {
-//            var canvas = document.getElementById('canvas');
-//            canvas.width = img.width;
-//            canvas.height = img.height;
-//            var context = canvas.getContext('2d');
-//            context.drawImage(img, 0, 0);
-//            var dataURL = canvas.toDataURL('image/png');
-//            return dataURL;
-//        }
+        photoshop = elId('photoshop');
 
         navigator.getMedia = (navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
@@ -94,7 +88,7 @@
             snap.addEventListener("click", function (ev) {
                 //video.style.display = 'none';
                 takepicture();
-                console.log("plop");
+                hideCam();
                 ev.preventDefault();
             }, false);
         }
@@ -136,7 +130,6 @@
             ev.preventDefault();
         }, false);
 
-
        /* wrapper.addEventListener("dragover", function(e){e.preventDefault();}, true);
         wrapper.addEventListener("drop", function (e) {
             e.preventDefault();
@@ -162,6 +155,7 @@
         }, false);
 
         clearphoto();
+        hidePhotoshop();
     }
 
     function clearLayer(layer){
@@ -222,6 +216,16 @@ function saveImage() {
        console.log(ajax.responseText);
     }
     ajax.send(formData);
+}
+
+    function hidePhotoshop() {
+        stream.style.display = 'flex';
+        photoshop.style.display = 'none';
+    }
+
+function hideCam() {
+ stream.style.display = 'none';
+ photoshop.style.display = 'flex';
 }
 
 function dragging(img) {

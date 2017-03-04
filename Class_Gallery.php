@@ -49,7 +49,7 @@ class GALLERY
 		try
 		{
 			$stmt = $this->db->prepare("SELECT img_name,img_id FROM gallery
-				WHERE img_user=:user ORDER BY img_id DESC LIMIT 3");
+			ORDER BY img_id DESC LIMIT 3");
 			$stmt->execute(array('user' => $user));
 			$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			return $row;

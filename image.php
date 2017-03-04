@@ -13,6 +13,7 @@
         $image->add_comment($img_id, $user_id, $content, $date);
         header("Refresh:0");
     }
+
 ?>
 <script src="vote.js"></script>
 <div class="wrapper">
@@ -31,7 +32,10 @@
             ?>
             <div class="comment">
                 <div id="username"><?= $user->get_name($value['user_id']); ?></div>
-                <div id="content"><?= $value['comment'];?></div>
+                <?php if ($value['user_id'] == $user_id) { ?>
+                    <div id="delete" data-com_id="<?= $value['com_id']?>"></div>
+                <?php } ?>
+                <div id="content"><p><?= $value['comment'];?></p></div>
                 <div id="date"><?= date($value['date']);?></div>
             </div>
             <?php
