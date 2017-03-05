@@ -84,7 +84,7 @@ class IMAGE
     {
         try
         {
-            $stmt = $this->db->prepare("SELECT com_id, user_id, comment, date FROM comments
+            $stmt = $this->db->prepare("SELECT com_id, user_id, comment, commented FROM comments
             WHERE img_id=:img_id");
             $stmt->execute(array(':img_id' => $img_id));
             $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -95,18 +95,27 @@ class IMAGE
         }
     }
 
-    public function add_comment($img_id, $user_id, $content, $date)
+    /**
+     * @param int $img_id
+     * @param int $user_id
+     * @param string $content
+     * @param DateTime $commented
+     *
+     * @return mixed
+     */
+    public function add_comment($img_id, $user_id, $content, $commented)
     {
         try {
-            $stmt = $this->db->prepare("INSERT INTO comments(user_id, img_id, comment, date)
-											VALUES(:user_id, :img_id, :comment, :date)");
+            $stmt = $this->db->prepare("INSERT INTO comments(user_id, img_id, comment, commented)
+											VALUES(:user_id, :img_id, :comment, :commented)");
 
-            $stmt->execute(array(
-                'user_id' => $user_id,
-                'img_id' => $img_id,
-                'comment' => $content,
-                'date' => $date
-            ));
+            $stmt->execute([
+                'user_id'   => $user_id,
+                'img_id'    => $img_id,
+                'comment'   => $content,
+                'commented' => $commented->format('Y-m-d H:i:s')
+            ]);
+
             return $stmt;
         } catch (PDOException $e) {
             echo $e->getMessage();

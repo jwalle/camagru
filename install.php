@@ -1,7 +1,8 @@
 <?php
 
 include_once("config/database.php");
-	
+session_start();
+
  //Create database
 
  try {
@@ -63,7 +64,7 @@ try {
  		user_id INT(11) NOT NULL,
  		img_id INT(11) NOT NULL,
  		comment VARCHAR(10000),
- 		date DATETIME NOT NULL);";
+ 		commented DATETIME NOT NULL);";
     $conn->exec($req);
 // 	print("created $table Table.\n");
 	}

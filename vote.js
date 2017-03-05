@@ -1,22 +1,26 @@
 (function() {
 
-    function startup(){
+    function startup() {
         wrapper = elClass('wrapper');
         voteDiv = elId('vote');
-        upvote = elId('upvotes');
-        dvote = elId('dvote');
+        upvote  = elId('upvotes');
+        dvote   = elId('dvote');
         sumVote = elId('sumVote');
-        delCom = elId('delete');
-        
-        sum = parseInt(sumVote.dataset.value);
-        sumVote.innerHTML = sum;
+        sum     = parseInt(sumVote.dataset.value);
+        delCom  = elClass('delete');
+        postCom = elId('postCom');
 
+        sumVote.innerHTML = sum;
         upvote.addEventListener("click", up, false);
         dvote.addEventListener("click", down, false);
+        postCom.addEventListener("submit", sendComment);
 
-        if (delCom)
-            delCom.addEventListener("click", delComment, false);
-        
+        if (delCom) {
+            [].forEach.call(delCom, function (e) {
+                e.addEventListener("click", delComment, false);
+            });
+        }
+
         userVote = parseInt(voteDiv.dataset.vote);
         if (userVote === -1)
             blockDown();
@@ -34,16 +38,16 @@
     }
     
     function delComment() {
-        var formData = new FormData;
-        com_id = delCom.dataset.com_id;
-        console.log("com_id = " + com_id);
-        formData.append("com_id", com_id);
+        var formData   = new FormData;
         var xmlHttpReq = false;
-        var ajax = new XMLHttpRequest();
+        var ajax       = new XMLHttpRequest();
+
+        com_id = this.dataset.com_id;
+        formData.append("com_id", com_id);
         ajax.open('POST', 'deleteComment.php', false);
         ajax.onreadystatechange = function () {
             console.log(ajax.responseText);
-        }
+        };
         ajax.send(formData);
         location.reload();
     }
@@ -84,17 +88,31 @@
 
     function sendVote (value, user, img)
     {
-        var formData = new FormData;
+        var formData   = new FormData;
+        var ajax       = new XMLHttpRequest();
 
         formData.append("voteValue", value);
         formData.append("user", user);
         formData.append("img", img);
-        var xmlHttpReq = false;
-        var ajax = new XMLHttpRequest();
         ajax.open('POST', 'vote.php', false);
         ajax.onreadystatechange = function () {
             console.log(ajax.responseText);
-        }
+        };
+        ajax.send(formData);
+    }
+
+    function sendComment(ev) {
+        // ev.preventDefault(); TODO : remove comment
+        var ajax     = new XMLHttpRequest();
+        var formData = new FormData;
+
+        formData.append('image-id', document.getElementsByName('image-id')[0].value);
+        formData.append('comment', document.getElementsByName('comment')[0].value);
+
+        ajax.open('POST', 'post-comment.php', false);
+        ajax.onreadystatechange = function () {
+            console.log(ajax.responseText);
+        };
         ajax.send(formData);
     }
     window.addEventListener('load', startup, false);
