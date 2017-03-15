@@ -401,3 +401,67 @@ i {
 .down:hover {
     border-color: #d90008;
 }
+
+.gal_img {
+    padding: 10px;
+}
+
+.gal_img img {
+    width: 15vw;
+    min-width: 200px;
+}
+
+.img_name {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    background: rgba(1, 1, 1, 0.6);
+    color: white;
+    border-bottom-right-radius: 7px;
+    display: flex;
+    align-items: center;
+    font-size: 1.3em;
+}
+
+.img_name p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: Noto;
+    font-size: 0.9em;
+    margin: 6px;
+}
+
+.info {
+    background: whitesmoke;
+    display: flex;
+    min-height: 30px ;
+    position: relative;
+}
+
+.comments {
+    font-size: 0.7em;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+}
+
+.votes {
+    font-size: 0.7em;
+    position: absolute;
+    right:10px;
+    top: 5px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.plus {
+    color: green;
+}
+
+.minus {
+    color: red;
+}

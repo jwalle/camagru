@@ -27,6 +27,23 @@ class GALLERY
 		}
 	}
 
+    public function get_images($page)
+    {
+        $offset = intval($page * 20);
+        try
+        {
+            $stmt = $this->db->prepare("SELECT * FROM gallery ORDER BY img_id DESC LIMIT 20 OFFSET $offset");
+
+            $stmt->execute();
+            $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $images;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
     public function get_image($img_id)
     {
         try

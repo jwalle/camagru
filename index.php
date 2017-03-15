@@ -39,6 +39,12 @@ switch ($page) {
         else
             require 'notconnected.php';
         break;
+    case 'gallery':
+        if (isset($_SESSION['username']) && isset($_SESSION['connected']))
+            require 'Gallery.php';
+        else
+            require 'notconnected.php';
+        break;
     default:
         require 'Home.php';
 }
