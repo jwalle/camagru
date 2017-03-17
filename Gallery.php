@@ -1,8 +1,10 @@
 <?php
 $user_id = $user->get_id($_SESSION['username']);
 $coms = 127;
-$signs =  $coms < 0 ? 'plus' : 'minus';
+$sign =  $coms < 0 ? 'plus' : 'minus';
+//var_dump($_GET['p']);
 $images = $gallery->get_images($_GET['p']);
+//var_dump($_SESSION['username']);
 //var_dump($images);
 ?>
 <div class="wrapper">

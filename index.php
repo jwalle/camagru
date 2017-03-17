@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 if(!isset($user))
     require 'install.php';
 if (isset($_GET['page']))
@@ -12,6 +10,9 @@ else
 ob_start();
 
 switch ($page) {
+    case 'logout':
+        require 'logout.php';
+        break;
     case 'home':
         require 'Home.php';
         break;

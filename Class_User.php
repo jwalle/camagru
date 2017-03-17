@@ -101,7 +101,7 @@ class USER
 	public function logout()
 	{
 		session_destroy();
-		unset($_SESSION['user_session']);
+		unset($_SESSION['username']);
 		return true;
 	}
 }
