@@ -93,13 +93,6 @@
             }, false);
         }
 
-        plop.addEventListener("click", function (ev) {
-            render(layer1, 'img/plop.jpg');
-            console.log(width);
-            console.log(height);
-            ev.preventDefault();
-        }, false);
-
         frame1.addEventListener("click", function (ev) {
             clearLayer(layer2);
             render(layer2, 'img/frame.png');

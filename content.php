@@ -41,10 +41,11 @@
                 <div id="stamp1" class="stamp"></div>
             </div>
         </div>
-        <div class="save">
-            <button id="save">save !</button>
+        <div class= "save "id="save">
+            <div id="save_it">
+                <h3>Save</h3>
+            </div>
         </div>
     </div>
-    <button id="plop">PLOP !</button>
     <?php include_once 'right_side_gal.php'; ?>
 </div>

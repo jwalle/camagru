@@ -29,8 +29,16 @@
 }
 
 @media (max-width: 1333px) {
-    .wrapper {
-        margin-top: 50px;
+    .top_welcome h1 {
+        padding-top: 50px;
+    }
+
+    .nav {
+        margin: 20px;
+    }
+
+    .nav li a{
+        color : white;
     }
 }
 
@@ -120,7 +128,6 @@
   align-items: center;
   justify-content: center;
   width: 60%;
-  margin-top: 50px;
 }
 
 .right_side img{
@@ -313,9 +320,27 @@
 .save {
     width: 0;
     height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-top: 50px solid #afafaf;
+    position: relative;
+}
+
+.save:hover {
     border-top: 50px solid white;
+    cursor: pointer;
+}
+
+.save:active {
+    border-top: 50px solid greenyellow;
+}
+
+#save_it {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top : -45px;
+    left: -20px;
 }
 
 textarea {
@@ -436,13 +461,6 @@ i {
     display: flex;
     min-height: 30px ;
     position: relative;
-}
-
-.comments {
-    font-size: 0.7em;
-    position: absolute;
-    left: 10px;
-    top: 5px;
 }
 
 .votes {
