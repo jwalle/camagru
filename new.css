@@ -131,7 +131,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 800px;
     width: 70%;
+    min-width: 400px;
     padding: 20px 0px;
 }
 
@@ -189,6 +191,7 @@
 
 .photoshop {
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
 
@@ -197,13 +200,28 @@
 }
 
 .col1 {
-    margin-right: 20px;
+    order : 3;
+    background-color: rgba(45, 35, 35, 0.28);
+    border: solid rgb(32, 77, 100);
     /*background: #23467a;*/
     /*box-shadow: 0 0 10px #14264b;*/
 }
 
-.col3 {
+.col1 p {
+    padding: 10px;
+    background-color: #244a60;
+}
+
+
+
+.col2 {
+    order:2;
     margin-left: 20px;
+    margin-right: 20px;
+}
+
+.col3 {
+    order : 1;
     /*background: #23467a;*/
     /*box-shadow: 0 0 10px #14264b;*/
 }
@@ -249,6 +267,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 10px;
 }
 
 .frame {
@@ -322,30 +341,51 @@
     background-color: red;
 }
 
-.save {
-    width: 0;
-    height: 0;
-    border-left: 70px solid transparent;
-    border-right: 70px solid transparent;
-    border-top: 50px solid #afafaf;
-    position: relative;
-}
-
-.save:hover {
-    border-top: 50px solid white;
+#save {
+    display: inline-block;
+    font : bold 1em sans serif;
+    color: black;
+    background-color: white;
+    border: 2px solid white;
+    text-align: center;
+    font-size: 28px;
+    padding: 5px;
+    width: 150px;
+    height: 50px;
+    transition: all 0.5s;
     cursor: pointer;
+    margin: 5px;
 }
 
-.save:active {
-    border-top: 50px solid greenyellow;
+#save span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
 }
 
-#save_it {
-    display: flex;
-    flex-direction: column;
+#save span:after {
+    content: '\00bb';
     position: absolute;
-    top : -45px;
-    left: -20px;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+#save:hover {
+    outline: none;
+    background: black;
+    color: white;
+}
+
+#save:hover span{
+    padding-right: 25px;
+}
+
+#save:hover span:after {
+    opacity: 1;
+    right: 0;
 }
 
 textarea {

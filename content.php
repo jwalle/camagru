@@ -22,7 +22,7 @@
         <div class="cols">
             <div class="col1">
     <!--            <input name="textbox1" id="textbox1" type="text"/>-->
-                <p>Choose a frame :</p>
+                <p>Frames :</p>
                 <div class="frames">
                     <div id="frame1" class="frame"></div>
                     <div id="frame2" class="frame"></div>
@@ -42,11 +42,7 @@
                 <div id="stamp1" class="stamp"></div>
             </div>
         </div>
-        <div class="save" id="save">
-            <div id="save_it">
-                <h3>Save</h3>
-            </div>
-        </div>
+        <button class="button" id="save" style="vertical-align: middle"><span>Save </span></button>
     </div>
     <?php include_once 'right_side_gal.php'; ?>
 </div>
