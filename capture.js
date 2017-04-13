@@ -94,18 +94,21 @@
         }
 
         frame1.addEventListener("click", function (ev) {
+            layer2.style.display = 'block';
             clearLayer(layer2);
             render(layer2, 'img/frame.png');
             ev.preventDefault();
         }, false);
 
         frame2.addEventListener("click", function (ev) {
+            layer2.style.display = 'block';
             clearLayer(layer2);
             render(layer2, 'img/frameFlower.png');
             ev.preventDefault();
         }, false);
 
         frame3.addEventListener("click", function (ev) {
+            layer2.style.display = 'block';
             clearLayer(layer2);
             render(layer2, 'img/frameFlower2.png');
             ev.preventDefault();
@@ -113,11 +116,12 @@
 
         frame4.addEventListener("click", function (ev) {
             clearLayer(layer2);
+            layer2.style.display = 'none';
             ev.preventDefault();
         }, false);
 
         stamp1.addEventListener("click", function (ev) {
-            clearLayer(layer3);
+            //clearLayer(layer3);
             render(layer3, 'img/Fedora.png');
             dragging('img/Fedora.png');
             ev.preventDefault();

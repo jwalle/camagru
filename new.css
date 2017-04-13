@@ -131,14 +131,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     max-width: 800px;
     width: 70%;
     min-width: 400px;
-    padding: 20px 0px;
+    padding-bottom: 10px;
+    background-color: rgba(21, 49, 34, 0.27);
+    border: solid 1px rgb(26, 47, 63);
 }
 
 .right_side img{
   width: 30%;
+}
+
+.mini_gal_upper {
+    width: 100%;
+    background: #1a2f3f;
+    display: flex;
+    color: white;
+    margin-bottom: 10;
+}
+
+.mini_gal {
+    display: flex;
+    align-items: center;
 }
 
 .stream {
@@ -158,6 +174,7 @@
     display: flex;
     padding: 5px;
     margin: 0 auto;
+    margin: 20px;
 }
 
 .buttons h2 {
@@ -201,29 +218,37 @@
 
 .col1 {
     order : 3;
-    background-color: rgba(45, 35, 35, 0.28);
-    border: solid rgb(32, 77, 100);
+    background-color: rgba(22, 40, 49, 0.18);
+    border: solid rgb(26, 47, 63);
     /*background: #23467a;*/
     /*box-shadow: 0 0 10px #14264b;*/
 }
 
 .col1 p {
     padding: 10px;
-    background-color: #244a60;
+    background-color: #1a2f3f;
+    color: white;
 }
-
-
 
 .col2 {
     order:2;
+    border: solid rgb(26, 47, 63);
     margin-left: 20px;
     margin-right: 20px;
 }
 
 .col3 {
     order : 1;
+    border: solid rgb(26, 47, 63);
+    background-color: rgba(22, 40, 49, 0.18);
     /*background: #23467a;*/
     /*box-shadow: 0 0 10px #14264b;*/
+}
+
+.col3 p {
+    padding: 10px;
+    background-color: #1a2f3f;
+    color: white;
 }
 
 .canvasDiv {
@@ -246,7 +271,8 @@
 }
 
 #layer2 {
-    z-index: 2;
+    display: none;
+    z-index: 3;
     position: absolute;
     left: 0;
     top: 0;
@@ -255,7 +281,7 @@
 }
 
 #layer3 {
-    z-index: 3;
+    z-index: 2;
     position: absolute;
     left: 0;
     top: 0;
@@ -284,9 +310,9 @@
 }
 
 .stamp {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
+    width: 70px;
+    height: 60px;
+    margin-top: 20px;
 }
 
 #stamp1 {
@@ -352,7 +378,7 @@
     padding: 5px;
     width: 150px;
     height: 50px;
-    transition: all 0.5s;
+    /*transition: all 0.5s;*/
     cursor: pointer;
     margin: 5px;
 }
@@ -365,11 +391,22 @@
 }
 
 #save span:after {
-    content: '\00bb';
+    content: '\0025BC';
     position: absolute;
-    opacity: 0;
+    color: white;
+    opacity: 1;
     top: 0;
-    right: -20px;
+    left: 65px;
+    transition: 0.5s;
+}
+
+#save span:before {
+    content: '\0025BC';
+    position: absolute;
+    color: white;
+    opacity: 1;
+    top: 0;
+    left: -35px;
     transition: 0.5s;
 }
 
@@ -377,15 +414,6 @@
     outline: none;
     background: black;
     color: white;
-}
-
-#save:hover span{
-    padding-right: 25px;
-}
-
-#save:hover span:after {
-    opacity: 1;
-    right: 0;
 }
 
 textarea {

@@ -17,8 +17,8 @@
     $im1 = imagecreatefromstring($data1);
     $im2 = imagecreatefromstring($data2);
     $im3 = imagecreatefromstring($data3);
-    imagecopy($im1, $im2, 0, 0, 0, 0, 480, 360);
     imagecopy($im1, $im3, 0, 0, 0, 0, 480, 360);
+    imagecopy($im1, $im2, 0, 0, 0, 0, 480, 360);
 	$file = UPLOAD_DIR . uniqid() . '.png';
 	$success = imagepng($im1, $file);
     if ($success)

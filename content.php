@@ -15,7 +15,6 @@
             <input type="file" name="file" id="file" class="inputfile"/>
             <label for="file">Upload a file...</label>
         </div>
-        <div id="upper_gal"><h1>- Gallery -</h1></div>
     </div>
     <div class="photoshop" id="photoshop">
         <h2>Photoshop :</h2>
@@ -38,6 +37,7 @@
                 </div>
             </div>
             <div class="col3">
+                <p>Stamps :</p>
                 <div id="stamp1" class="stamp"></div>
                 <div id="stamp1" class="stamp"></div>
             </div>
