@@ -1,12 +1,14 @@
 <?php
     $user_id   = $user->get_id($_SESSION['username']);
     $user_vote = $image->get_user_vote($user_id, $_GET["image"]);
+    $img_user = $image->get_img_user($_GET['image']);
     if (!$_GET["image"])
         echo "wtf"; //TODO : gestion erreur
 ?>
 <script src="vote.js"></script>
 <div class="wrapper">
     <h2>Bienvenue !</h2>
+    <p>Image taken by <?= $img_user ?> :</p>
     <div class="image border">
         <div class="vote" id="vote" data-vote="<?= $user_vote ?>" data-image="<?= $_GET["image"] ?>" data-user="<?= $user_id ?>">
             <div id="upvotes"><i class="up"></i></div>

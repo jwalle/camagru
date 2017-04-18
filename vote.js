@@ -48,7 +48,7 @@
         ajax.onreadystatechange = function () {
             console.log(ajax.responseText);
         };
-        ajax.send(formData);
+        ajax.send(formData);+
         location.reload();
     }
 

@@ -137,6 +137,21 @@ class IMAGE
         }
     }
 
+    public function get_img_user($img_id)
+    {
+        try
+        {
+            $stmt = $this->db->prepare("SELECT img_user FROM gallery
+            WHERE img_id=:img_id");
+            $stmt->execute(array(':img_id' => $img_id));
+            $value = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $value['img_user'];
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     public function get_id($name)
     {
         try

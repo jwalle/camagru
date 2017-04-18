@@ -7,8 +7,7 @@ if (isset($_POST['btn-signup']))
     $upass = $_POST['txt_upass'];
     if ($user->login($uname, $umail, $upass))
     {
-        $_SESSION["username"] = $uname;
-        $_SESSION["connected"] = true;
+//        $_SESSION["username"] = $user->;
         $user->redirect('index.php?page=content'); // TODO : add connected page
     }
     else

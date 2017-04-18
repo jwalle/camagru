@@ -42,7 +42,8 @@ class USER
 					$test_pass = hash('whirlpool', $upass);	
 				if ($test_pass == $userRow['user_pass'])
 				{
-					$_SESSION['user_session'] = $userRow['user_id'];
+                    $_SESSION["connected"] = true;
+                    $_SESSION['username'] = $userRow['user_name'];
                     return true;
 				}
 				else
@@ -56,7 +57,7 @@ class USER
 
 	public function is_loggedin()
 	{
-		if (isset($_SESSION['user_session']))
+		if (isset($_SESSION['username']))
 			return true;
 		return false;
 	}
