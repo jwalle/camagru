@@ -343,6 +343,37 @@
     background : darkred;
 }
 
+.upper_info {
+    border-bottom: solid 1px rgb(26, 47, 63);
+    display: flex;
+    height: 40px;
+}
+
+#upper_user {
+    display: flex;
+    align-items: center;
+
+}
+
+#upper_user p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: Noto;
+}
+
+#del_pic {
+    width: 40px;
+    height: 40px;
+    background-image: url("img/del_pic.png");
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+    position: absolute;
+    right: 0;
+    border-left: solid 1px rgb(26, 47, 63);
+    background-position: center center;
+    padding-right: 10px;
+}
+
 #delete {
     width: 20px;
     height: 20px;
@@ -467,6 +498,9 @@ textarea {
 
 .image {
     position: relative;
+    border: solid 2px rgb(26, 47, 63);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .vote {

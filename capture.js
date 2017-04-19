@@ -194,6 +194,7 @@ function loadImage(src) {
     var reader = new FileReader();
     reader.onload = function (e) {
         render(layer1, e.target.result);
+        hideCam();
     };
     reader.readAsDataURL(src);
 }

@@ -8,6 +8,7 @@
         sumVote = elId('sumVote');
         sum     = parseInt(sumVote.dataset.value);
         delCom  = elClass('delete');
+        delImg = elId('del_pic');
         postCom = elId('postCom');
 
         sumVote.innerHTML = sum;
@@ -19,6 +20,10 @@
             [].forEach.call(delCom, function (e) {
                 e.addEventListener("click", delComment, false);
             });
+        }
+
+        if (delImg) {
+            delImg.addEventListener("click", delImage, false);
         }
 
         userVote = parseInt(voteDiv.dataset.vote);
@@ -48,8 +53,23 @@
         ajax.onreadystatechange = function () {
             console.log(ajax.responseText);
         };
-        ajax.send(formData);+
-        location.reload();
+        ajax.send(formData);
+        location.redirect();
+    }
+
+    function delImage() {
+        var formData   = new FormData;
+        var xmlHttpReq = false;
+        var ajax       = new XMLHttpRequest();
+
+        img_id = this.dataset.img_id;
+        formData.append("img_id", img_id);
+        ajax.open('POST', 'deleteImage.php', false);
+        ajax.onreadystatechange = function () {
+            console.log(ajax.responseText);
+        };
+        ajax.send(formData);
+            location.reload();
     }
 
     function blockUp() {

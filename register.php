@@ -13,6 +13,9 @@ if (isset($_POST['btn-signup']))
 	else if ($uname == "" || !preg_match('/^[a-zA-Z0-9_]+$/', $uname))
 		$error[] = "Rajouter a un nom d'utilisateur valide.";
 
+    else if (strlen($uname) > 20)
+        $error[] = "Le nom d'utilisateur est trop long (> 20).";
+
 	else if ($upass == "")
 		$error[] = "Rajouter mot de passe.";
 

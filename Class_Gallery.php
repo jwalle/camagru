@@ -25,7 +25,29 @@ class GALLERY
 		{
 			echo $e->getMessage();
 		}
-	}
+    }
+
+    public function delete_image($img_id)
+    {
+        try
+        {
+            $stmt = $this->db->prepare("DELETE FROM gallery
+				WHERE img_id=:img_id");
+            $stmt->execute(array('img_id' => $img_id));
+
+            $stmt = $this->db->prepare("DELETE FROM comments
+				WHERE img_id=:img_id");
+            $stmt->execute(array('img_id' => $img_id));
+
+            $stmt = $this->db->prepare("DELETE FROM votes
+				WHERE img_id=:img_id");
+            $stmt->execute(array('img_id' => $img_id));
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
 
     public function get_images($page)
     {
