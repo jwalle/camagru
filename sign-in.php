@@ -1,14 +1,14 @@
 <?php
-
+if ($auth->user())
+    App::redirect('index.php?page=content');
 if (isset($_POST['btn-signup']))
 {
     $uname = $_POST['txt_uname_mail'];
     $umail = $_POST['txt_uname_mail'];
     $upass = $_POST['txt_upass'];
-    if ($user->login($uname, $umail, $upass))
+    if ($user = $auth->login($db, $uname, $umail, $upass))
     {
-//        $_SESSION["username"] = $user->;
-        $user->redirect('index.php?page=content'); // TODO : add connected page
+        App::redirect('index.php?page=content'); // TODO : add connected page
     }
     else
         $error = "Mauvais detail !";

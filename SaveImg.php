@@ -1,5 +1,6 @@
 <?php
-	session_start();
+    include 'inc/bootstrap.php';
+    App::getAuth();
 	require_once 'install.php';
 	define('UPLOAD_DIR', 'gallery/');
     $layer1 = $_POST['layer1Data'];
@@ -23,7 +24,7 @@
 	$success = imagepng($im1, $file);
     if ($success)
 	{
-	    $user_id = $_SESSION['username'];
+	    $user_id = $_SESSION['auth']['user_name'];
         $gallery->add_image($file, $user_id);
 	}
 	else

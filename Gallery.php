@@ -1,7 +1,9 @@
 <?php
-$user_id = $user->get_id($_SESSION['username']);
+$auth->restrict();
+$user_id = $_SESSION['auth']['user_id'];
 $coms = 127;
 $sign =  $coms < 0 ? 'plus' : 'minus';
+//debug($_SESSION);
 //var_dump($_GET['p']);
 $images = $gallery->get_images($_GET['p']);
 //var_dump($_SESSION['username']);

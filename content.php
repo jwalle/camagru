@@ -1,12 +1,13 @@
+<?php
+$auth->restrict();
+?>
 <script src="capture.js"></script>
 
 <!-- php : GD and image fuctions. image create from string -->
 <div class ="wrapper">
-
-
     <div class="stream" id="stream">
         <div class ="top_welcome">
-            <p>Welcome <?php print($_SESSION['username']); ?> !</p>
+            <p>Welcome <?php print($_SESSION['auth']['user_name']); ?> !</p>
         </div>
         <video id="video" width="480px" height="360px">Video stream not found.</video>
         <div class="buttons">

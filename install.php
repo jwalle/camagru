@@ -1,7 +1,6 @@
 <?php
 
 include_once("config/database.php");
-session_start();
 
  //Create database
 
@@ -10,7 +9,6 @@ session_start();
  		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  		$req = "CREATE DATABASE IF NOT EXISTS camagru";
  		$conn->exec($req);
-// 		print("Database created successfully<br>");
  	}
  	catch (PDOException $e)
  	{
@@ -28,10 +26,11 @@ session_start();
  		user_name varchar(255) NOT NULL,
  		user_mail varchar(60) NOT NULL,
  		user_pass varchar(255) NOT NULL,
+ 		user_token varchar(60) NOT NULL,
+ 		confirmed_at DATETIME NULL,
  		UNIQUE (`user_name`),
  		UNIQUE (`user_mail`));";
  	$conn->exec($req);
-// 	print("created $table Table.\n");
  	}
  	catch (PDOException $e)
  	{
@@ -48,7 +47,6 @@ session_start();
  		img_user varchar(255) NOT NULL,
  		UNIQUE (`img_name`));";
  	$conn->exec($req);
-// 	print("created $table Table.\n");
  	}
  	catch (PDOException $e)
  	{
@@ -66,7 +64,6 @@ try {
  		comment VARCHAR(10000),
  		commented DATETIME NOT NULL);";
     $conn->exec($req);
-// 	print("created $table Table.\n");
 	}
 catch (PDOException $e)
 {
@@ -89,40 +86,13 @@ catch (PDOException $e)
     echo $req . "<br>" . $e->getMessage();
 }
 
-//	try
-//	{
-//		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
-//		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//	}
-//	catch (PDOException $e)
-//	{
-//	echo $sql . "<br>" . $e->getMessage();
-//	}
+include_once 'Class_User.php';
+include_once 'Class_Gallery.php';
+include_once 'Class_Image.php';
 
-	include_once 'Class_User.php';
-	include_once 'Class_Gallery.php';
-	include_once 'Class_Image.php';
+$user = new USER($conn);
+$gallery = new GALLERY($conn);
+$image = new IMAGE($conn);
 
-	$user = new USER($conn);
-	$gallery = new GALLERY($conn);
-	$image = new IMAGE($conn);
-	
-	if (!file_exists('gallery'))
-		mkdir('gallery');
-
-// Insert element in table
-// try {
-// 		$conn = new PDO("mysql:host=$DB_DSN;dbname=camagru", $DB_USER, $DB_PASSWORD);
-// 		$hash = hash('whirlpool', 'motdepasse');
-// 		$name = 'plop1';
-// 		$mail = 'coucou@gmail.com';
-// 		$stmt =  $conn->prepare("INSERT INTO $table set user_name=?, user_mail=?, user_pass=?");
-// 		$stmt->execute([$name, $mail, $hash]);
-// 		echo "Insert done";
-// 	}
-// 	catch (PDOException $e)	
-// 	{
-// 		echo $sql . "<br>" . $e->getMessage();
-// 	}
-// 	$conn = null;
-
+if (!file_exists('gallery'))
+	mkdir('gallery');

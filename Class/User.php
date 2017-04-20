@@ -9,6 +9,32 @@ class USER
 		$this->db = $conn;
 	}
 
+	public function login($uname, $umail, $upass)
+    {
+        try
+		{
+            $stmt =  $this->db->prepare("SELECT * FROM users
+				WHERE user_name=:uname OR user_mail=:umail LIMIT 1");
+			$stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
+			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+			if ($stmt->rowCount() > 0)
+			{
+					$test_pass = hash('whirlpool', $upass);	
+				if ($test_pass == $userRow['user_pass'])
+				{
+                    $_SESSION["connected"] = true;
+                    $_SESSION['username'] = $userRow['user_name'];
+                    return true;
+				}
+				else
+					return false;
+			}
+		}
+		catch(PDOException $e) {
+            echo $e->getMessage();
+        }
+	}
+
 	public function is_loggedin()
 	{
 		if (isset($_SESSION['username']))
@@ -47,11 +73,6 @@ class USER
             echo $e->getMessage();
         }
     }
-
-    public function redirect($url)
-	{
-		header("Location: $url");
-	}
 
 	public function logout()
 	{

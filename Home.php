@@ -4,7 +4,6 @@ if ($user->is_loggedin() === false)
 {
 	$user->redirect('index.php?page=register');
 }
-
 $user_id = $_SESSION['user_session'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE user_id=:user_id"); //TODO : use PDO
 $stmt->execute(array(":user_id"=>$user_id));

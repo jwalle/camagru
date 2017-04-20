@@ -1,9 +1,10 @@
 <?php
-    $user_id   = $user->get_id($_SESSION['username']);
+    $auth->restrict();
+    $user_id   = $_SESSION['auth']['user_id'];
     $user_vote = $image->get_user_vote($user_id, $_GET["image"]);
     $img_user = $image->get_img_user($_GET['image']);
     if (!$_GET["image"] || $gallery->get_image($_GET["image"])['img_name'] == NULL) {
-        $user->redirect("index.php");
+        App::redirect("index.php");
         echo "wtf =" . $gallery->get_image($_GET["image"])['img_name']; //TODO : gestion erreur
     }
 ?>
@@ -13,7 +14,7 @@
     <div class="image border">
         <div class="upper_info">
             <div id="upper_user"><p>Image taken by <?= $img_user ?></p></div>
-            <?php if ($_SESSION['username'] == $img_user) : ?>
+            <?php if ($_SESSION['auth']['user_name'] == $img_user) : ?>
                 <div id="del_pic" class="del_pic" data-img_id="<?= $_GET["image"] ?>"></div>
             <?php endif; ?>
         </div>

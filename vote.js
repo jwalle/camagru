@@ -54,7 +54,7 @@
             console.log(ajax.responseText);
         };
         ajax.send(formData);
-        location.redirect();
+        location.reload();
     }
 
     function delImage() {

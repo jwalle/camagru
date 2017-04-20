@@ -1,57 +1,50 @@
 <?php
+if ($auth->user())
+    App::redirect('index.php?page=content');
 
 if (isset($_POST['btn-signup']))
 {
-	$uname = trim($_POST['txt_uname']);
+//    $mail = mail("punktumg@gmail.com", "test", "message test");
+//    if (!$mail)
+//        echo "mail not working";
+    $uname = trim($_POST['txt_uname']);
 	$umail = trim($_POST['txt_umail']);
     $upass = trim($_POST['txt_upass']);
     $upass_conf = trim($_POST['txt_upass_conf']);
 
-	if ($umail == "" || !filter_var($umail, FILTER_VALIDATE_EMAIL))
-		$error[] = "Rajouter une adresse email valide.";
-
-	else if ($uname == "" || !preg_match('/^[a-zA-Z0-9_]+$/', $uname))
-		$error[] = "Rajouter a un nom d'utilisateur valide.";
-
+	if (empty($uname) || !preg_match('/^[a-zA-Z0-9_]+$/', $uname))
+		$error[] = "Rajouter un nom d'utilisateur valide.";
     else if (strlen($uname) > 20)
         $error[] = "Le nom d'utilisateur est trop long (> 20).";
+	else {
+	    $user_id = $db->query('SELECT user_id FROM users WHERE user_name = ?', [$uname])->fetch();
+	    if ($user_id)
+            $error[] = "Desole ce nom d'utilisateur est deja pris.";
+    }
 
-	else if ($upass == "")
+    if (empty($umail) || !filter_var($umail, FILTER_VALIDATE_EMAIL))
+        $error[] = "Rajouter une adresse email valide.";
+	else {
+	    $mail = $db->query('SELECT user_mail FROM users WHERE user_mail = ?', [$umail])->fetch();
+	    if ($mail)
+            $error[] = "Desole cette adresse mail est deja prise.";
+    }
+
+    if ($upass == "")
 		$error[] = "Rajouter mot de passe.";
-
     else if ($upass != $upass_conf)
         $error[] = "Le mot de passe de confirmation ne correspond pas.";
 
 	else if (strlen($upass) < 6)
 		$error[] = "Le mot de passe doit faire au moins 6 caracteres.";
-
 	else
 	{
-        try
-        {
-            $stmt = $conn->prepare("SELECT user_name,user_mail FROM users
-                                    WHERE user_name=:uname OR user_mail=:umail");
-            $stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($row['user_name'] == $uname)
-                $error[] = "Desole ce nom d'utilisateur est deja pris.";
-            else if ($row['user_mail'] == $umail)
-                $error[] = "Desole cette adresse mail est deja prise.";
-            else
-            {
-				if ($user->register($uname, $umail, $upass))
-//                    $user->redirect("index.php?page=joined"); TODO: make joined page
-                    $user->redirect("index.php?page=content");
-            }
-
-        }
-        catch(PDOException $e) {
-			echo $e->getMessage();
-		}
+	    $auth = App::getAuth();
+	    $auth->register($db, $uname, $upass, $umail);
+	    Session::getInstance()->setFlash('success', "Un mail de confirmation vous a ete envoye.");
+	    App::redirect("index.php");
 	}
 }
-
 ?>
 
 <div class="wrapper">
