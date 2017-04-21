@@ -30,6 +30,31 @@
             return false;
         }
 
+        public function resetPass($db, $email) {
+            $user = $db->query('SELECT * FROM users WHERE user_mail = ? AND confirmed_at IS NOT NULL', [$email]);
+            if ($user) {
+                $reset_token = App::str_random(60);
+                $db->query('UPDATE users SET reset_token = ?, reset_at = NOW() WHERE id = ?', [$reset_token, $user->id]);
+                mail($email, "Reinitialisation de votre mot de passe",
+                    "Pour reinitialiser votre mot de passe cliquez sur le lien suivant :\n\n"
+                    ."http://localhost/camagru/index.php?page=reset&id=$user_id&token=$reset_token");
+                return $user;
+            }
+            return false;
+        }
+
+        public function changePassword($db, $id, $password) {
+            $password = hash('whirlpool', $password);
+            $db->query('UPDATE users SET user_pass = ?, reset_at = NULL, reset_token = NULL WHERE id = ?', [$password, $id]);
+        }
+
+        public function checkResetToken($db, $id, $token) {
+            if ($user = $db->query('SELECT * FROM users WHERE user_id = ? AND reset_token IS NOT NULL
+                        AND reset_token = ? AND reset_at > DATE_SUB(NOW(), INTERVAL 30 MINUTE)', [$id, $token])->fetch())
+                return $user;
+            return $false;
+        }
+
         public function restrict() {
             if (!$this->session->read('auth')){
                 $this->session->setFlash('danger', "Vous n'avez pas le droit d'acceder a cette page.");

@@ -26,8 +26,10 @@ include_once("config/database.php");
  		user_name varchar(255) NOT NULL,
  		user_mail varchar(60) NOT NULL,
  		user_pass varchar(255) NOT NULL,
- 		user_token varchar(60) NOT NULL,
+ 		user_token varchar(60) NULL,
+ 		reset_token varchar(60) NULL,
  		confirmed_at DATETIME NULL,
+ 		reset_at DATETIME NULL,
  		UNIQUE (`user_name`),
  		UNIQUE (`user_mail`));";
  	$conn->exec($req);

@@ -22,6 +22,12 @@ switch ($page) {
     case 'home':
         require 'Home.php';
         break;
+    case 'forget':
+        require 'forget.php';
+        break;
+    case 'reset':
+        require 'reset.php';
+        break;
     case 'confirm':
         require 'confirm.php';
         break;
