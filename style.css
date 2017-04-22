@@ -17,15 +17,6 @@ body {
     background-color: #0d0d10;
 }
 
-.alert{
-    color: white;
-    font : 1em;
-    background-color: darkred;
-    width: 540px;
-    height: 2em;
-    margin-bottom: 1em;
-}
-
 .glyphicon{
     height: 35px;
     margin: -8px;

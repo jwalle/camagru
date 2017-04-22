@@ -14,8 +14,14 @@ class Database
 
     public function query($query, $params)
     {
-        $req = $this->pdo->prepare($query);
-        $req->execute($params);
+        try {
+            $req = $this->pdo->prepare($query);
+            $req->execute($params);
+            //return $req;
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+        }
         return $req;
     }
 

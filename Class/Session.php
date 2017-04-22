@@ -17,7 +17,7 @@ class Session {
     }
 
     public function setFlash($key, $msg) {
-        $_SESSION['flash'][$key] = $message;
+        $_SESSION['flash'][$key] = $msg;
     }
 
     public function hasFlashes(){
@@ -26,6 +26,7 @@ class Session {
 
     public function getFlashes() {
         $flash = $_SESSION['flash'];
+//        debug($flash); die();
         unset($_SESSION['flash']);
         return $flash;
     }

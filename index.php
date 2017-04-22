@@ -5,7 +5,6 @@ require 'inc/functions.php';
 include_once("config/database.php");
 $db = App::getDatabase($DB_DSN, $DB_USER, $DB_PASSWORD);
 $auth = App::getAuth();
-
 if(!isset($user))
     require 'install.php';
 if (isset($_GET['page']))

@@ -2,13 +2,14 @@
 
 if (isset($_GET['id']) && isset($_GET['token'])) {
     $user = $auth->checkResetToken($db, $_GET['id'], $_GET['token']);
-}
-if ($user) {
-    if (!empty($_POST)) {
-        if (!empty($_POST['password']) && $_POST['password'] == $_POST['password_confirm']) {
-            $auth->changePassword($db, $_POST['password'], $user['user_id']);
-            $auth->connect($user);
-            App::redirect('index.php');
+
+    if ($user) {
+        if (!empty($_POST)) {
+            if (!empty($_POST['password']) && $_POST['password'] == $_POST['password_confirm']) {
+                $auth->changePassword($db, $_POST['password'], $user['user_id']);
+                $auth->connect($user);
+                App::redirect('index.php');
+            }
         }
     }
 }

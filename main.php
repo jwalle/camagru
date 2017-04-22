@@ -20,6 +20,13 @@
         <a href="index.php?page=logout"><div class="box3 box_menu"></div></a>
     </div>
     <body>
+    <?php if(Session::getInstance()->hasFlashes()) : ?>
+        <?php foreach(Session::getInstance()->getFlashes() as $type => $message): ?>
+            <div class="alert alert-<?= $type; ?>">
+                <?= $message; ?>
+            </div>
+        <?php endforeach; ?>
+    <?php endif ; ?>
         <?= $content; ?>
     </body>
 </html>

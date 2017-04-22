@@ -8,10 +8,12 @@ if (isset($_POST['btn-signup']))
     $upass = $_POST['txt_upass'];
     if ($user = $auth->login($db, $uname, $umail, $upass))
     {
+        Session::getInstance()->setFlash('success', "Vous etes connecte(e) !");
         App::redirect('index.php?page=content'); // TODO : add connected page
     }
     else
-        $error = "Mauvais detail !";
+        Session::getInstance()->setFlash('danger', "attention au detail !");
+        //$error = "Mauvais detail !";
 }
 ?>
 

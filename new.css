@@ -66,16 +66,14 @@
 }
 
 .box_menu {
-  display:inline-block;
-  height:70px;
-  width:100px;
-    background-size: 60%;
+    display:inline-block;
+    height: 60px;
+    width: 60px;
     background-repeat: no-repeat;
 }
 
 .box1 {
     background-image: url("img/home.png");
-
 }
 
 .box2 {
@@ -84,9 +82,10 @@
 
 .box3 {
     position: absolute;
-    right: 15px;
-    top: 15px;
+    right: 10px;
+    top: 20px;
     background-image: url("img/logout.png");
+    -webkit-background-size : contain;
 }
 
 .border {
@@ -102,13 +101,30 @@
 
 .wrapper {
     height: 100%;
-    border-color: blue;
-    border-style: dashed;
-    border-width: 2px;
+    /*border-color: blue;*/
+    /*border-style: dashed;*/
+    /*border-width: 2px;*/
     display: flex;
     flex-direction: column;
     background: url("img/main_bg.png") no-repeat;
     background-position-x: center;
+}
+
+.alert{
+    color: white;
+    font-size : 1em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert-danger {
+    background-color: darkred;
+}
+
+.alert-success {
+    background-color: green;
 }
 
 .top_welcome {
