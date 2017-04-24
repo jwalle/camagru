@@ -90,11 +90,9 @@ catch (PDOException $e)
 
 include_once 'Class_User.php';
 include_once 'Class_Gallery.php';
-include_once 'Class_Image.php';
 
 $user = new USER($conn);
 $gallery = new GALLERY($conn);
-$image = new IMAGE($conn);
 
 if (!file_exists('gallery'))
 	mkdir('gallery');

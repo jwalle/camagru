@@ -1,5 +1,4 @@
 <?php
-
 require 'inc/bootstrap.php';
 require 'inc/functions.php';
 include_once("config/database.php");
@@ -11,9 +10,7 @@ if (isset($_GET['page']))
     $page = $_GET['page'];
 else
     $page = 'home';
-
 ob_start();
-
 switch ($page) {
     case 'logout':
         require 'logout.php';

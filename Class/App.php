@@ -15,8 +15,11 @@ class App {
         return new Auth(Session::getInstance());
     }
 
-    static function redirect($url)
-    {
+    static function getImage($img_id) {
+        return new Image(self::$db, $img_id);
+    }
+
+    static function redirect($url) {
         header("Location: $url");
     }
 

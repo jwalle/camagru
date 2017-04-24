@@ -9,56 +9,27 @@ class IMAGE
         $this->db = $conn;
     }
 
-    public function get_sum_votes($img_id)
+    public function get_sum_votes($db, $img_id)
     {
         $sum = 0;
-        try
-        {
-            $stmt = $this->db->prepare("SELECT vote_value FROM votes
-            WHERE img_id=:img_id");
-            $stmt->execute(array(':img_id' => $img_id));
-            $array = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($array as $value)
-                $sum += $value['vote_value'];
-            return $sum;
+        $array = $db->query('SELECT vote_value FROM votes
+        WHERE img_id = ?', [$img_id])->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($array as $value) {
+            $sum += $value['vote_value'];
         }
-        catch(PDOException $e) {
-            echo $e->getMessage();
-        }
+        return $sum;
     }
 
-    public function vote($user_id, $img_id, $vote)
+    public function vote($db, $user_id, $img_id, $vote)
     {
         $old = $this->get_user_vote($user_id, $img_id);
         if ($old == 0) {
-            try {
-                $stmt = $this->db->prepare("INSERT INTO votes(user_id, img_id, vote_value)
-                                                VALUES(:user_id, :img_id, :vote_value)");
-
-                $stmt->execute(array(
-                    'user_id' => $user_id,
-                    'img_id' => $img_id,
-                    'vote_value' => $vote
-                ));
-                return $stmt;
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-            }
+                return $db->query('INSERT INTO votes(user_id, img_id, vote_value) 
+                                         VALUES(?, ?, ?)', [$user_id, $img_id, $vote]);
         }
         if ($old != $vote) {
-            try {
-                $stmt = $this->db->prepare("UPDATE `votes` SET `vote_value`=:vote
-                                            WHERE user_id=:user_id AND img_id=:img_id");
-
-                $stmt->execute(array(
-                    'vote' => $vote,
-                    'user_id' => $user_id,
-                    'img_id' => $img_id
-                ));
-                return $stmt;
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-            }
+                return $db->query("UPDATE `votes` SET `vote_value`= ?
+                                            WHERE user_id = ? AND img_id = ?", [$vote,$user_id,$img_id]);
         }
     }
 
