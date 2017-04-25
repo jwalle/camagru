@@ -557,11 +557,10 @@ i {
 }
 
 .gal_img {
-    padding: 10px;
 }
 
 .gal_img img {
-    width: 15vw;
+    width: 20vw;
     min-width: 200px;
 }
 
@@ -602,9 +601,9 @@ i {
 }
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    width: 80%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 25px;
 }
 
 .plus {

@@ -42,5 +42,5 @@
         </div>
         <button class="button" id="save" style="vertical-align: middle"><span>Save </span></button>
     </div>
-    <?php include_once 'right_side_gal.php'; ?>
+    <div class="right_side" id="mini_gal"></div>
 </div>

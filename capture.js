@@ -15,6 +15,7 @@
     var stamp1 = null;
     var stream = null;
     var photoshop = null;
+    var miniGal = null;
 
     function elId(elem) {
         return document.getElementById(elem);
@@ -42,6 +43,9 @@
         upvote = elClass('upvote');
         dvote = elClass('dvote');
         photoshop = elId('photoshop');
+        miniGal = elId('mini_gal');
+
+        updateMiniGal();
 
         navigator.getMedia = (navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
@@ -148,6 +152,7 @@
 
         save.addEventListener("click", function (ev) {
             saveImage();
+            updateMiniGal();
             ev.preventDefault();
         }, false);
 
@@ -197,6 +202,16 @@ function loadImage(src) {
         hideCam();
     };
     reader.readAsDataURL(src);
+}
+
+function updateMiniGal() {
+    var xmlHttpReq = false;
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', 'right_side_gal.php', false);
+    ajax.onreadystatechange = function() {
+        miniGal.innerHTML = ajax.responseText;
+    }
+    ajax.send();
 }
 
 function saveImage() {
