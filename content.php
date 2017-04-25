@@ -1,4 +1,4 @@
-<?php $auth->restrict(); ?>
+<?php //$auth->restrict(); ?>
 <script src="capture.js"></script>
 <!-- php : GD and image fuctions. image create from string -->
 <div class ="wrapper">

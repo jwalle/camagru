@@ -21,7 +21,6 @@ if (isset($_POST['btn-signup']))
 	    if ($user_id)
             $error[] = "Desole ce nom d'utilisateur est deja pris.";
     }
-
     if (empty($umail) || !filter_var($umail, FILTER_VALIDATE_EMAIL))
         $error[] = "Rajouter une adresse email valide.";
 	else {

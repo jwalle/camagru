@@ -1,6 +1,6 @@
 <?php
-if ($auth->user())
-    App::redirect('index.php?page=content');
+//if ($auth->user())
+//    App::redirect('index.php?page=content');
 if (isset($_POST['btn-signup']))
 {
     $uname = $_POST['txt_uname_mail'];
@@ -11,16 +11,13 @@ if (isset($_POST['btn-signup']))
         Session::getInstance()->setFlash('success', "Vous etes connecte(e) !");
         App::redirect('index.php?page=content'); // TODO : add connected page
     }
-    else
-        Session::getInstance()->setFlash('danger', "attention au detail !");
-        //$error = "Mauvais detail !";
 }
 ?>
-
 <div class="wrapper">
     <h2>Bienvenue !</h2>
        <div class="form-container">
-            <form method="post">
+
+           <form method="post">
 				<?php
 					if (isset($error))
                     {
@@ -44,7 +41,11 @@ if (isset($_POST['btn-signup']))
                   <input type="submit" class="btn" name="btn-signup" value="SIGN IN"/></br>
                 </div>
                 <br>
-                <label for="ask">Or click here to create a Camagru account : &nbsp;<a href="index.php?page=register" class="btn">Register</a></label>
+                <label for="ask">Click here to create a Camagru account : &nbsp;<a href="index.php?page=register" class="btn">Register</a></label>
+                <br />
+
+                <br />
+                <label for="ask">Click here if you want to reset your password : &nbsp;<a href="index.php?page=forget" class="btn">Reset Password</a></label>
             </form>
         </div>
 </div>

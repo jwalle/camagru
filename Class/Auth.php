@@ -14,11 +14,11 @@
         $token = App::str_random(60);
         $req = $db->query("INSERT INTO users SET user_name = ?, user_mail = ?, user_pass = ?, user_token = ?",
             [$uname, $umail, $upass, $token]);
-        /*$user_id = $db->lastInsertId();
+        $user_id = $db->lastInsertId();
         mail($umail, "Validation de votre compte",
-            wordwrap("Afin de valider votre compte merci de cliquer sur ce lien\n\n
-            http://localhost/camagru/index.php?page=confirm&id=$user_id&token=$token"), 70);*/
-    }
+           wordwrap("Afin de valider votre compte merci de cliquer sur ce lien\n\n
+              http://localhost:8080/camagru/index.php?page=confirm&id=$user_id&token=$token"), 70, "<br/>");
+          }
 
         public function confirm($db, $user_id, $token) {
             $user = $db->query('SELECT * FROM users WHERE user_id = ?', [$user_id])->fetch();
@@ -38,7 +38,7 @@
                 $db->query('UPDATE users SET reset_token = ?, reset_at = NOW() WHERE user_id = ?', [$reset_token, $user_id]);
                 mail($email, "Reinitialisation de votre mot de passe",
                     "Pour reinitialiser votre mot de passe cliquez sur le lien suivant :\n\n"
-                    ."http://localhost/camagru/index.php?page=reset&id=$user_id&token=$reset_token");
+                    ."http://localhost:8080/camagru/index.php?page=reset&id=$user_id&token=$reset_token");
                 return $user;
             }
             return false;
@@ -56,26 +56,37 @@
             return $false;
         }
 
+        public function alreadyConnected () {
+            if ($this->user()){
+                $this->session->setFlash('danger', "Vous etes deja connecte.");
+                return true ;
+            }
+            return false;
+        }
+
         public function restrict() {
             if (!$this->session->read('auth')){
                 $this->session->setFlash('danger', "Vous n'avez pas le droit d'acceder a cette page.");
-                header('Location: index.php');
-                exit();
+                return false ;
             }
+            return true;
         }
 
         public function login($db, $uname, $umail, $upass)
         {
             $user = $db->query('SELECT * FROM users
-			WHERE (user_name = ? OR user_mail = ?) LIMIT 1', [$uname, $umail])->fetch();
+            WHERE (user_name = ? OR user_mail = ?) LIMIT 1', [$uname, $umail])->fetch();
             if (!empty($user))
             {
+                if (!$user['confirmed_at']) {
+                    Session::getInstance()->setFlash('danger', "Ce compte n'a pas été validé.");
+                    return false;
+                }
                 $test_pass = hash('whirlpool', $upass);
                 if ($test_pass == $user['user_pass'])
                 {
                     $this->connect($user);
-                    Session::getInstance()->setFlash('success', "Vous etes maintenant connecte !");
-                    //debug($_SESSION['flash']); die();
+                    Session::getInstance()->setFlash('success', "Vous etes maintenant connecte.");
                     return $user;
                 }
                 return false;

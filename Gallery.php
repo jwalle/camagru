@@ -1,5 +1,5 @@
 <?php
-$auth->restrict();
+//$auth->restrict();
 //var_dump($_GET['p']);
 //var_dump($_SESSION['username']);
 //var_dump($images);

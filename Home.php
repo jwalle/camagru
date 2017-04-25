@@ -1,5 +1,4 @@
 <?php
-
 if ($user->is_loggedin() === false)
 {
 	$user->redirect('index.php?page=register');

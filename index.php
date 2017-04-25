@@ -10,7 +10,9 @@ if (isset($_GET['page']))
     $page = $_GET['page'];
 else
     $page = 'home';
+
 ob_start();
+
 switch ($page) {
     case 'logout':
         require 'logout.php';
@@ -31,15 +33,15 @@ switch ($page) {
             require 'register.php'; //Already
         break;
     case 'sign-in':
-            require 'sign-in.php'; //already
+               require 'sign-in.php'; //already
         break;
-    case 'content':
+    case ('content' && $auth->restrict()):
             require 'content.php';
         break;
     case 'image':
             require 'image.php';
         break;
-    case 'gallery':
+    case 'gallery' :
             require 'Gallery.php';
         break;
     default:
@@ -48,4 +50,5 @@ switch ($page) {
 
 $content = ob_get_clean();
 
-require 'main.php';
+if ($content) {
+require 'main.php'; }

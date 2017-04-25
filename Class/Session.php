@@ -26,7 +26,6 @@ class Session {
 
     public function getFlashes() {
         $flash = $_SESSION['flash'];
-//        debug($flash); die();
         unset($_SESSION['flash']);
         return $flash;
     }
