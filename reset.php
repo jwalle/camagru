@@ -4,7 +4,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
     $user = $auth->checkResetToken($db, $_GET['id'], $_GET['token']);
 
     if ($user) {
-        if (!empty($_POST)) {
+        if (isset($_POST['btn-reset'])) {
             if (!empty($_POST['password']) && $_POST['password'] == $_POST['password_confirm']) {
                 $auth->changePassword($db, $_POST['password'], $user['user_id']);
                 $auth->connect($user);
@@ -14,7 +14,6 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
     }
 }
 ?>
-
 <div class="wrapper">
     <div class="form-container">
         <form method="post">

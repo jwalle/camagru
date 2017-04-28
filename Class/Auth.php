@@ -39,6 +39,7 @@
                 mail($email, "Reinitialisation de votre mot de passe",
                     "Pour reinitialiser votre mot de passe cliquez sur le lien suivant :\n\n"
                     ."http://localhost:8080/camagru/index.php?page=reset&id=$user_id&token=$reset_token");
+                Session::getInstance()->setFlash('success', "Un mail vous a ete envoye !");
                 return $user;
             }
             return false;
@@ -47,6 +48,7 @@
         public function changePassword($db, $password, $id) {
             $password = hash('whirlpool', $password);
             $db->query('UPDATE users SET user_pass = ?, reset_at = NULL, reset_token = NULL WHERE user_id = ?', [$password, $id]);
+            Session::getInstance()->setFlash('success', "votre mot de passe a bien ete mis a jour!");
         }
 
         public function checkResetToken($db, $id, $token) {
@@ -89,8 +91,12 @@
                     Session::getInstance()->setFlash('success', "Vous etes maintenant connecte.");
                     return $user;
                 }
-                return false;
+                else {
+                    Session::getInstance()->setFlash('danger', "Desole, mauvais mot de passe.");
+                    return false;
+                }
             }
+            Session::getInstance()->setFlash('danger', "Desole, cette utilisateur n'existe pas.");
             return false;
         }
 
