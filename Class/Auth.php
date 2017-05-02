@@ -14,7 +14,8 @@
         $token = App::str_random(60);
         $req = $db->query("INSERT INTO users SET user_name = ?, user_mail = ?, user_pass = ?, user_token = ?",
             [$uname, $umail, $upass, $token]);
-        $user_id = $db->lastInsertId();
+//            debug($req); die;
+            $user_id = $db->lastInsertId();
         mail($umail, "Validation de votre compte",
            wordwrap("Afin de valider votre compte merci de cliquer sur ce lien\n\n
               http://localhost:8080/camagru/index.php?page=confirm&id=$user_id&token=$token"), 70, "<br/>");

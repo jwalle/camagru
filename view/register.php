@@ -1,7 +1,6 @@
 <?php
 if ($auth->user())
     App::redirect('index.php?page=content');
-
 if (isset($_POST['btn-signup']))
 {
 //    $mail = mail("punktumg@gmail.com", "test", "message test");
@@ -57,7 +56,7 @@ if (isset($_POST['btn-signup']))
 			{
 				?>
 				<div class="alert">
-					<div class="msg"> <img src="img/alert-icon-1575.png" class="glyphicon"></img> &nbsp; <?php echo $error; ?></div>
+					<div class="msg"> <img src="img/alert-icon-1575.png" class="glyphicon"/> &nbsp; <?php echo $error; ?></div>
 				</div>
 				<?php
 			}
@@ -66,7 +65,7 @@ if (isset($_POST['btn-signup']))
 		{
 			?>
 			<div class="alert alert-info">
-				<i class="glyphicon"></i>  &nbsp; Succesfuly registered <a href="index.php">login</a> here
+				<i class="glyphicon"></i>  &nbsp; Succesfuly registered <a href="../index.php">login</a> here
 			</div>
 			<?php
 		}

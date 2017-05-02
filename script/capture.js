@@ -207,7 +207,7 @@ function loadImage(src) {
 function updateMiniGal() {
     var xmlHttpReq = false;
     var ajax = new XMLHttpRequest();
-    ajax.open('POST', 'right_side_gal.php', false);
+    ajax.open('POST', 'view/right_side_gal.php', false);
     ajax.onreadystatechange = function() {
         miniGal.innerHTML = ajax.responseText;
     }
@@ -224,7 +224,7 @@ function saveImage() {
     formData.append("layer3Data", layer3Data);
     var xmlHttpReq = false;
     var ajax = new XMLHttpRequest();
-    ajax.open('POST', 'SaveImg.php', false);
+    ajax.open('POST', 'post/SaveImg.php', false);
     ajax.onreadystatechange = function() {
        console.log(ajax.responseText);
     }

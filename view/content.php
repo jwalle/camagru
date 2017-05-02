@@ -1,5 +1,4 @@
-<?php //$auth->restrict(); ?>
-<script src="capture.js"></script>
+<script src="script/capture.js"></script>
 <!-- php : GD and image fuctions. image create from string -->
 <div class ="wrapper">
     <div class="stream" id="stream">

@@ -1,7 +1,7 @@
 <?php
-include 'inc/bootstrap.php';
-include 'install.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
 App::getAuth();
+$gallery = App::getGallery();
 $page = $_POST['page'];
 $user_id = $_SESSION['auth']['user_id'];
 $coms = 127;

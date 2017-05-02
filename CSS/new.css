@@ -1,6 +1,6 @@
 @font-face {
     font-family: Noto;
-    src: url(NotoSans-Regular.ttf);
+    src: url(../NotoSans-Regular.ttf);
 }
 
 .top_bar {
@@ -59,7 +59,7 @@
 
 
 .title {
-    background: url("img/titreBlack.png") no-repeat;
+    background: url("../img/titreBlack.png") no-repeat;
     background-size: 100% auto;
     width: 550px;
     height: 100px;
@@ -73,18 +73,18 @@
 }
 
 .box1 {
-    background-image: url("img/home.png");
+    background-image: url("../img/home.png");
 }
 
 .box2 {
-    background-image: url("img/album.png");
+    background-image: url("../img/album.png");
 }
 
 .box3 {
     position: absolute;
     right: 10px;
     top: 20px;
-    background-image: url("img/logout.png");
+    background-image: url("../img/logout.png");
     -webkit-background-size : contain;
 }
 
@@ -106,7 +106,7 @@
     /*border-width: 2px;*/
     display: flex;
     flex-direction: column;
-    background: url("img/main_bg.png") no-repeat;
+    background: url("../img/main_bg.png") no-repeat;
     background-position-x: center;
 }
 
@@ -338,21 +338,21 @@
 }
 
 #stamp1 {
-    background-image: url("img/Fedora.png");
+    background-image: url("../img/Fedora.png");
     background-repeat: no-repeat;
     -webkit-background-size: contain;
 }
 
 #frame1 {
-    background-image: url("img/fireSmall.png");
+    background-image: url("../img/fireSmall.png");
 }
 
 #frame2 {
-    background-image: url("img/smallFlower.png");
+    background-image: url("../img/smallFlower.png");
 }
 
 #frame3 {
-    background-image: url("img/smallFlower2.png");
+    background-image: url("../img/smallFlower2.png");
 }
 
 #frame4 {
@@ -380,7 +380,7 @@
 #del_pic {
     width: 40px;
     height: 40px;
-    background-image: url("img/del_pic.png");
+    background-image: url("../img/del_pic.png");
     background-repeat: no-repeat;
     -webkit-background-size: contain;
     position: absolute;
@@ -393,7 +393,7 @@
 #delete {
     width: 20px;
     height: 20px;
-    background-image: url("img/delCom.png");
+    background-image: url("../img/delCom.png");
     background-repeat: no-repeat;
     -webkit-background-size: contain;
     position: relative;

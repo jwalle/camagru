@@ -1,11 +1,11 @@
 <?php
 require 'inc/bootstrap.php';
 require 'inc/functions.php';
-include_once("config/database.php");
-$db = App::getDatabase($DB_DSN, $DB_USER, $DB_PASSWORD);
+include_once("config/install.php");
+$db = App::getDatabase();
 $auth = App::getAuth();
-if(!isset($user))
-    require 'install.php';
+//if(!isset($user))
+//    require 'install.php';
 if (isset($_GET['page']))
     $page = $_GET['page'];
 else
@@ -21,45 +21,45 @@ if ($auth->user())
             require 'logout.php';
             break;
         case 'content':
-            require 'content.php';
+            require 'view/content.php';
             break;
         case 'image':
-            require 'image.php';
+            require 'view/image.php';
             break;
         case 'gallery' :
-            require 'Gallery.php';
+            require 'view/galleryView.php';
             break;
         case 'home' :
             require 'Home.php';
             break;
         default :
-            require 'content.php';
+            require 'view/content.php';
     }
 }
 else
 {
     switch ($page) {
         case 'forget':
-            require 'forget.php';
+            require 'view/forget.php';
             break;
         case 'reset':
-            require 'reset.php';
+            require 'view/reset.php';
             break;
         case 'confirm':
             require 'confirm.php';
             break;
         case 'register':
-            require 'register.php'; //Already
+            require 'view/register.php'; //Already
             break;
         case 'sign-in':
-            require 'sign-in.php'; //already
+            require 'view/sign-in.php'; //already
             break;
         case 'home':
-            require 'sign-in.php';
+            require 'view/sign-in.php';
             break ;
         default:
             $auth->restrict();
-            require 'sign-in.php';
+            require 'view/sign-in.php';
 //            App::redirect('index.php');
 
     }
@@ -68,4 +68,4 @@ else
 $content = ob_get_clean();
 
 if ($content) {
-require 'main.php'; }
+require 'view/main.php'; }

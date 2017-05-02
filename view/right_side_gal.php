@@ -1,10 +1,12 @@
 <?php
-include 'inc/bootstrap.php';
-include 'install.php';
+require '../inc/bootstrap.php';
+include_once '../config/database.php';
 App::getAuth();
-    $row = $gallery->last_three($_SESSION['auth']['user_name']);
-	if (!$row)
-		return;
+App::getDatabase();
+$gallery = App::getGallery();
+$row = $gallery->last_three();
+if (!$row)
+    return;
 ?>
         <div class="mini_gal_upper"><p>- Gallery -</p></div>
         <div class="mini_gal">

@@ -4,7 +4,7 @@
 //var_dump($_SESSION['username']);
 //var_dump($images);
 ?>
-<script src="gallery.js"></script>
+<script src="script/gallery.js"></script>
 <div class="wrapper">
     <h2>Gallery :</h2>
 <!--    <div id ="gallery" class="gallery"></div>-->

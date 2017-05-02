@@ -34,7 +34,7 @@
         var xmlHttpReq = false;
         var ajax = new XMLHttpRequest();
         formData.append('page', page);
-        ajax.open('POST', 'galleryPage.php', false);
+        ajax.open('POST', 'post/galleryPage.php', false);
         ajax.onreadystatechange = function() {
             var newDiv = document.createElement('div');
             var pageName = document.createElement('h2');

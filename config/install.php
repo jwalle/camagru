@@ -88,9 +88,6 @@ catch (PDOException $e)
     echo $req . "<br>" . $e->getMessage();
 }
 
-include_once 'Class_User.php';
-include_once 'Class_Gallery.php';
-
 $user = new USER($conn);
 $gallery = new GALLERY($conn);
 

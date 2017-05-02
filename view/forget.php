@@ -19,7 +19,7 @@ if (isset($_POST['btn-forget'])) {
             {
                 ?>
                 <div class="alert">
-                    <div class="msg"> <img src="img/alert-icon-1575.png" class="glyphicon"/> &nbsp;  <?php echo $error; ?> </div>
+                    <div class="msg"> <img src="../img/alert-icon-1575.png" class="glyphicon"/> &nbsp;  <?php echo $error; ?> </div>
                 </div>
                 <?php
             }

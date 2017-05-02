@@ -49,7 +49,7 @@
 
         com_id = this.dataset.com_id;
         formData.append("com_id", com_id);
-        ajax.open('POST', 'deleteComment.php', false);
+        ajax.open('POST', 'post/deleteComment.php', false);
         ajax.onreadystatechange = function () {
             console.log(ajax.responseText);
         };
@@ -64,7 +64,7 @@
 
         img_id = this.dataset.img_id;
         formData.append("img_id", img_id);
-        ajax.open('POST', 'deleteImage.php', false);
+        ajax.open('POST', 'post/deleteImage.php', false);
         ajax.onreadystatechange = function () {
             console.log(ajax.responseText);
         };
@@ -114,7 +114,7 @@
         formData.append("voteValue", value);
         formData.append("user", user);
         formData.append("img", img);
-        ajax.open('POST', 'vote.php', false);
+        ajax.open('POST', 'post/vote.php', false);
         ajax.onreadystatechange = function () {
             console.log(ajax.responseText);
         };
@@ -129,7 +129,7 @@
         formData.append('image-id', document.getElementsByName('image-id')[0].value);
         formData.append('comment', document.getElementsByName('comment')[0].value);
 
-        ajax.open('POST', 'post-comment.php', false);
+        ajax.open('POST', 'post/post-comment.php', false);
         ajax.onreadystatechange = function () {
             console.log(ajax.responseText);
         };

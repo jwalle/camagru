@@ -3,5 +3,5 @@
 spl_autoload_register('ft_autoload');
 
 function ft_autoload($class) {
-    require "class/$class.php";
+    require $_SERVER['DOCUMENT_ROOT'] . "/camagru/class/$class.php";
 }

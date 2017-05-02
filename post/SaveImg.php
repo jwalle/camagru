@@ -1,7 +1,7 @@
 <?php
-    include 'inc/bootstrap.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
     App::getAuth();
-	require_once 'install.php';
+    $gallery = App::getGallery();
 	define('UPLOAD_DIR', 'gallery/');
     $layer1 = $_POST['layer1Data'];
     $layer2 = $_POST['layer2Data'];
@@ -21,7 +21,7 @@
     imagecopy($im1, $im3, 0, 0, 0, 0, 480, 360);
     imagecopy($im1, $im2, 0, 0, 0, 0, 480, 360);
 	$file = UPLOAD_DIR . uniqid() . '.png';
-	$success = imagepng($im1, $file);
+	$success = imagepng($im1, '../' . $file);
     if ($success)
 	{
 	    $user_id = $_SESSION['auth']['user_name'];

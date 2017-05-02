@@ -1,8 +1,8 @@
 <html>
     <head>
-	    <link rel="stylesheet" type="text/css" href="style.css">
-        <link rel="stylesheet" type="text/css" href="new.css">
-	    <link rel="icon" type="image/png" href="img/logo.png">
+	    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+        <link rel="stylesheet" type="text/css" href="CSS/new.css">
+	    <link rel="icon" type="image/png" href="../img/logo.png">
 	    <title>Camagru</title>
     </head>
 

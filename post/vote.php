@@ -1,8 +1,6 @@
 <?php
-require_once 'install.php';
-require_once 'config/database.php';
-include 'inc/bootstrap.php';
-App::getDatabase($DB_DSN, $DB_USER, $DB_PASSWORD);
+include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
+App::getDatabase();
 App::getAuth();
 $voteValue = $_POST['voteValue'];
 $img_id = $_POST['img'];

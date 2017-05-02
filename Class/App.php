@@ -4,15 +4,20 @@ class App {
 
     static $db = null;
 
-    static function getDatabase($DB_DSN, $DB_USER, $DB_PASSWORD){
+    static function getDatabase(){
         if (!self::$db) {
-            self::$db = new Database($DB_DSN, 'camagru', $DB_USER, $DB_PASSWORD);
+            self::$db = new Database();
         }
         return self::$db;
     }
 
     static function getAuth() {
         return new Auth(Session::getInstance());
+    }
+
+    static function getGallery() {
+        self::getDatabase();
+        return new Gallery(self::$db);
     }
 
     static function getImage($img_id) {

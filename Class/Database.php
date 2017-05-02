@@ -5,9 +5,10 @@ class Database
 
     private $pdo;
 
-    public function __construct($host, $db_name, $DB_USER, $DB_PASSWORD)
+    public function __construct()
     {
-        $this->pdo = new PDO("mysql:dbname=$db_name;host=$host", $DB_USER, $DB_PASSWORD);
+        include $_SERVER['DOCUMENT_ROOT'] . '/camagru/config/database.php';
+        $this->pdo = new PDO("mysql:dbname=$DB_NAME;host=$DB_DSN", $DB_USER, $DB_PASSWORD);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

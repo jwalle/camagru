@@ -1,6 +1,7 @@
 <?php
     $auth->restrict();
-    $user_id   = $_SESSION['auth']['user_id'];
+    $user_id = $_SESSION['auth']['user_id'];
+    $gallery = App::getGallery();
     if (!$_GET["image"] || $gallery->get_image($_GET["image"])['img_name'] == NULL) {
         App::redirect("index.php");
         echo "wtf =" . $gallery->get_image($_GET["image"])['img_name']; //TODO : gestion erreur
@@ -11,7 +12,7 @@
         $user_vote = $image->getUserVote();
     }
 ?>
-<script src="vote.js"></script>
+<script src="script/vote.js"></script>
 <div class="wrapper">
     <h2>Bienvenue !</h2>
     <div class="image border">
@@ -44,7 +45,7 @@
         <form method="post" id="postCom">
             <?php if (isset($error)) : ?>
                 <div class="alert">
-                    <div class="msg"> <img src="img/alert-icon-1575.png" class="glyphicon"/> &nbsp;  <?= $error; ?> </div>
+                    <div class="msg"> <img src="../img/alert-icon-1575.png" class="glyphicon"/> &nbsp;  <?= $error; ?> </div>
                 </div>
             <?php endif; ?>
             <input type="hidden" name="image-id" value="<?= $_GET["image"] ?>">
