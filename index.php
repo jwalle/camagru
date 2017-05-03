@@ -1,11 +1,11 @@
 <?php
 require 'inc/bootstrap.php';
 require 'inc/functions.php';
-include_once("config/install.php");
+include_once 'config/setup.php';
 $db = App::getDatabase();
 $auth = App::getAuth();
 //if(!isset($user))
-//    require 'install.php';
+//    require 'setup.php';
 if (isset($_GET['page']))
     $page = $_GET['page'];
 else

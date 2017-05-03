@@ -2,13 +2,18 @@
 
 if (isset($_GET['id']) && isset($_GET['token'])) {
     $user = $auth->checkResetToken($db, $_GET['id'], $_GET['token']);
-
     if ($user) {
         if (isset($_POST['btn-reset'])) {
-            if (!empty($_POST['password']) && $_POST['password'] == $_POST['password_confirm']) {
-                $auth->changePassword($db, $_POST['password'], $user['user_id']);
-                $auth->connect($user);
-                App::redirect('index.php');
+            if (!empty($_POST['password'])) {
+                $error = Auth::testPassword($_POST['password'], $_POST['password_confirm'], $error);
+                if (empty($error)) {
+                    $auth->changePassword($db, $_POST['password'], $user['user_id']);
+                    $auth->connect($user);
+                    App::redirect('index.php');
+                }
+            }
+            else {
+                $error[] = "Rajouter mot de passe.";
             }
         }
     }
@@ -17,19 +22,23 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
 <div class="wrapper">
     <div class="form-container">
         <form method="post">
-            <?php
-            if (isset($error))
-            {
-                ?>
-                <div class="alert">
-                    <div class="msg"> <img src="../img/alert-icon-1575.png" class="glyphicon"/> &nbsp;  <?php echo $error; ?> </div>
-                </div>
-                <?php
-            }
-            ?>
             <h3>Reinitialisation</h3>
             <p>de votre mot de passe :</p>
-            <br>
+            <?php if (isset($error)) : ?>
+                <div class="alert-require">
+                    <?php foreach ($error as $error) : ?>
+                        <div class="msg"> <img src="img/alert-icon-1575.png" class="glyphicon"/> &nbsp; <?php echo $error; ?></div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <div id="require">
+                <p>Votre mot de passe doit :</p>
+                <ul>
+                    <li>Faire au minimun 6 caracteres.</li>
+                    <li>Contenir au moins une lettre majuscule.</li>
+                    <li>Contenir au moins un chiffre.</li>
+                </ul>
+            </div>
             <div class="password">
                 <input type="password" class="css-input" name="password" placeholder="Nouveau mot de passe" value="" />
             </div>

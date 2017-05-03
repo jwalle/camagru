@@ -31,11 +31,6 @@ body {
     background-repeat:no-repeat;
 }
 
-.msg{
-    padding: 10px;
-    font-family: Arial;
-}
-
 .right_side {
     border-color: white;
     border-style: dashed;

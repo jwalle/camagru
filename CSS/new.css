@@ -119,6 +119,16 @@
     align-items: center;
 }
 
+.msg {
+    padding: 9px;
+    background: rgb(19, 27, 17);
+    font-size: 0.8em;
+}
+
+.alert-require {
+    margin-bottom: 5px;
+}
+
 .alert-danger {
     background-color: darkred;
 }
@@ -624,4 +634,21 @@ i {
 
 .minus {
     color: red;
+}
+
+footer {
+    background-color: whitesmoke;
+    font-size: 0.9em;
+    display: flex;
+}
+
+#require {
+    font-size: 0.75em;
+    background: rgba(255, 255, 255, 0.09);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    margin-top: 15px;
+    width: 350px;
+    float: left;
 }

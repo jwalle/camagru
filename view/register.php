@@ -1,16 +1,10 @@
 <?php
-if ($auth->user())
-    App::redirect('index.php?page=content');
 if (isset($_POST['btn-signup']))
 {
-//    $mail = mail("punktumg@gmail.com", "test", "message test");
-//    if (!$mail)
-//        echo "mail not working";
     $uname = trim($_POST['txt_uname']);
 	$umail = trim($_POST['txt_umail']);
     $upass = trim($_POST['txt_upass']);
     $upass_conf = trim($_POST['txt_upass_conf']);
-
 	if (empty($uname) || !preg_match('/^[a-zA-Z0-9_]+$/', $uname))
 		$error[] = "Rajouter un nom d'utilisateur valide.";
     else if (strlen($uname) > 20)
@@ -27,16 +21,12 @@ if (isset($_POST['btn-signup']))
 	    if ($mail)
             $error[] = "Desole cette adresse mail est deja prise.";
     }
-
-    if ($upass == "")
-		$error[] = "Rajouter mot de passe.";
-    else if ($upass != $upass_conf)
-        $error[] = "Le mot de passe de confirmation ne correspond pas.";
-
-	else if (strlen($upass) < 6)
-		$error[] = "Le mot de passe doit faire au moins 6 caracteres.";
-	else
-	{
+    if (!empty($upass)) {
+    $error = Auth::testPassword($upass, $upass_conf, $error);
+	} else {
+        $error[] = "Rajouter mot de passe.";
+	}
+    if (empty($error)) {
 	    $auth = App::getAuth();
 	    $auth->register($db, $uname, $upass, $umail);
 	    Session::getInstance()->setFlash('success', "Un mail de confirmation vous a ete envoye.");
@@ -49,27 +39,21 @@ if (isset($_POST['btn-signup']))
 <div class="form-container">
 	<form method="post">
 		<h2>Se creer un compte :</h2>
-		<?php
-		if (isset($error))
-		{
-			foreach ($error as $error)
-			{
-				?>
-				<div class="alert">
+		<?php if (isset($error)) : ?>
+            <div class="alert-require">
+			<?php foreach ($error as $error) : ?>
 					<div class="msg"> <img src="img/alert-icon-1575.png" class="glyphicon"/> &nbsp; <?php echo $error; ?></div>
-				</div>
-				<?php
-			}
-		}
-		else if (isset($_GET['joined']))
-		{
-			?>
-			<div class="alert alert-info">
-				<i class="glyphicon"></i>  &nbsp; Succesfuly registered <a href="../index.php">login</a> here
-			</div>
-			<?php
-		}
-		?>
+            <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+        <div id="require">
+            <p>Votre mot de passe doit :</p>
+            <ul>
+                <li>Faire au minimun 6 caracteres.</li>
+                <li>Contenir au moins une lettre majuscule.</li>
+                <li>Contenir au moins un chiffre.</li>
+            </ul>
+        </div>
             <div><input type="text" class="css-input" name="txt_uname" placeholder="Login" value="" /></div>
             <div><input type="text" class="css-input" name="txt_umail" placeholder="email" value="" /></div>
             <div><input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" /></div>

@@ -1,12 +1,9 @@
 <?php
-if ($auth->user())
-    App::redirect('index.php?page=content');
-
 if (isset($_POST['btn-forget'])) {
     if ($user = $auth->resetPass($db, $_POST['umail'])) {
         App::redirect('index.php?page=sign-in'); // TODO : add connected page
     } else {
-        $error = "Mauvais detail !";
+        $error = "Cet utilisateur n'existe pas !";
     }
 }
 ?>
@@ -19,7 +16,7 @@ if (isset($_POST['btn-forget'])) {
             {
                 ?>
                 <div class="alert">
-                    <div class="msg"> <img src="../img/alert-icon-1575.png" class="glyphicon"/> &nbsp;  <?php echo $error; ?> </div>
+                    <div class="msg"> <img src="img/alert-icon-1575.png" class="glyphicon"/> &nbsp;  <?php echo $error; ?> </div>
                 </div>
                 <?php
             }

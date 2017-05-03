@@ -29,4 +29,7 @@
     <?php endif ; ?>
         <?= $content; ?>
     </body>
+<footer>
+    <p>Copyright 2017 by jwalle. All Rights Reserved.</p>
+</footer>
 </html>

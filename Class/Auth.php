@@ -8,17 +8,15 @@
         {
             $this->session = $session;
         }
-
         public function register ($db, $uname, $upass, $umail) {
-        $upass = hash('whirlpool', $upass);
-        $token = App::str_random(60);
-        $req = $db->query("INSERT INTO users SET user_name = ?, user_mail = ?, user_pass = ?, user_token = ?",
+            $upass = hash('whirlpool', $upass);
+            $token = App::str_random(60);
+            $db->query("INSERT INTO users SET user_name = ?, user_mail = ?, user_pass = ?, user_token = ?",
             [$uname, $umail, $upass, $token]);
-//            debug($req); die;
             $user_id = $db->lastInsertId();
-        mail($umail, "Validation de votre compte",
-           wordwrap("Afin de valider votre compte merci de cliquer sur ce lien\n\n
-              http://localhost:8080/camagru/index.php?page=confirm&id=$user_id&token=$token"), 70, "<br/>");
+            mail($umail, "Validation de votre compte",
+                wordwrap("Afin de valider votre compte merci de cliquer sur ce lien\n\n
+                http://localhost:8080/camagru/index.php?page=confirm&id=$user_id&token=$token"), 70, "<br/>");
           }
 
         public function confirm($db, $user_id, $token) {
@@ -99,6 +97,20 @@
             }
             Session::getInstance()->setFlash('danger', "Desole, cette utilisateur n'existe pas.");
             return false;
+        }
+
+        public function testPassword($upass, $upass_conf, $error) {
+            if (!preg_match("#[0-9]+#", $upass))
+                $error[] = "Le mot de passe doit contenir au moins un chiffre.";
+            if (!preg_match("#[a-zA-Z]+#", $upass))
+                $error[] = "Le mot de passe doit     contenir au moins une lettre.";
+            if (!preg_match("#[A-Z]+#", $upass))
+                $error[] = "Le mot de passe doit contenir au moins une lettre majuscule.";
+            if ($upass != $upass_conf)
+                $error[] = "Le mot de passe de confirmation ne correspond pas.";
+            if (strlen($upass) < 6)
+                $error[] = "Le mot de passe doit faire au moins 6 caracteres.";
+            return $error;
         }
 
        public function user() {
