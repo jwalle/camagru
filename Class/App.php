@@ -32,4 +32,8 @@ class App {
         $alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         return substr(str_shuffle(str_repeat($alphabet, $length)), 0, $length);
     }
+
+    static function cleanUp($string){
+        return htmlentities($string, ENT_QUOTES, 'UTF-8');
+    }
 }

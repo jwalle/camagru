@@ -6,12 +6,11 @@
         upvote  = elId('upvotes');
         dvote   = elId('dvote');
         sumVote = elId('sumVote');
-        sum     = parseInt(sumVote.dataset.value);
+        sum     = parseInt(sumVote.innerHTML);
         delCom  = elClass('delete');
         delImg = elId('del_pic');
         postCom = elId('postCom');
 
-        sumVote.innerHTML = sum;
         upvote.addEventListener("click", up, false);
         dvote.addEventListener("click", down, false);
         postCom.addEventListener("submit", sendComment);
@@ -47,8 +46,10 @@
         var xmlHttpReq = false;
         var ajax       = new XMLHttpRequest();
 
-        com_id = this.dataset.com_id;
-        formData.append("com_id", com_id);
+        var com_id = this.dataset.comid;
+        var img_id = this.dataset.imgid;
+        formData.append('comId', com_id);
+        formData.append("imgId", img_id);
         ajax.open('POST', 'post/deleteComment.php', false);
         ajax.onreadystatechange = function () {
             console.log(ajax.responseText);

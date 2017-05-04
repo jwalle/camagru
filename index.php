@@ -39,6 +39,12 @@ if ($auth->user())
 else
 {
     switch ($page) {
+        case 'image':
+            require 'view/image.php';
+            break;
+        case 'gallery' :
+            require 'view/galleryView.php';
+            break;
         case 'forget':
             require 'view/forget.php';
             break;

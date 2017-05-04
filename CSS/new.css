@@ -532,11 +532,10 @@ textarea {
 .vote {
     display: flex;
     flex-direction: column;
-    align-items: center;
-
     position: absolute;
     left: -70px;
-    top: 140px;
+    height: 360px;
+    justify-content: center;
 }
 
 i {
@@ -564,6 +563,14 @@ i {
 
 .down:hover {
     border-color: #d90008;
+}
+
+.grey {
+    border-color: #575757;
+}
+
+.grey:hover {
+    border-color: #575757;
 }
 
 .gal_img {

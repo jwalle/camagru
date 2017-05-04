@@ -1,10 +1,10 @@
 <?php
 if (isset($_POST['btn-signup']))
 {
-    $uname = trim($_POST['txt_uname']);
-	$umail = trim($_POST['txt_umail']);
-    $upass = trim($_POST['txt_upass']);
-    $upass_conf = trim($_POST['txt_upass_conf']);
+    $uname = App::cleanUp(trim($_POST['txt_uname']));
+	$umail = App::cleanUp(trim($_POST['txt_umail']));
+    $upass = App::cleanUp(trim($_POST['txt_upass']));
+    $upass_conf = App::cleanUp(trim($_POST['txt_upass_conf']));
 	if (empty($uname) || !preg_match('/^[a-zA-Z0-9_]+$/', $uname))
 		$error[] = "Rajouter un nom d'utilisateur valide.";
     else if (strlen($uname) > 20)

@@ -47,6 +47,8 @@ include_once("database.php");
  		img_id INT(11) AUTO_INCREMENT PRIMARY KEY,
  		img_name varchar(255) NOT NULL,
  		img_user varchar(255) NOT NULL,
+ 		votes INT(11) DEFAULT 0,
+ 		comments INT(11) DEFAULT 0,
  		UNIQUE (`img_name`));";
  	$conn->exec($req);
  	}

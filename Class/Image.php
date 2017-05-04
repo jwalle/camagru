@@ -4,7 +4,7 @@
 
         private $sumVote;
         private $userVote;
-        private $user;
+        private $imageUser;
         private $comments;
         private $image;
         private $plop;
@@ -13,7 +13,7 @@
         {
             $this->plop = $db;
             $this->sumVote = $this->get_sum_votes($db, $img_id);
-            $this->user = $this->get_img_user($db, $img_id);
+            $this->imageUser = $this->get_img_user($db, $img_id);
             $this->comments = $this->get_comments($db, $img_id);
             $this->image = $this->get_image($db, $img_id);
             $this->userVote = $this->get_user_vote($db, $img_id);
@@ -33,13 +33,15 @@
         public function vote($user_id, $img_id, $vote)
         {
             if ($this->userVote == 0) {
-                return $this->plop->query('INSERT INTO votes(user_id, img_id, vote_value) 
+                $this->plop->query('INSERT INTO votes(user_id, img_id, vote_value) 
                                          VALUES(?, ?, ?)', [$user_id, $img_id, $vote]);
             }
             else if ($this->userVote != $vote) {
-                return $this->plop->query("UPDATE `votes` SET `vote_value`= ? WHERE user_id = ? AND img_id = ?",
+                $this->plop->query("UPDATE `votes` SET `vote_value`= ? WHERE user_id = ? AND img_id = ?",
                     [$vote, $user_id ,$img_id]);
             }
+            return $this->plop->query("UPDATE gallery SET `votes` = ? WHERE img_id = ?",
+                [$this->get_sum_votes(null , $img_id), $img_id]);
         }
 
         public function get_img_user($db, $img_id)
@@ -61,12 +63,12 @@
         public function get_user_vote($db, $img_id)
         {
             return $db->query("SELECT vote_value FROM votes WHERE img_id = ? AND user_id = ?",
-                [$img_id, $this->user['user_id']])->fetch()['vote_value'];
+                [$img_id, $_SESSION['auth']['user_id']])->fetch()['vote_value'];
         }
 
-        public function get_user()
+        public function getImageUser()
         {
-            return $this->user;
+            return $this->imageUser;
         }
 
         public function getUserVote()

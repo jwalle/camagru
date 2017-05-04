@@ -42,8 +42,6 @@
             newDiv.setAttribute('class', 'gallery');
             newDiv.setAttribute('id', 'gallery');
             newDiv.innerHTML = ajax.responseText;
-            console.log(newDiv);
-
             // wrapper[0].innerHTML += newDiv.firstChild;
 
             // console.log(wrapper);

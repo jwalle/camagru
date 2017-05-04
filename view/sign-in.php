@@ -1,9 +1,9 @@
 <?php
 if (isset($_POST['btn-signup'])) {
-    $uname = $_POST['txt_uname_mail'];
-    $umail = $_POST['txt_uname_mail'];
-    $upass = $_POST['txt_upass'];
-    if ($user = $auth->login($db, $uname, $umail, $upass)) {
+    $uname = App::cleanUp($_POST['txt_uname_mail']);
+    $umail = App::cleanUp($_POST['txt_uname_mail']);
+    $upass = App::cleanUp($_POST['txt_upass']);
+    if ($_SESSION['user'] = $auth->login($db, $uname, $umail, $upass)) {
         Session::getInstance()->setFlash('success', "Vous etes connecte(e) !");
         App::redirect('index.php?page=content'); // TODO : add connected page
     }
@@ -14,16 +14,6 @@ if (isset($_POST['btn-signup'])) {
        <div class="form-container">
 
            <form method="post">
-				<?php
-					if (isset($error))
-                    {
-                        ?>
-                        <div class="alert">
-                            <div class="msg"> <img src="img/alert-icon-1575.png" class="glyphicon"/> &nbsp;  <?php echo $error; ?> </div>
-                        </div>
-                        <?php
-                    }
-				?>
                 <h3>Sign in</h3>
                 <p>To an existing Camagru account</p>
                 <br>

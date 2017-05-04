@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['btn-forget'])) {
-    if ($user = $auth->resetPass($db, $_POST['umail'])) {
+    if ($user = $auth->resetPass($db, App::cleanUp(trim($_POST['umail'])))) {
         App::redirect('index.php?page=sign-in'); // TODO : add connected page
     } else {
         $error = "Cet utilisateur n'existe pas !";
