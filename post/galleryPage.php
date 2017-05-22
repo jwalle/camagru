@@ -4,9 +4,10 @@ App::getAuth();
 $gallery = App::getGallery();
 $page = $_POST['page'];
 $user_id = $_SESSION['auth']['user_id'];
-$sign =  $coms < 0 ? 'plus' : 'minus';
 $pageImages = $gallery->get_images($page);
+$pages = ceil($gallery->getImagesCount() / 20);
 foreach ($pageImages as $img) : ?>
+    <?php $sign =  intval($img['votes']) >= 0 ? 'plus' : 'minus'; ?>
     <div class="gal_img">
         <div class="img_name"><p><?= $img['img_user']; ?></p></div>
         <img src="<?= $img['img_name'];?>" onclick="location.href='index.php?page=image&image= <?= $img['img_id'] ?>'"/>
@@ -16,3 +17,10 @@ foreach ($pageImages as $img) : ?>
         </div>
     </div>
 <?php endforeach; ?>
+<div class="pages">
+    <h1 style="color: white">
+    <?php for($x = 1; $x <= $pages; $x++) : ?>
+    <p onclick="location.href='index.php?page=gallery&p=<?= $x ?>'"><?= $x ?></p>
+    <?php endfor; ?>
+    </h1>
+</div>

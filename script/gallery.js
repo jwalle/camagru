@@ -3,6 +3,7 @@
     var gallery = null;
     var wrapper = null;
     var page = 0;
+    var pages = 0;
 
     function elId(elem) {
         return document.getElementById(elem);
@@ -15,8 +16,8 @@
     function startup() {
         //gallery = elId('gallery');
         wrapper = elClass('wrapper');
+        getPagesCount();
         updateGallery(page);
-
         document.addEventListener("scroll", function (ev) {
             if (document.body.scrollHeight ==
                 document.body.scrollTop +
@@ -28,6 +29,17 @@
         }, false);
 
     }
+
+    function getPagesCount() {
+        var xmlHttpReq = false;
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', 'post/getPagesCount.php', false);
+        ajax.onreadystatechange = function() {
+            pages = ajax.responseText;
+            console.log('nb de page : ' + pages);
+        }
+        ajax.send();
+        }
 
     function updateGallery(page) {
         var formData = new FormData;
@@ -47,7 +59,7 @@
             // console.log(wrapper);
             wrapper[0].appendChild(newDiv);
             // console.log(pageName);
-            wrapper[0].appendChild(pageName);
+            // wrapper[0].appendChild(pageName);
         }
         ajax.send(formData);
     }

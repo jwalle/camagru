@@ -590,14 +590,14 @@ i {
 }
 
 .gal_img img {
-    width: 20vw;
+    width: 16vw;
     min-width: 200px;
 }
 
 .img_name {
     position: absolute;
     width: 100px;
-    height: 50px;
+    /*height: 50px;*/
     background: rgba(1, 1, 1, 0.6);
     color: white;
     border-bottom-right-radius: 7px;

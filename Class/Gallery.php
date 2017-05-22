@@ -24,6 +24,11 @@ class Gallery
             $this->db->query("DELETE FROM votes WHERE img_id=:img_id", [$img_id]);
     }
 
+    public function getImagesCount()
+    {
+        return $this->db->query("SELECT COUNT(*) FROM gallery", [])->fetch()[0];
+    }
+
     public function get_images($page)
     {
         $offset = intval($page * 20);
