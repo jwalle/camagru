@@ -100,14 +100,12 @@
 }
 
 .wrapper {
-    height: 100%;
-    /*border-color: blue;*/
-    /*border-style: dashed;*/
-    /*border-width: 2px;*/
     display: flex;
     flex-direction: column;
     background: url("../img/main_bg.png") no-repeat;
     background-position-x: center;
+    /*margin-bottom: 80px;*/
+    min-height: 100%;
 }
 
 .alert{
@@ -647,6 +645,10 @@ footer {
     background-color: whitesmoke;
     font-size: 0.9em;
     display: flex;
+    height: 20px;
+    position: absolute;
+    /*bottom: 0;*/
+    width: 100%;
 }
 
 #require {
@@ -658,4 +660,20 @@ footer {
     margin-top: 15px;
     width: 350px;
     float: left;
+}
+
+.pages {
+    color: white;
+    font-size: 2em;
+    display: flex;
+}
+
+.pages p {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.pages p:hover{
+    text-decoration: none;
+    color: #24475f;
 }

@@ -16,14 +16,18 @@
     function startup() {
         //gallery = elId('gallery');
         wrapper = elClass('wrapper');
+        page = elId('page').value;
+        console.log(page);
         getPagesCount();
         updateGallery(page);
         document.addEventListener("scroll", function (ev) {
-            if (document.body.scrollHeight ==
+            console.log('page = ' + page + ' pages = ' + pages);
+            if ((document.body.scrollHeight ==
                 document.body.scrollTop +
-                window.innerHeight) {
+                window.innerHeight) && page < pages - 1) {
                 ++page;
-                updateGallery(page);
+                setTimeout(updateGallery(page), 1000);
+                // displayPagination();
             }
             ev.preventDefault();
         }, false);
@@ -35,7 +39,7 @@
         var ajax = new XMLHttpRequest();
         ajax.open('POST', 'post/getPagesCount.php', false);
         ajax.onreadystatechange = function() {
-            pages = ajax.responseText;
+            pages = Math.ceil(parseInt(ajax.responseText) / 20);
             console.log('nb de page : ' + pages);
         }
         ajax.send();
@@ -58,10 +62,24 @@
 
             // console.log(wrapper);
             wrapper[0].appendChild(newDiv);
+            displayPagination();
             // console.log(pageName);
             // wrapper[0].appendChild(pageName);
         }
         ajax.send(formData);
+    }
+
+    function displayPagination() {
+        var xmlHttpReq = false;
+        var ajax = new XMLHttpRequest();
+        ajax.open('POST', 'post/displayPagin.php', false);
+        ajax.onreadystatechange = function() {
+            var newDiv = document.createElement('div');
+            newDiv.setAttribute('class', 'pages');
+            newDiv.innerHTML = ajax.responseText;
+            wrapper[0].appendChild(newDiv);
+        }
+        ajax.send();
     }
 
     window.addEventListener('load', startup, false);

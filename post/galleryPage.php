@@ -17,10 +17,3 @@ foreach ($pageImages as $img) : ?>
         </div>
     </div>
 <?php endforeach; ?>
-<div class="pages">
-    <h1 style="color: white">
-    <?php for($x = 1; $x <= $pages; $x++) : ?>
-    <p onclick="location.href='index.php?page=gallery&p=<?= $x ?>'"><?= $x ?></p>
-    <?php endfor; ?>
-    </h1>
-</div>
