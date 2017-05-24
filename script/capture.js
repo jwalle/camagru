@@ -97,6 +97,7 @@
             }, false);
         }
 
+
         frame1.addEventListener("click", function (ev) {
             layer2.style.display = 'block';
             clearLayer(layer2);
@@ -119,6 +120,13 @@
         }, false);
 
         frame4.addEventListener("click", function (ev) {
+            layer2.style.display = 'block';
+            clearLayer(layer2);
+            render(layer2, 'img/frameStar.png');
+            ev.preventDefault();
+        }, false);
+
+        frame5.addEventListener("click", function (ev) {
             clearLayer(layer2);
             layer2.style.display = 'none';
             ev.preventDefault();
@@ -128,6 +136,34 @@
             //clearLayer(layer3);
             render(layer3, 'img/Fedora.png');
             dragging('img/Fedora.png');
+            ev.preventDefault();
+        }, false);
+
+        stamp2.addEventListener("click", function (ev) {
+            //clearLayer(layer3);
+            render(layer3, 'img/catEars.png');
+            dragging('img/catEars.png');
+            ev.preventDefault();
+        }, false);
+
+        stamp3.addEventListener("click", function (ev) {
+            //clearLayer(layer3);
+            render(layer3, 'img/dog.png');
+            dragging('img/dog.png');
+            ev.preventDefault();
+        }, false);
+
+        stamp4.addEventListener("click", function (ev) {
+            //clearLayer(layer3);
+            render(layer3, 'img/bald.png');
+            dragging('img/bald.png');
+            ev.preventDefault();
+        }, false);
+
+        stamp5.addEventListener("click", function (ev) {
+            //clearLayer(layer3);
+            render(layer3, 'img/glasses.png');
+            dragging('img/glasses.png');
             ev.preventDefault();
         }, false);
 
@@ -149,6 +185,15 @@
                    console.log("error uploading file");
            }, true);
        }
+
+        elId('back').addEventListener("click", function (ev) {
+            hidePhotoshop();
+            clearLayer(layer1);
+            clearLayer(layer2);
+            clearLayer(layer3);
+            ev.preventDefault();
+        }, false);
+
 
         save.addEventListener("click", function (ev) {
             saveImage();

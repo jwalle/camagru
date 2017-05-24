@@ -24,6 +24,7 @@
                     <div id="frame2" class="frame"></div>
                     <div id="frame3" class="frame"></div>
                     <div id="frame4" class="frame"></div>
+                    <div id="frame5" class="frame"></div>
                 </div>
             </div>
             <div class="col2">
@@ -36,10 +37,16 @@
             <div class="col3">
                 <p>Stamps :</p>
                 <div id="stamp1" class="stamp"></div>
-                <div id="stamp1" class="stamp"></div>
+                <div id="stamp2" class="stamp"></div>
+                <div id="stamp3" class="stamp"></div>
+                <div id="stamp4" class="stamp"></div>
+                <div id="stamp5" class="stamp"></div>
             </div>
         </div>
-        <button class="button" id="save" style="vertical-align: middle"><span>Save </span></button>
+        <div class="buttons-pshop">
+            <button class="button" id="back" style="vertical-align: middle"><span>Back </span></button>
+            <button class="button" id="save" style="vertical-align: middle"><span>Save </span></button>
+        </div>
     </div>
     <div class="right_side" id="mini_gal"></div>
 </div>
