@@ -3,7 +3,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
 App::getAuth();
 $gallery = App::getGallery();
 $page = $_POST['page'];
-$user_id = $_SESSION['auth']['user_id'];
+//$user_id = $_SESSION['auth']['user_id'];
 $pageImages = $gallery->get_images($page);
 $pages = ceil($gallery->getImagesCount() / 20);
 foreach ($pageImages as $img) : ?>

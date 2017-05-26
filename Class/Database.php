@@ -12,6 +12,11 @@ class Database
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
+    /**
+     * @param $query
+     * @param $params
+     * @return null|PDOStatement
+     */
     public function query($query, $params)
     {
         $req = null;

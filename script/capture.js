@@ -37,13 +37,13 @@
         layer1 = elId('layer1');
         layer2 = elId('layer2');
         layer3 = elId('layer3');
-        stamp1 = elId('stamp1');
         frame1 = elId('frame1');
         wrapper = elClass('wrapper');
         upvote = elClass('upvote');
         dvote = elClass('dvote');
         photoshop = elId('photoshop');
         miniGal = elId('mini_gal');
+        stamps = [];
 
         updateMiniGal();
 
@@ -69,7 +69,7 @@
                video.style.backgroundColor = "#AAA";
                video.setAttribute('width', width);
                video.setAttribute('height', height);
-               console.log("An error occured!!!  " + err);
+               console.log("An error occurred!!!  " + err);
             }
         );
 
@@ -90,13 +90,11 @@
         if (snap)
         {
             snap.addEventListener("click", function (ev) {
-                //video.style.display = 'none';
                 takepicture();
                 hideCam();
                 ev.preventDefault();
             }, false);
         }
-
 
         frame1.addEventListener("click", function (ev) {
             layer2.style.display = 'block';
@@ -132,47 +130,6 @@
             ev.preventDefault();
         }, false);
 
-        stamp1.addEventListener("click", function (ev) {
-            //clearLayer(layer3);
-            render(layer3, 'img/Fedora.png');
-            dragging('img/Fedora.png');
-            ev.preventDefault();
-        }, false);
-
-        stamp2.addEventListener("click", function (ev) {
-            //clearLayer(layer3);
-            render(layer3, 'img/catEars.png');
-            dragging('img/catEars.png');
-            ev.preventDefault();
-        }, false);
-
-        stamp3.addEventListener("click", function (ev) {
-            //clearLayer(layer3);
-            render(layer3, 'img/dog.png');
-            dragging('img/dog.png');
-            ev.preventDefault();
-        }, false);
-
-        stamp4.addEventListener("click", function (ev) {
-            //clearLayer(layer3);
-            render(layer3, 'img/bald.png');
-            dragging('img/bald.png');
-            ev.preventDefault();
-        }, false);
-
-        stamp5.addEventListener("click", function (ev) {
-            //clearLayer(layer3);
-            render(layer3, 'img/glasses.png');
-            dragging('img/glasses.png');
-            ev.preventDefault();
-        }, false);
-
-       /* wrapper.addEventListener("dragover", function(e){e.preventDefault();}, true);
-        wrapper.addEventListener("drop", function (e) {
-            e.preventDefault();
-            loadImage(e.dataTransfer.files[0]);
-        }, true);*/
-
        if (upload)
        {
            upload.addEventListener("change", function (ev) {
@@ -193,7 +150,6 @@
             clearLayer(layer3);
             ev.preventDefault();
         }, false);
-
 
         save.addEventListener("click", function (ev) {
             saveImage();
@@ -281,55 +237,11 @@ function saveImage() {
         photoshop.style.display = 'none';
     }
 
-function hideCam() {
- stream.style.display = 'none';
- photoshop.style.display = 'flex';
+    function hideCam() {
+     stream.style.display = 'none';
+     photoshop.style.display = 'flex';
+     drag();
 }
 
-function dragging(img) {
-    var ctx3 = layer3.getContext('2d');
-    var rect = layer3.getBoundingClientRect();
-    var offsetX = rect.left; //nope
-    var offsetY = rect.top; //nope
-    var isdragging = false;
-    var imgDrag = new Image();
-    imgDrag.onload = function () {
-        ctx3.drawImage(imgDrag, 0, 0);
-    }
-    imgDrag.src = img;
-
-    function handleMouseDown(e) {
-        canMouseX = parseInt(e.clientX-offsetX);
-        canMouseY = parseInt(e.clientY-offsetY);
-        console.log(e.clientX + "-X-" + offsetX);
-        console.log(e.clientY + "-Y-" + offsetY);
-        isdragging = true;
-    }
-
-    function handleMouseUp(e) {
-        canMouseX = parseInt(e.clientX-offsetX);
-        canMouseY = parseInt(e.clientY-offsetY);
-        isdragging = false;
-    }
-
-    function handleMouseOut(e) {
-        canMouseX = parseInt(e.clientX-offsetX);
-        canMouseY = parseInt(e.clientY-offsetY);
-        isdragging = false;
-    }
-    
-    function handleMouseMove(e) {
-        canMouseX = parseInt(e.clientX - offsetX);
-        canMouseY = parseInt(e.clientY - offsetY);
-        if (isdragging) {
-            clearLayer(layer3);
-            ctx3.drawImage(imgDrag, canMouseX - imgDrag.width/2, canMouseY - imgDrag.height/2);
-        }
-    }
-    layer3.onmousedown = function(e){handleMouseDown(e);};
-    layer3.onmouseup = function(e){handleMouseUp(e);};
-    layer3.onmouseout = function(e){handleMouseOut(e);};
-    layer3.onmousemove = function(e){handleMouseMove(e);};
-}
     window.addEventListener('load', startup, false);
 })();

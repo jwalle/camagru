@@ -4,20 +4,13 @@ include_once '../config/database.php';
 App::getAuth();
 App::getDatabase();
 $gallery = App::getGallery();
-$row = $gallery->last_three();
-if (!$row)
-    return;
+$mini_gal = $gallery->last_three();
+//print_r($mini_gal); die;
+$page = "' onclick=\"location.href='index.php?page=image&image=";
 ?>
         <div class="mini_gal_upper"><p>- Gallery -</p></div>
         <div class="mini_gal">
-        <?php
-                $page = "' onclick=\"location.href='index.php?page=image&image=";
-                $i = 0;
-                while ($i <= 2)
-                {
-                    if ($row[$i])
-                        echo "<img src='" . $row[$i]['img_name'] . $page . $row[$i]['img_id'] . "'\"" . ">";
-                    $i++;
-                }
-            ?>
+        <?php foreach ($mini_gal as $row) : ?>
+            <img src='<?= $row['img_name'] . $page . $row['img_id']; ?>'"/>
+        <?php endforeach; ?>
         </div>

@@ -1,4 +1,5 @@
 <script src="script/capture.js"></script>
+<script src="script/drag.js"></script>
 <!-- php : GD and image fuctions. image create from string -->
 <div class ="wrapper">
     <div class="stream" id="stream">
