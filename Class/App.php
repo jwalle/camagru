@@ -34,6 +34,6 @@ class App {
     }
 
     static function cleanUp($string){
-        return htmlentities($string, ENT_QUOTES, 'UTF-8');
+        return htmlentities(substr($string, 0, 9000), ENT_QUOTES, 'UTF-8');
     }
 }

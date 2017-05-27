@@ -22,8 +22,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
 <div class="wrapper">
     <div class="form-container">
         <form method="post">
-            <h3>Reinitialisation</h3>
-            <p>de votre mot de passe :</p>
+            <h3>Reinitialisation de votre mot de passe :</h3>
             <?php if (isset($error)) : ?>
                 <div class="alert-require">
                     <?php foreach ($error as $error) : ?>
@@ -46,7 +45,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
                 <input type="password" class="css-input" name="password_confirm" placeholder="Confirmer le mot de passe" value="" />
             </div>
             <div class="button">
-                <input type="submit" class="btn" name="btn-reset" value="SEND"/></br>
+                <input type="submit" class="btn" name="btn-reset" value="Valider"/></br>
             </div>
             <br>
         </form>

@@ -12,7 +12,6 @@
     var layer2 = null;
     var layer3 = null;
     var frame1 = null;
-    var stamp1 = null;
     var stream = null;
     var photoshop = null;
     var miniGal = null;
@@ -31,7 +30,6 @@
         canvasDiv = elId('canvasDiv');
         snap = elId('snap');
         save = elId('save');
-        text = elId('text');
         upload = elId('file');
         plop = elId('plop');
         layer1 = elId('layer1');
@@ -46,8 +44,8 @@
         stamps = [];
 
         updateMiniGal();
-
-        navigator.getMedia = (navigator.getUserMedia ||
+        drag();
+       navigator.getMedia = (navigator.getUserMedia ||
         navigator.webkitGetUserMedia ||
         navigator.mozGetUserMedia);
 
@@ -146,14 +144,13 @@
         elId('back').addEventListener("click", function (ev) {
             hidePhotoshop();
             clearLayer(layer1);
-            clearLayer(layer2);
-            clearLayer(layer3);
+            //clearLayer(layer2);
+            //clearLayer(layer3);
             ev.preventDefault();
         }, false);
 
         save.addEventListener("click", function (ev) {
             saveImage();
-            updateMiniGal();
             ev.preventDefault();
         }, false);
 
@@ -206,13 +203,9 @@ function loadImage(src) {
 }
 
 function updateMiniGal() {
-    var xmlHttpReq = false;
-    var ajax = new XMLHttpRequest();
-    ajax.open('POST', 'view/right_side_gal.php', false);
-    ajax.onreadystatechange = function() {
+    sendRequest('view/right_side_gal.php', null, function (ajax) {
         miniGal.innerHTML = ajax.responseText;
-    }
-    ajax.send();
+    });
 }
 
 function saveImage() {
@@ -223,25 +216,22 @@ function saveImage() {
     formData.append("layer1Data", layer1Data);
     formData.append("layer2Data", layer2Data);
     formData.append("layer3Data", layer3Data);
-    var xmlHttpReq = false;
-    var ajax = new XMLHttpRequest();
-    ajax.open('POST', 'post/SaveImg.php', false);
-    ajax.onreadystatechange = function() {
-       console.log(ajax.responseText);
-    }
-    ajax.send(formData);
+    sendRequest('post/SaveImg.php', formData, updateMiniGal);
 }
 
     function hidePhotoshop() {
-        stream.style.display = 'flex';
-        photoshop.style.display = 'none';
+        elId('video').style.display = 'flex';
+        elId('layer1').style.display = 'none';
+        elId('buttons-pshop').style.display = 'none';
+        elId('buttons-snap').style.display = 'flex';
     }
 
     function hideCam() {
-     stream.style.display = 'none';
-     photoshop.style.display = 'flex';
-     drag();
-}
+     elId('video').style.display = 'none';
+     elId('layer1').style.display = 'flex';
+     elId('buttons-pshop').style.display = 'block';
+     elId('buttons-snap').style.display = 'none';
+    }
 
     window.addEventListener('load', startup, false);
 })();

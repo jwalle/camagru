@@ -58,7 +58,7 @@ if (isset($_POST['btn-signup']))
             <div><input type="text" class="css-input" name="txt_umail" placeholder="email" value="" /></div>
             <div><input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" /></div>
             <div><input type="password" class="css-input" name="txt_upass_conf" placeholder="Retaper le mot de passe" value="" /></div>
-            <input type="submit" class="btn" name="btn-signup" value="OK"/>
+            <input type="submit" class="btn" name="btn-signup" value="Valider"/>
 			</br>
 		</form>
 	</div>

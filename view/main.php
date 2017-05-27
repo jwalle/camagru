@@ -1,4 +1,5 @@
 <html>
+    <script src="script/ajax.js"></script>
     <head>
 	    <link rel="stylesheet" type="text/css" href="CSS/style.css">
         <link rel="stylesheet" type="text/css" href="CSS/new.css">

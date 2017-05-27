@@ -1,24 +1,19 @@
 <script src="script/capture.js"></script>
 <script src="script/drag.js"></script>
 <!-- php : GD and image fuctions. image create from string -->
-<div class ="wrapper">
-    <div class="stream" id="stream">
-        <div class ="top_welcome">
-            <p>Welcome <?php print($_SESSION['auth']['user_name']); ?> !</p>
-        </div>
-        <video id="video" width="480px" height="360px">Video stream not found.</video>
-        <div class="buttons">
-            <button id="snap">Take a photo !</button>
-            <h2>  &nbsp; || &nbsp; </h2>
-            <input type="file" name="file" id="file" class="inputfile"/>
-            <label for="file">Upload a file...</label>
-        </div>
-    </div>
+<div class="wrapper">
+    <!--    <div class="stream" id="stream">-->
+    <!--        <div class ="top_welcome">-->
+    <!--            <p>Welcome --><?php //print($_SESSION['auth']['user_name']); ?><!-- !</p>-->
+    <!--        </div>-->
+    <!--        <video id="video" width="480px" height="360px">Video stream not found.</video>-->
+    <!---->
+    <!--    </div>-->
     <div class="photoshop" id="photoshop">
         <h2>Photoshop :</h2>
         <div class="cols">
             <div class="col1">
-    <!--            <input name="textbox1" id="textbox1" type="text"/>-->
+                <!--            <input name="textbox1" id="textbox1" type="text"/>-->
                 <p>Frames :</p>
                 <div class="frames">
                     <div id="frame1" class="frame"></div>
@@ -30,6 +25,7 @@
             </div>
             <div class="col2">
                 <div class="canvasDiv">
+                    <video id="video" width="480px" height="360px">Video stream not found.</video>
                     <canvas id="layer1" width="480px" height="360px"></canvas>
                     <canvas id="layer2" width="480px" height="360px"></canvas>
                     <canvas id="layer3" width="480px" height="360px"></canvas>
@@ -44,7 +40,14 @@
                 <div id="stamp5" class="stamp"></div>
             </div>
         </div>
-        <div class="buttons-pshop">
+        <div id="buttons-snap" class="buttons">
+            <button id="snap">Take a photo !</button>
+            <h2>  &nbsp; || &nbsp; </h2>
+            <input type="file" name="file" id="file" class="inputfile"/>
+            <!--            TODO : empty file !-->
+            <label for="file">Upload a file...</label>
+        </div>
+        <div id="buttons-pshop">
             <button class="button" id="back" style="vertical-align: middle"><span>Back </span></button>
             <button class="button" id="save" style="vertical-align: middle"><span>Save </span></button>
         </div>

@@ -21,7 +21,7 @@ class Gallery
 
             $this->db->query("DELETE FROM comments WHERE img_id = ?", [$img_id]);
 
-            $this->db->query("DELETE FROM votes WHERE img_id=:img_id", [$img_id]);
+            $this->db->query("DELETE FROM votes WHERE img_id = ?", [$img_id]);
     }
 
     public function getImagesCount()

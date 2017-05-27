@@ -12,14 +12,14 @@
         public function __construct($db, $img_id)
         {
             $this->plop = $db;
-            $this->sumVote = $this->get_sum_votes($db, $img_id);
+            $this->sumVote = $this->get_sum_votes($img_id);
             $this->imageUser = $this->get_img_user($db, $img_id);
             $this->comments = $this->get_comments($db, $img_id);
             $this->image = $this->get_image($db, $img_id);
             $this->userVote = $this->get_user_vote($db, $img_id);
         }
 
-        public function get_sum_votes($db, $img_id)
+        public function get_sum_votes($img_id)
         {
             $sum = 0;
             $array = $this->plop->query('SELECT vote_value FROM votes WHERE img_id = ?',
@@ -41,7 +41,7 @@
                     [$vote, $user_id ,$img_id]);
             }
             return $this->plop->query("UPDATE gallery SET `votes` = ? WHERE img_id = ?",
-                [$this->get_sum_votes(null , $img_id), $img_id]);
+                [$this->get_sum_votes($img_id), $img_id]);
         }
 
         public function get_img_user($db, $img_id)

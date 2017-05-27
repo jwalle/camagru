@@ -42,35 +42,22 @@
     }
     
     function delComment() {
-        var formData   = new FormData;
-        var xmlHttpReq = false;
-        var ajax       = new XMLHttpRequest();
-
-        var com_id = this.dataset.comid;
-        var img_id = this.dataset.imgid;
-        formData.append('comId', com_id);
-        formData.append("imgId", img_id);
-        ajax.open('POST', 'post/deleteComment.php', false);
-        ajax.onreadystatechange = function () {
+        var formData = new FormData;
+        formData.append('comId', this.dataset.comid);
+        formData.append("imgId", this.dataset.imgid);
+        sendRequest('post/deleteComment.php', formData, function (ajax) {
             console.log(ajax.responseText);
-        };
-        ajax.send(formData);
-        location.reload();
+            location.reload();
+        })
     }
 
     function delImage() {
-        var formData   = new FormData;
-        var xmlHttpReq = false;
-        var ajax       = new XMLHttpRequest();
-
-        img_id = this.dataset.img_id;
-        formData.append("img_id", img_id);
-        ajax.open('POST', 'post/deleteImage.php', false);
-        ajax.onreadystatechange = function () {
+        var formData = new FormData;
+        formData.append("img_id", this.dataset.img_id);
+        sendRequest('post/deleteImage.php', formData, function (ajax) {
             console.log(ajax.responseText);
-        };
-        ajax.send(formData);
             location.reload();
+        })
     }
 
     function blockUp() {
@@ -87,17 +74,22 @@
         upvote.addEventListener("click", up, false);
     }
 
-    function up() { //TOD: user mix-up error to fix
+    function updateVote(image) {
+        var formData = new FormData;
+        formData.append('image', image);
+        sendRequest('post/getVotes.php', formData, function (ajax) {
+           sumVote.innerHTML = ajax.responseText;
+           // location.reload();
+        });
+    }
+
+    function up() { //TODO: user mix-up error to fix
         blockUp();
-        sum += 1;
-        sumVote.innerHTML = sum;
         vote(1);
     }
 
     function down() {
         blockDown();
-        sum -= 1;
-        sumVote.innerHTML = sum;
         vote(-1);
     }
 
@@ -110,31 +102,17 @@
     function sendVote (value, user, img)
     {
         var formData   = new FormData;
-        var ajax       = new XMLHttpRequest();
-
         formData.append("voteValue", value);
         formData.append("user", user);
         formData.append("img", img);
-        ajax.open('POST', 'post/vote.php', false);
-        ajax.onreadystatechange = function () {
-            console.log(ajax.responseText);
-        };
-        ajax.send(formData);
+        sendRequest('post/vote.php', formData, updateVote, img);
     }
 
-    function sendComment(ev) {
-        // ev.preventDefault(); TODO : remove comment
-        var ajax     = new XMLHttpRequest();
+    function sendComment() {
         var formData = new FormData;
-
         formData.append('image-id', document.getElementsByName('image-id')[0].value);
         formData.append('comment', document.getElementsByName('comment')[0].value);
-
-        ajax.open('POST', 'post/post-comment.php', false);
-        ajax.onreadystatechange = function () {
-            console.log(ajax.responseText);
-        };
-        ajax.send(formData);
+        sendRequest('post/post-comment.php', formData);
     }
     window.addEventListener('load', startup, false);
 })();

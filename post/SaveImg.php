@@ -28,4 +28,4 @@
         $gallery->add_image($file, $user_id);
 	}
 	else
-	    print 'Unable to save the file.';
+	    print 'Unable to save the file.'; //TODO : message flash

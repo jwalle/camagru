@@ -14,24 +14,23 @@ if (isset($_POST['btn-signup'])) {
        <div class="form-container">
 
            <form method="post">
-                <h3>Sign in</h3>
-                <p>To an existing Camagru account</p>
+                <p>Connectez vous a un compte existant :</p>
                 <br>
                 <div class="name">
-                   <input type="text" class="css-input" name="txt_uname_mail" placeholder="Login ou email" value="" />
+                   <input type="text" class="css-input" name="txt_uname_mail" placeholder="Utilisateur ou e-mail" value="" />
                 </div>
                 <div class="password">
                     <input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" />
                 </div>
                 <div class="button">
-                  <input type="submit" class="btn" name="btn-signup" value="SIGN IN"/></br>
+                  <input type="submit" class="btn" name="btn-signup" value="Connexion"/></br>
                 </div>
                 <br>
-                <label for="ask">Click here to create a Camagru account : &nbsp;<a href="index.php?page=register" class="btn">Register</a></label>
+                <label for="ask">Créez votre compte Camagru : &nbsp;<a href="index.php?page=register" class="btn">Creer un compte</a></label>
                 <br />
 
                 <br />
-                <label for="ask">Click here if you want to reset your password : &nbsp;<a href="index.php?page=forget" class="btn">Reset Password</a></label>
+                <label for="ask">Mot de passe oublié ?&nbsp;<a href="index.php?page=forget" class="btn">Reinitialisation</a></label>
             </form>
         </div>
 </div>
