@@ -67,7 +67,8 @@
                video.style.backgroundColor = "#AAA";
                video.setAttribute('width', width);
                video.setAttribute('height', height);
-               console.log("An error occurred!!!  " + err);
+               sendError("La camera n'est pas disponible");
+               // console.log("An error occurred!!!  " + err);
             }
         );
 
@@ -131,21 +132,20 @@
        if (upload)
        {
            upload.addEventListener("change", function (ev) {
-               console.log('coucou');
                var files = ev.target.files;
                ev.preventDefault();
-               if (files)
+               if (files && files[0] && files.length > 0 && files[0].size > 0)
                    loadImage(files[0]);
-               else
-                   console.log("error uploading file");
+               else {
+                   sendError("Erreur durant l'envoi du fichier.");
+                   location.reload();
+               }
            }, true);
        }
 
         elId('back').addEventListener("click", function (ev) {
             hidePhotoshop();
             clearLayer(layer1);
-            //clearLayer(layer2);
-            //clearLayer(layer3);
             ev.preventDefault();
         }, false);
 
@@ -153,7 +153,6 @@
             saveImage();
             ev.preventDefault();
         }, false);
-
         clearphoto();
         hidePhotoshop();
     }
@@ -190,8 +189,10 @@ function render(layer, src) {
 }
 
 function loadImage(src) {
-    if (!src.type.match(/image.*/)) {
-        console.log("This file is not an image : ", src.type);
+    if (!src.type.match('image.*') || src.length == 0) {
+        sendError("Ce fichier n'est pas une image.");
+        location.reload();
+        // console.log("This file is not an image : ", src.type);
         return;
     }
     var reader = new FileReader();

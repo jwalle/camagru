@@ -16,7 +16,6 @@
 <?php if (App::getAuth()->user()) : ?>
 <script src="script/vote.js"></script>
 <?php endif; ?>
-<!--<meta name="twitter:image" content="http://localhost:8080/camagru/gallery/590b4c1a3fefc.png">-->
 <div class="wrapper">
     <h2>Bienvenue !</h2>
     <div class="image border">
@@ -33,9 +32,6 @@
         </div>
         <img src="<?= $image->getImage()['img_name'] ?>"/>
     </div>
-<!--    <a class="twitter-share-button"-->
-<!--       href="https://twitter.com/intent/tweet?text=Hello%20world">-->
-<!--        Tweet</a>-->
     <div class="comments">
         <?php foreach ($image->getComments() as $value) : ?>
             <div class="comment">
@@ -57,7 +53,7 @@
                 </div>
             <?php endif; ?>
             <input type="hidden" name="image-id" value="<?= $_GET["image"] ?>">
-            <textarea name="comment" id="comment"></textarea>
+            <textarea name="comment" id="comment" maxlength="9000"></textarea>
             <div class="button">
                 <input type="submit" class="btn" name="btn-post" value="post"/></br>
             </div>

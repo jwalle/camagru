@@ -83,7 +83,6 @@ function drag() {
         canDrag = false;
         for (var i = 0; i < 5; i++) {
             var stp = stamps[i];
-            // console.log('mx = ' + mx + ' stp.x = ' + stp.x);
             if (mx > stp.x && mx < stp.x + stp.img.width &&
                 my > stp.y && my < stp.y + stp.img.height && stp.isOn) {
                 canDrag = true;

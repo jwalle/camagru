@@ -1,19 +1,10 @@
 <script src="script/capture.js"></script>
 <script src="script/drag.js"></script>
-<!-- php : GD and image fuctions. image create from string -->
 <div class="wrapper">
-    <!--    <div class="stream" id="stream">-->
-    <!--        <div class ="top_welcome">-->
-    <!--            <p>Welcome --><?php //print($_SESSION['auth']['user_name']); ?><!-- !</p>-->
-    <!--        </div>-->
-    <!--        <video id="video" width="480px" height="360px">Video stream not found.</video>-->
-    <!---->
-    <!--    </div>-->
     <div class="photoshop" id="photoshop">
         <h2>Photoshop :</h2>
         <div class="cols">
             <div class="col1">
-                <!--            <input name="textbox1" id="textbox1" type="text"/>-->
                 <p>Frames :</p>
                 <div class="frames">
                     <div id="frame1" class="frame"></div>

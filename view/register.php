@@ -9,17 +9,19 @@ if (isset($_POST['btn-signup']))
 		$error[] = "Rajouter un nom d'utilisateur valide.";
     else if (strlen($uname) > 20)
         $error[] = "Le nom d'utilisateur est trop long (> 20).";
+    else if (strlen($uname) < 4)
+        $error[] = "Le nom d'utilisateur est trop court (< 4).";
 	else {
 	    $user_id = $db->query('SELECT user_id FROM users WHERE user_name = ?', [$uname])->fetch();
 	    if ($user_id)
-            $error[] = "Desole ce nom d'utilisateur est deja pris.";
+            $error[] = "Le nom d'utilisateur est deja pris.";
     }
     if (empty($umail) || !filter_var($umail, FILTER_VALIDATE_EMAIL))
-        $error[] = "Rajouter une adresse email valide.";
+        $error[] = "Vous devez rajouter une adresse email valide.";
 	else {
 	    $mail = $db->query('SELECT user_mail FROM users WHERE user_mail = ?', [$umail])->fetch();
 	    if ($mail)
-            $error[] = "Desole cette adresse mail est deja prise.";
+            $error[] = "Cette adresse mail est deja prise.";
     }
     if (!empty($upass)) {
     $error = Auth::testPassword($upass, $upass_conf, $error);
@@ -34,7 +36,6 @@ if (isset($_POST['btn-signup']))
 	}
 }
 ?>
-
 <div class="wrapper">
 <div class="form-container">
 	<form method="post">
@@ -54,10 +55,10 @@ if (isset($_POST['btn-signup']))
                 <li>Contenir au moins un chiffre.</li>
             </ul>
         </div>
-            <div><input type="text" class="css-input" name="txt_uname" placeholder="Login" value="" /></div>
-            <div><input type="text" class="css-input" name="txt_umail" placeholder="email" value="" /></div>
-            <div><input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" /></div>
-            <div><input type="password" class="css-input" name="txt_upass_conf" placeholder="Retaper le mot de passe" value="" /></div>
+            <div><input type="text" class="css-input" name="txt_uname" placeholder="Login" value="" maxlength="20"/></div>
+            <div><input type="text" class="css-input" name="txt_umail" placeholder="email" value="" maxlength="40"/></div>
+            <div><input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" maxlength="20"/></div>
+            <div><input type="password" class="css-input" name="txt_upass_conf" placeholder="Retaper le mot de passe" value="" maxlength="20"/></div>
             <input type="submit" class="btn" name="btn-signup" value="Valider"/>
 			</br>
 		</form>

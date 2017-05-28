@@ -39,10 +39,10 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
                 </ul>
             </div>
             <div class="password">
-                <input type="password" class="css-input" name="password" placeholder="Nouveau mot de passe" value="" />
+                <input type="password" class="css-input" name="password" placeholder="Nouveau mot de passe" value="" maxlength="20"/>
             </div>
             <div class="password_confim">
-                <input type="password" class="css-input" name="password_confirm" placeholder="Confirmer le mot de passe" value="" />
+                <input type="password" class="css-input" name="password_confirm" placeholder="Confirmer le mot de passe" value="" maxlength="20"/>
             </div>
             <div class="button">
                 <input type="submit" class="btn" name="btn-reset" value="Valider"/></br>

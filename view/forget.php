@@ -24,7 +24,7 @@ if (isset($_POST['btn-forget'])) {
             <p>Reinitialisation de votre mot de passe :</p>
             <br>
             <div class="name">
-                <input type="text" class="css-input" name="umail" placeholder="email" value="" />
+                <input type="text" class="css-input" name="umail" placeholder="email" value="" maxlength="40"/>
             </div>
             <div class="button">
                 <input type="submit" class="btn" name="btn-forget" value="Valider"/></br>

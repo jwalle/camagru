@@ -23,7 +23,7 @@
                 document.body.scrollTop +
                 window.innerHeight) && page < pages - 1) {
                 ++page;
-                setTimeout(updateGallery(page), 1000); //TODO : timeout
+                setTimeout(updateGallery, 1000, page); //TODO : timeout
             }
             ev.preventDefault();
         }, false);
@@ -46,6 +46,7 @@
             var newDiv = document.createElement('div');
             var pageName = document.createElement('h2');
             pageName.innerHTML = 'Page : ' + page;
+            // wrapper.querySelector('pages').outerHTML = 'none';
             newDiv.setAttribute('class', 'gallery');
             newDiv.setAttribute('id', 'gallery');
             newDiv.innerHTML = ajax.responseText;

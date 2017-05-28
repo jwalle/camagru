@@ -32,6 +32,12 @@
 
         public function vote($user_id, $img_id, $vote)
         {
+            if ($vote > 0)
+                $vote = 1;
+            else if ($vote < 0)
+                $vote = -1;
+            else
+                die();
             if ($this->userVote == 0) {
                 $this->plop->query('INSERT INTO votes(user_id, img_id, vote_value) 
                                          VALUES(?, ?, ?)', [$user_id, $img_id, $vote]);
@@ -65,6 +71,7 @@
             return $db->query("SELECT vote_value FROM votes WHERE img_id = ? AND user_id = ?",
                 [$img_id, $_SESSION['auth']['user_id']])->fetch()['vote_value'];
         }
+
 
         public function getImageUser()
         {

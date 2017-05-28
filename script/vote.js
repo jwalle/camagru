@@ -46,7 +46,7 @@
         formData.append('comId', this.dataset.comid);
         formData.append("imgId", this.dataset.imgid);
         sendRequest('post/deleteComment.php', formData, function (ajax) {
-            console.log(ajax.responseText);
+            // console.log(ajax.responseText);
             location.reload();
         })
     }
@@ -55,7 +55,7 @@
         var formData = new FormData;
         formData.append("img_id", this.dataset.img_id);
         sendRequest('post/deleteImage.php', formData, function (ajax) {
-            console.log(ajax.responseText);
+            // console.log(ajax.responseText);
             location.reload();
         })
     }
@@ -95,15 +95,13 @@
 
     function vote(value) {
         img = voteDiv.dataset.image;
-        user = voteDiv.dataset.user;
-        sendVote(value, user, img);
+        sendVote(value, img);
     }
 
-    function sendVote (value, user, img)
+    function sendVote (value, img)
     {
         var formData   = new FormData;
         formData.append("voteValue", value);
-        formData.append("user", user);
         formData.append("img", img);
         sendRequest('post/vote.php', formData, updateVote, img);
     }

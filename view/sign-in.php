@@ -17,10 +17,10 @@ if (isset($_POST['btn-signup'])) {
                 <p>Connectez vous a un compte existant :</p>
                 <br>
                 <div class="name">
-                   <input type="text" class="css-input" name="txt_uname_mail" placeholder="Utilisateur ou e-mail" value="" />
+                   <input type="text" class="css-input" name="txt_uname_mail" placeholder="Utilisateur ou e-mail" value="" maxlength="40"/>
                 </div>
                 <div class="password">
-                    <input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" />
+                    <input type="password" class="css-input" name="txt_upass" placeholder="Mot de passe" value="" maxlength="20"/>
                 </div>
                 <div class="button">
                   <input type="submit" class="btn" name="btn-signup" value="Connexion"/></br>
