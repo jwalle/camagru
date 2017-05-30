@@ -17,6 +17,7 @@
             mail($umail, "Validation de votre compte",
                 wordwrap("Afin de valider votre compte merci de cliquer sur ce lien\n\n
                 http://localhost:8080/camagru/index.php?page=confirm&id=$user_id&token=$token"), 70, "<br/>");
+            App::redirect('index.php?page=registered&username=' . $uname);
           }
 
         public function confirm($db, $user_id, $token) {

@@ -4,6 +4,7 @@ require 'inc/functions.php';
 include_once 'config/setup.php';
 $db = App::getDatabase();
 $auth = App::getAuth();
+define('index', 'TRUE');
 //if(!isset($user))
 //    require 'setup.php';
 if (isset($_GET['page']))
@@ -48,11 +49,14 @@ else
         case 'forget':
             require 'view/forget.php';
             break;
+        case 'registered':
+            require 'view/registered.php';
+            break;
         case 'reset':
             require 'view/reset.php';
             break;
         case 'confirm':
-            require 'confirm.php';
+            require 'view/confirm.php';
             break;
         case 'register':
             require 'view/register.php'; //Already
@@ -74,4 +78,5 @@ else
 $content = ob_get_clean();
 
 if ($content) {
-require 'view/main.php'; }
+require 'view/main.php';
+}

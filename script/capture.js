@@ -134,7 +134,7 @@
            upload.addEventListener("change", function (ev) {
                var files = ev.target.files;
                ev.preventDefault();
-               if (files && files[0] && files.length > 0 && files[0].size > 0)
+               if (files && files[0] && files.length > 0 && files[0].size > 0 && files[0].size < 100000)
                    loadImage(files[0]);
                else {
                    sendError("Erreur durant l'envoi du fichier.");
@@ -204,7 +204,9 @@ function loadImage(src) {
 }
 
 function updateMiniGal() {
-    sendRequest('view/right_side_gal.php', null, function (ajax) {
+    var formdata = new FormData;
+    formdata.append('data', 'data');
+    sendRequest('view/right_side_gal.php', formdata, function (ajax) {
         miniGal.innerHTML = ajax.responseText;
     });
 }

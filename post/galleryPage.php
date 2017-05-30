@@ -3,10 +3,10 @@ include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
 App::getAuth();
 $gallery = App::getGallery();
 $page = $_POST['page'];
-//$user_id = $_SESSION['auth']['user_id'];
-$pageImages = $gallery->get_images($page);
 $pages = ceil($gallery->getImagesCount() / 20);
-foreach ($pageImages as $img) : ?>
+if ($page >= 0 && $page < $pages) {
+    $pageImages = $gallery->get_images($page);
+    foreach ($pageImages as $img) : ?>
     <?php $sign =  intval($img['votes']) >= 0 ? 'plus' : 'minus'; ?>
     <div class="gal_img">
         <div class="img_name"><p><?= $img['img_user']; ?></p></div>
@@ -16,4 +16,4 @@ foreach ($pageImages as $img) : ?>
             <div class="votes <?= $sign ?>"><?= $img['votes'];?></div>
         </div>
     </div>
-<?php endforeach; ?>
+<?php endforeach; } ?>

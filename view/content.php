@@ -1,3 +1,7 @@
+<?php
+if (!defined('index'))
+    die('Accès interdit');
+?>
 <script src="script/capture.js"></script>
 <script src="script/drag.js"></script>
 <div class="wrapper">

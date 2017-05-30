@@ -1,3 +1,7 @@
+<?php
+if (!defined('index'))
+    die('Accès interdit');
+?>
 <html>
     <script src="script/ajax.js"></script>
     <head>
@@ -15,8 +19,6 @@
                 <li><a href="index.php">HOME</a></li>
                 <li><a href="index.php?page=gallery&p=0">GALLERY</a></li>
             </ul>
-<!--            <div class="left_block"><a id="home_link" href="index.php">HOME</a></div>-->
-<!--            <div class="right_block"><a id="gal_link" href="index.php">GALLERY</a></div>-->
         </div>
         <a href="index.php?page=logout"><div class="box3 box_menu"></div></a>
     </div>

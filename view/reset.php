@@ -1,5 +1,6 @@
 <?php
-
+if (!defined('index'))
+    die('Accès interdit');
 if (isset($_GET['id']) && isset($_GET['token'])) {
     $user = $auth->checkResetToken($db, $_GET['id'], $_GET['token']);
     if ($user) {
@@ -22,7 +23,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
 <div class="wrapper">
     <div class="form-container">
         <form method="post">
-            <h3>Reinitialisation de votre mot de passe :</h3>
+            <h3>Réinitialisation de votre mot de passe :</h3>
             <?php if (isset($error)) : ?>
                 <div class="alert-require">
                     <?php foreach ($error as $error) : ?>
@@ -33,7 +34,7 @@ if (isset($_GET['id']) && isset($_GET['token'])) {
             <div id="require">
                 <p>Votre mot de passe doit :</p>
                 <ul>
-                    <li>Faire au minimun 6 caracteres.</li>
+                    <li>Faire au minimun 6 caractères.</li>
                     <li>Contenir au moins une lettre majuscule.</li>
                     <li>Contenir au moins un chiffre.</li>
                 </ul>

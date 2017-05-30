@@ -1,4 +1,6 @@
 <?php
+if (!defined('index'))
+    die('Accès interdit');
 if (isset($_POST['btn-signup']))
 {
     $uname = App::cleanUp(trim($_POST['txt_uname']));
@@ -14,14 +16,14 @@ if (isset($_POST['btn-signup']))
 	else {
 	    $user_id = $db->query('SELECT user_id FROM users WHERE user_name = ?', [$uname])->fetch();
 	    if ($user_id)
-            $error[] = "Le nom d'utilisateur est deja pris.";
+            $error[] = "Le nom d'utilisateur est déjà pris.";
     }
     if (empty($umail) || !filter_var($umail, FILTER_VALIDATE_EMAIL))
         $error[] = "Vous devez rajouter une adresse email valide.";
 	else {
 	    $mail = $db->query('SELECT user_mail FROM users WHERE user_mail = ?', [$umail])->fetch();
 	    if ($mail)
-            $error[] = "Cette adresse mail est deja prise.";
+            $error[] = "Cette adresse mail est déjà prise.";
     }
     if (!empty($upass)) {
     $error = Auth::testPassword($upass, $upass_conf, $error);
@@ -31,8 +33,8 @@ if (isset($_POST['btn-signup']))
     if (empty($error)) {
 	    $auth = App::getAuth();
 	    $auth->register($db, $uname, $upass, $umail);
-	    Session::getInstance()->setFlash('success', "Un mail de confirmation vous a ete envoye.");
-	    App::redirect("index.php");
+	    Session::getInstance()->setFlash('success', "Un mail de confirmation vous a été envoyé.");
+	    //App::redirect("index.php?page=sign-in");
 	}
 }
 ?>
@@ -50,7 +52,7 @@ if (isset($_POST['btn-signup']))
         <div id="require">
             <p>Votre mot de passe doit :</p>
             <ul>
-                <li>Faire au minimun 6 caracteres.</li>
+                <li>Faire au minimum 6 caractères.</li>
                 <li>Contenir au moins une lettre majuscule.</li>
                 <li>Contenir au moins un chiffre.</li>
             </ul>

@@ -1,4 +1,6 @@
 <?php
+if (!defined('index'))
+    die('Accès interdit');
 if (isset($_POST['btn-forget'])) {
     if ($user = $auth->resetPass($db, App::cleanUp(trim($_POST['umail'])))) {
         App::redirect('index.php?page=sign-in'); // TODO : add connected page
@@ -21,7 +23,7 @@ if (isset($_POST['btn-forget'])) {
                 <?php
             }
             ?>
-            <p>Reinitialisation de votre mot de passe :</p>
+            <p>Réinitialisation de votre mot de passe :</p>
             <br>
             <div class="name">
                 <input type="text" class="css-input" name="umail" placeholder="email" value="" maxlength="40"/>

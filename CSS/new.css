@@ -712,3 +712,14 @@ footer {
     text-decoration: none;
     color: #24475f;
 }
+
+#registered {
+    font-size: 1.5em;
+}
+
+#noCom {
+    width: 500px;
+    background: #81919c;
+    margin-top: 20px;
+    text-align: center;
+}

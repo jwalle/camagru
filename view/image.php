@@ -1,11 +1,12 @@
 <?php
-   // $auth->restrict();
+    if (!defined('index'))
+        die('Accès interdit');
     $user_id = $_SESSION['auth']['user_id'];
     $gallery = App::getGallery();
     App::getAuth()->user() ? $grey = "" : $grey = "grey";
     if (!$_GET["image"] || $gallery->get_image($_GET["image"])['img_name'] == NULL) {
+        Session::getInstance()->setFlash('danger', "Cette image n'existe pas.");
         App::redirect("index.php");
-        echo "wtf =" . $gallery->get_image($_GET["image"])['img_name']; //TODO : gestion erreur
     }
     else {
         $image = App::getImage($_GET['image']);
@@ -59,6 +60,9 @@
             </div>
         </form>
     </div>
+        <?php else: ?>
+        <div id="noCom">
+            <p>Vous devez créer un compte et être connecté pour poster un commentaire.</p>
+        </div>
     <?php endif; ?>
-<!--    TODO : vous devez etre connecter pour poster.-->
 </div>

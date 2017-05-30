@@ -12,7 +12,7 @@ if (isset($_POST)) {
         App::getDatabase()->query('UPDATE gallery SET comments = comments + 1 WHERE img_id = ?', [$_POST['image-id']]);
         $email = App::getImage($_POST['image-id'])->getImageUser()['user_mail'];
         $sujet = "Commentaire camagru";
-        $content = "L'une de vos creation viens de recevoir un commentaire de la part de "
+        $content = "L'une de vos créations vient de recevoir un commentaire de la part de "
             . $_SESSION['auth']['user_name'] . ' !';
         mail($email, $sujet, $content);
     }

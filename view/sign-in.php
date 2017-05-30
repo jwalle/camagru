@@ -1,10 +1,12 @@
 <?php
+if (!defined('index'))
+    die('Accès interdit');
 if (isset($_POST['btn-signup'])) {
     $uname = App::cleanUp($_POST['txt_uname_mail']);
     $umail = App::cleanUp($_POST['txt_uname_mail']);
     $upass = App::cleanUp($_POST['txt_upass']);
     if ($_SESSION['user'] = $auth->login($db, $uname, $umail, $upass)) {
-        Session::getInstance()->setFlash('success', "Vous etes connecte(e) !");
+            Session::getInstance()->setFlash('success', "Vous êtes connecté(e) !");
         App::redirect('index.php?page=content'); // TODO : add connected page
     }
 }
@@ -14,7 +16,7 @@ if (isset($_POST['btn-signup'])) {
        <div class="form-container">
 
            <form method="post">
-                <p>Connectez vous a un compte existant :</p>
+                <p>Connectez-vous à un compte existant :</p>
                 <br>
                 <div class="name">
                    <input type="text" class="css-input" name="txt_uname_mail" placeholder="Utilisateur ou e-mail" value="" maxlength="40"/>
@@ -30,7 +32,7 @@ if (isset($_POST['btn-signup'])) {
                 <br />
 
                 <br />
-                <label for="ask">Mot de passe oublié ?&nbsp;<a href="index.php?page=forget" class="btn">Reinitialisation</a></label>
+                <label for="ask">Mot de passe oublié ?&nbsp;<a href="index.php?page=forget" class="btn">Réinitialisation</a></label>
             </form>
         </div>
 </div>

@@ -28,6 +28,11 @@ class App {
         header("Location: $url");
     }
 
+    static function restrict() {
+        if (!defined('index'))
+            die('Accès interdit');
+    }
+
     static function str_random($length) {
         $alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         return substr(str_shuffle(str_repeat($alphabet, $length)), 0, $length);

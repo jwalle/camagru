@@ -1,5 +1,6 @@
 <?php
-
+if (!defined('index'))
+    die('Accès interdit');
 if (isset($_GET['id']) && isset($_GET['token'])) {
 
     if ($auth->confirm($db, $_GET['id'], $_GET['token'])) {
