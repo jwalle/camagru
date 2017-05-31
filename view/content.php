@@ -37,9 +37,7 @@ if (!defined('index'))
         </div>
         <div id="buttons-snap" class="buttons">
             <button id="snap">Take a photo !</button>
-            <h2>  &nbsp; || &nbsp; </h2>
             <input type="file" name="file" id="file" class="inputfile"/>
-            <!--            TODO : empty file !-->
             <label for="file">Upload a file...</label>
         </div>
         <div id="buttons-pshop">

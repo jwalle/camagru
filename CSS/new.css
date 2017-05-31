@@ -194,17 +194,18 @@
 }
 
 .buttons{
-    font-family: Noto;
     display: flex;
     align-items: center;
     padding: 5px;
-    margin: 0 auto;
-    margin: 20px;
+    margin: 5px;
+}
+
+#buttons-snap{
+    width: 480px;
 }
 
 .buttons h2 {
     font-size: 2em;
-    font-family: Arial;
     font-weight: 600;
 }
 
@@ -216,6 +217,7 @@
     background: #14264b;
     text-decoration: none;
     padding: 10px;
+    display: none;
 }
 
 #snap:hover {

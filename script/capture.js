@@ -45,30 +45,20 @@
 
         updateMiniGal();
         drag();
-       navigator.getMedia = (navigator.getUserMedia ||
-        navigator.webkitGetUserMedia ||
-        navigator.mozGetUserMedia);
 
-        navigator.getMedia(
-            {
-                video: true,
-                audio: false
-            },
-            function (stream) {
-                if (navigator.mozGetUserMedia) {
-                    video.mozSrcObject = stream;
-                } else {
-                    var vendorURL = window.URL || window.webkitURL;
-                    video.src = vendorURL.createObjectURL(stream);
-                }
+        var constraints = { audio : false, video: {width: 480, height: 360}};
+
+        navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+            video.srcObject = stream;
+            video.onloadedmetadata = function (e) {
                 video.play();
-            },
-            function (err) {
+                snap.style.display = 'inline-block';
+            };
+        }).catch(function(err) {
                video.style.backgroundColor = "#AAA";
                video.setAttribute('width', width);
                video.setAttribute('height', height);
                sendError("La camera n'est pas disponible");
-               // console.log("An error occurred!!!  " + err);
             }
         );
 
@@ -89,8 +79,13 @@
         if (snap)
         {
             snap.addEventListener("click", function (ev) {
-                takepicture();
-                hideCam();
+                if (!isCanvasBlank(layer1) || video) {
+                    takepicture();
+                    hideCam();
+                } else {
+                    sendError('le canvas est vide.');
+                    location.reload();
+                }
                 ev.preventDefault();
             }, false);
         }
@@ -134,9 +129,9 @@
            upload.addEventListener("change", function (ev) {
                var files = ev.target.files;
                ev.preventDefault();
-               if (files && files[0] && files.length > 0 && files[0].size > 0 && files[0].size < 100000)
+               if (files && files[0] && files.length > 0 && files[0].size > 0 && files[0].size < 10000000) {
                    loadImage(files[0]);
-               else {
+               } else {
                    sendError("Erreur durant l'envoi du fichier.");
                    location.reload();
                }
@@ -178,6 +173,14 @@ function takepicture() {
         clearphoto();
     }
 }
+
+function isCanvasBlank(canvas) {
+    var blank = document.createElement('canvas');
+    blank.width = canvas.width;
+    blank.height = canvas.height;
+    return canvas.toDataURL() == blank.toDataURL();
+}
+
 
 function render(layer, src) {
     var image = new Image();

@@ -16,7 +16,7 @@
             $user_id = $db->lastInsertId();
             mail($umail, "Validation de votre compte",
                 wordwrap("Afin de valider votre compte merci de cliquer sur ce lien\n\n
-                http://localhost:8080/camagru/index.php?page=confirm&id=$user_id&token=$token"), 70, "<br/>");
+                http://localhost:8080/camagru/index.php?page=confirm&id=$user_id&token=$token", 70));
             App::redirect('index.php?page=registered&username=' . $uname);
           }
 
@@ -37,7 +37,7 @@
                 $user_id = $user['user_id'];
                 $db->query('UPDATE users SET reset_token = ?, reset_at = NOW() WHERE user_id = ?', [$reset_token, $user_id]);
                 mail($email, "Reinitialisation de votre mot de passe",
-                    "Pour reinitialiser votre mot de passe cliquez sur le lien suivant :\n\n"
+                    "Pour réinitialiser votre mot de passe veuillez cliquer sur le lien suivant :\n\n"
                     ."http://localhost:8080/camagru/index.php?page=reset&id=$user_id&token=$reset_token");
                 Session::getInstance()->setFlash('success', "Un mail vous a ete envoye !");
                 return $user;
