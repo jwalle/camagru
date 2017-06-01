@@ -5,8 +5,6 @@ include_once 'config/setup.php';
 $db = App::getDatabase();
 $auth = App::getAuth();
 define('index', 'TRUE');
-//if(!isset($user))
-//    require 'setup.php';
 if (isset($_GET['page']))
     $page = $_GET['page'];
 else
@@ -19,7 +17,7 @@ if ($auth->user())
     switch ($page)
     {
         case 'logout':
-            require 'logout.php';
+            require 'post/logout.php';
             break;
         case 'content':
             require 'view/content.php';
@@ -31,7 +29,7 @@ if ($auth->user())
             require 'view/galleryView.php';
             break;
         case 'home' :
-            require 'Home.php';
+            require 'view/Home.php';
             break;
         default :
             require 'view/content.php';
@@ -70,7 +68,6 @@ else
         default:
             $auth->restrict();
             require 'view/sign-in.php';
-//            App::redirect('index.php');
 
     }
 }

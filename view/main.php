@@ -6,19 +6,17 @@ if (!defined('index'))
     <script src="script/ajax.js"></script>
     <head>
 	    <link rel="stylesheet" type="text/css" href="CSS/style.css">
-        <link rel="stylesheet" type="text/css" href="CSS/new.css">
-	    <link rel="icon" type="image/png" href="../img/logo.png">
+        <link rel="stylesheet" type="text/css" href="CSS/main.css">
+	    <link rel="icon" type="image/png" href="img/logo.png">
 	    <title>Camagru</title>
     </head>
 
 
     <div class="top_bar">
         <div class="menu">
-            <div class="title"></div>
-            <ul class="nav">
-                <li><a href="index.php">HOME</a></li>
-                <li><a href="index.php?page=gallery&p=0">GALLERY</a></li>
-            </ul>
+            <li><a href="index.php">HOME</a></li>
+                <div class="title"></div>
+            <li><a href="index.php?page=gallery&p=0">GALLERY</a></li>
         </div>
         <a href="index.php?page=logout"><div class="box3 box_menu"></div></a>
     </div>

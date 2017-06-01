@@ -1,6 +1,6 @@
 @font-face {
     font-family: Noto;
-    src: url(../NotoSans-Regular.ttf);
+    src: url(../fonts/NotoSans-Regular.ttf);
 }
 
 .top_bar {
@@ -10,58 +10,28 @@
 
 .menu {
     height: 100%;
-    width: 60%;
-}
-
-.nav {
+    width: 80%;
+    display: flex;
+    list-style-type: none;
     text-align: center;
+    align-items: center;
 }
 
-.nav li {
+.menu li {
     display: inline;
 }
 
-.nav li a {
+.menu li a {
     text-decoration: none;
     color: black;
     font-size: 1.75em;
     font-family: Noto;
 }
 
-@media (max-width: 1333px) {
-    .top_welcome h1 {
-        /*padding-top: 50px;*/
-    }
-
-    .nav {
-        /*margin: 20px;*/
-    }
-
-    .nav li a{
-        color : white;
-    }
-}
-
-@media (min-width: 1333px) {
-    .nav {
-        margin-top: -66px;
-    }
-
-    .nav li:nth-child(1){
-        float: left;
-    }
-
-    .nav li:nth-child(2){
-        float: right;
-    }
-
-}
-
-
 .title {
     background: url("../img/titreBlack.png") no-repeat;
     background-size: 100% auto;
-    width: 550px;
+    min-width: 550px;
     height: 100px;
 }
 
@@ -666,7 +636,7 @@ i {
 }
 
 .gallery {
-    width: 85%;
+    width: 86%;
     padding: 5px;
 }
 
