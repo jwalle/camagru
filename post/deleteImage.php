@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
+require '../inc/bootstrap.php';
 App::getAuth();
 $imgUserName = App::getDatabase()->query("SELECT img_user FROM gallery WHERE img_id = ?", [$_POST['img_id']])->fetch();
 if ($imgUserName[0] == $_SESSION['auth']['user_name']) {

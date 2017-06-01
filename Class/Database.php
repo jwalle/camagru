@@ -7,7 +7,7 @@ class Database
 
     public function __construct()
     {
-        include $_SERVER['DOCUMENT_ROOT'] . '/camagru/config/database.php';
+        include rootPath . '/config/database.php';
         $this->pdo = new PDO("mysql:dbname=$DB_NAME;host=$DB_DSN", $DB_USER, $DB_PASSWORD);
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }

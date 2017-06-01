@@ -1,7 +1,8 @@
 <?php
+define(rootPath, __DIR__, true);
 require 'inc/bootstrap.php';
 require 'inc/functions.php';
-include_once 'config/setup.php';
+include_once('config/setup.php');
 $db = App::getDatabase();
 $auth = App::getAuth();
 define('index', 'TRUE');
@@ -66,7 +67,6 @@ else
             require 'view/sign-in.php';
             break ;
         default:
-            $auth->restrict();
             require 'view/sign-in.php';
 
     }

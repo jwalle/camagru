@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
+require '../inc/bootstrap.php';
 App::getAuth();
 if (isset($_POST)) {
     if ($_POST['comment']) {

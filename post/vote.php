@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
+require '../inc/bootstrap.php';
 App::getDatabase();
 App::getAuth();
 $img_id = $_POST['img'];

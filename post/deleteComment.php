@@ -1,5 +1,5 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
+require '../inc/bootstrap.php';
 App::getAuth();
 $comUserId = App::getDatabase()->query("SELECT user_id FROM comments WHERE com_id = ?", [$_POST['comId']])->fetch();
 if ($comUserId[0] == $_SESSION['auth']['user_id']) {

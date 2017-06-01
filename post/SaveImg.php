@@ -1,5 +1,5 @@
 <?php
-    include $_SERVER['DOCUMENT_ROOT'] . '/camagru/inc/bootstrap.php';
+    require '../inc/bootstrap.php';
     App::getAuth();
     $gallery = App::getGallery();
 	define('UPLOAD_DIR', 'gallery/');
